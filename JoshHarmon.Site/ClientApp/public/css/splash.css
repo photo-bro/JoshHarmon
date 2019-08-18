@@ -1,9 +1,7 @@
 ﻿header {
-    max-width: 1200px;
     margin: 0 auto;
     font-family: "Barlow Semi Condensed", sans-serif;
-    padding-bottom: 20px;
-    padding-top: 30px;
+    padding-top: 2vw;
 }
 
 .header-title {
@@ -14,12 +12,12 @@
     text-indent: 1.6vw;
     display: flex;
     justify-content: center;
-    text-shadow: 0 0 2vw rgba(1,1,1,.5), 0 0 3vw rgba(1,1,1,.5);
+    text-shadow: 0 0 2vw rgba(1,1,1,.5), 0 0 3vw rgba(1,1,1,1);
     color: #FFF;
 }
 
     .header-title :hover {
-        text-shadow: 0 0 2vw rgba(1,1,1,.8), 0 0 3vw rgba(1,1,1,.5);
+        text-shadow: 0 0 2vw rgba(1,1,1,.8), 0 0 3vw rgba(1,1,1,1);
     }
 
     .header-title a {

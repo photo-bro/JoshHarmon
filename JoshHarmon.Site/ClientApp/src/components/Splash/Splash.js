@@ -1,7 +1,6 @@
 ﻿import React, { Component } from 'react';
 import { Collapse, Container } from 'reactstrap';
 import { VisualPanel } from './VisualPanel';
-import { TopBar } from '../Shared/TopBar';
 import { FootBar } from '../Shared/FootBar';
 
 
@@ -47,7 +46,6 @@ export class Splash extends Component {
 
         return (
             <div>
-                <TopBar />
                 {panelContent}
                 {connectContent}
             </div>

@@ -13,7 +13,7 @@ export class TopBar extends Component {
         return (
             <header>
                 <div class="header-title" >
-                    <a href={window.location.host}>
+                    <a href={window.location.origin}>
                         Josh Harmon
                     </a>
                 </div>
