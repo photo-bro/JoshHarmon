@@ -13,7 +13,9 @@ export class TopBar extends Component {
         return (
             <header>
                 <div class="header-title" >
-                    Josh Harmon
+                    <a href={window.location.host}>
+                        Josh Harmon
+                    </a>
                 </div>
             </header>
         );
