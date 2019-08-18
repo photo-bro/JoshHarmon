@@ -28,7 +28,27 @@ namespace JoshHarmon.Site.Controllers
                 },
                 ConnectModel = new ConnectModel
                 {
-                    Icons = new ConnectIcons[0]
+                    Icons = new[]
+                    {
+                        new ConnectIcons
+                        {
+                            Name = "email",
+                            LinkUrl = "mailto:joshuapharmon@gmail.com",
+                            IconUrl= "/icon/email-icon-black.png"
+                        },
+                        new ConnectIcons
+                        {
+                            Name = "GitHub",
+                            LinkUrl = "https://www.github.com/photo-bro/",
+                            IconUrl= "/icon/GitHub-Mark-120px-plus.png"
+                        },
+                        new ConnectIcons
+                        {
+                            Name = "LinkedIn",
+                            LinkUrl = "https://www.linkedin.com/in/joshuapharmon/",
+                            IconUrl= "/icon/LI-In-Bug Black.png"
+                        }
+                    }
                 }
             };
             return Ok(model);

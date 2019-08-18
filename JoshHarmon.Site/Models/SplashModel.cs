@@ -24,6 +24,8 @@ namespace JoshHarmon.Site.Models
 
     public class ConnectIcons
     {
+        public string Name { get; set; }
+
         public string IconUrl { get; set; }
 
         public string LinkUrl { get; set; }
