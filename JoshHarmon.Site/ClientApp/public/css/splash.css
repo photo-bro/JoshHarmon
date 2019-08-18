@@ -7,14 +7,13 @@
 }
 
 .header-title {
-    height: 2em;
-    font-size: 2.5em;
-    letter-spacing: .4em;
-    text-indent: .4em;
-    box-shadow: inset 0 -0.05em 0.1em #FFF, inset 0 -0.08em 0px 0px #000;
+    height: 8vw;
+    font-size: 5vw;
+    letter-spacing: 1.6vw;
+    text-indent: 1.6vw;
     display: flex;
     justify-content: center;
-    text-shadow: 0 0 0.12em rgba(0,0,0,.5);
+    text-shadow: 0 0 0.5vw rgba(0,0,0,.5);
     color: #000;
 }
 
@@ -22,7 +21,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0.5em 13em 3em 13em;
+    margin: 4vw 12vw 12vw 12vw;
+    max-height: 1600px;
+    max-width: 2200px;
+    min-height: 75vh;
+    min-width: 75vw;
     box-shadow: 0 0 12px 2px rgba(0,0,0,1);
     border-radius: 1em;
 }
@@ -60,15 +63,16 @@
     position: absolute;
     margin: 0;
     color: rgba(255,255,255,1);
+    word-wrap: break-word;
     text-transform: uppercase;
-    text-shadow: 0 0 0.1em #000;
-    font-size: 5em;
-    letter-spacing: .5em;
-    text-indent: .5em;
-    box-shadow: 0 0 0.5em 0.3em #FFF, inset 0 0 0.2em 0em #FFF;
+    text-shadow: 0 0 0.4vw #000;
+    font-size: 3.5vw;
+    letter-spacing: 2vw;
+    text-indent: 2vw;
+    box-shadow: 0 0 4vw 1.2vw #FFF, inset 0 0 0.8vw 0 #FFF;
     border-radius: 0.15em;
 }
 
     .panelContainer-title p:hover {
-        text-shadow: 0 0 0.5em #FFF;
+        text-shadow: 0 0 4vw #FFF;
     }

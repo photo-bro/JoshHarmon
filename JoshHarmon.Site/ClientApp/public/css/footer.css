@@ -3,23 +3,24 @@
 
 .connections {
     display: flex;
-    margin: 2em 0 2em 0;
+    flex-wrap: wrap;
+    margin: 0;
     align-items: center;
     justify-content: center;
 }
 
 .connectIcon {
     display: inline-flex;
-    margin: 0em 4em 0em 4em;
+    margin: 1vh 15vw 1vh 15vw;
 }
 
     .connectIcon img {
-        height: 8em;
-        width: 8em;
+        height: 25vw;
+        width: 25vw;
         max-height: 128px;
         max-width: 128px;
-        min-height: 1em;
-        min-width: 1em;
+        min-height: 5vw;
+        min-width: 5vw;
     }
 
     .connectIcon a {
