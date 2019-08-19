@@ -6,15 +6,40 @@ export class Projects extends Component {
 
     constructor() {
         super();
-        this.state = this.props;
+        this.state = {
+            projectModels: [],
+            loading: true,
+            loadingMessage: "Loading..."
+            };
+
+        fetch('api/projects', { method: 'get' })
+            .then(response => response.json())
+            .then(data => {               
+                this.setState({
+                    projectModels: data.projectModels,
+                    loading: false
+                });
+            });
+
+    }
+
+    static buildProjectIcons(projectModels){
+        return (
+            <div class="projects">
+                {projectModels.map(model => <Project model={model} />)}
+            </div>
+        );      
     }
 
 
     render() {
+        let projectIcons = this.state.loading
+            ? <h3>{this.state.loadingMessage}</h3>
+            : Projects.buildProjectIcons(this.state.projectModels);
+
         return (
             <div>
-                Projects
-                <Project title="Medusa's Bane" mediaUrl="/icon/email-icon-black.png" />
+                {projectIcons}
             </div>
         );
     }

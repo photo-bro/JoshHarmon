@@ -21,8 +21,10 @@ export class Project extends Component {
         super(props);
         this.state = {
             modalOpen: false,
-            title: props.title,
-            mediaUrl: props.mediaUrl
+            name: props.model.name,
+            iconUrl: props.model.iconUrl,
+            mediaUrl: props.model.mediaUrl,
+            content: props.model.content
         };
 
         this.openModal = this.openModal.bind(this);
@@ -45,21 +47,22 @@ export class Project extends Component {
     render() {
         return (
             <div class="project">
-                <img src={this.state.mediaUrl} />
-                <div class="projectTitle" onClick={this.openModal}>
-                    <p>{this.state.title}</p>
+                <img src={this.state.iconUrl} />
+                <div class="projectName" onClick={this.openModal}>
+                    {this.state.name}
                 </div>
 
                 <Modal
                     isOpen={this.state.modalOpen}
                     onAfterOpen={this.afterOpen}
                     style={projectModalStyles}
-                    contentLabel={this.state.title}
-                >
+                    contentLabel={this.state.title}>
                     <div class="projectModal" onClick={this.closeModal}>
-                        <h1>Modal Open</h1>
+                        <h1>{this.state.name}</h1>
+                        <img src={this.state.mediaUrl} />
+                        <p>{this.state.content}</p>
                     </div>
-                    </Modal>
+                </Modal>
             </div>
         );
     }

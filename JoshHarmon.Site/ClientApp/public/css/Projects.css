@@ -1,0 +1,45 @@
+﻿.projects {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    margin: 0;
+}
+
+.project {
+    display: flex;
+    margin: 5vw;
+    align-items: center;
+    justify-content: center;
+}
+
+    .project img{
+       max-height: 15vw;
+       max-width: 15vw;
+       min-height: 15vw;
+       min-width: 15vw;
+       height: auto;
+       width: auto;
+    }
+
+.projectName {
+    position: absolute;
+}
+
+
+
+.projectModal{
+
+}
+
+    .projectModal h1{
+
+    }
+
+    .projectModal img{
+        height: 25vw;
+        width: 25vw;
+    }
+
+    .projectModal p{
+
+    }

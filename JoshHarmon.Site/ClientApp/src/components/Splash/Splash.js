@@ -16,7 +16,7 @@ export class Splash extends Component {
             loadingMessage: "Loading..."
         };
 
-        fetch('api/Splash', { method: 'get' })
+        fetch('api/splash', { method: 'get' })
             .then(response => response.json())
             .then(data => {               
                 this.setState({

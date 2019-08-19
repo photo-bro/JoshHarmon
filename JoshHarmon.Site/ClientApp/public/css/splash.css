@@ -35,8 +35,6 @@
     align-items: center;
     justify-content: center;
     margin: 3vw 12vw 3vw 12vw;
-    max-height: 1600px;
-    max-width: 2200px;
     min-height: 75vh;
     min-width: 75vw;
     box-shadow: 0 0 1vw 0.1vw rgba(0,0,0,1);
@@ -62,9 +60,9 @@
 
     .panelContainer img {
         display: flex;
-        max-height: 100vh;
+        max-height: 85vh;
         max-width: 100vw;
-        min-height: 100vh;
+        min-height: 85vh;
         min-width: 100%;
         object-fit: cover;
         height: auto;
