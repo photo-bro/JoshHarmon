@@ -7,8 +7,20 @@ export class FootBar extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            iconModels: props.model.icons
+            icons: [],
+            loading: true,
+            loadingMessage: 'Loading...'
         };
+
+        fetch('api/connections', { method: 'get' })
+            .then(response => response.json())
+            .then(data => {               
+                this.setState({
+                    icons: data.connectModel.icons,
+                    loading: false
+                });
+            });
+
     }
 
     static buildConnectIcons(iconModels) {
@@ -20,7 +32,9 @@ export class FootBar extends Component {
     }
 
     render() {
-        let icons = FootBar.buildConnectIcons(this.state.iconModels)
+        let icons = this.state.loading
+            ? <h3>{this.state.loadingMessage}</h3>
+            : FootBar.buildConnectIcons(this.state.icons)
 
         return (
             <footer>

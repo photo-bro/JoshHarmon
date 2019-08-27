@@ -1,4 +1,11 @@
-﻿.connections {
+﻿
+footer {
+    background: linear-gradient(0deg, rgba(99,99,99,1) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255,255,255,0) 100%);
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}
+.connections {
     display: flex;
     flex-wrap: wrap;
     margin: 0;
@@ -63,4 +70,10 @@
     justify-content: center;
     margin: 1em;
     font-size: 1vw;
+    color: #FFF;
+}
+
+.layout {
+    position: relative;
+    min-height: 100vh;
 }

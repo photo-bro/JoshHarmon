@@ -40,14 +40,9 @@ export class Splash extends Component {
             ? <h3>{this.state.loadingMessage}</h3>
             : Splash.buildVisualPanels(this.state.panelModels);
 
-        let connectContent = this.state.loading
-            ? <h3>{this.state.loadingMessage}</h3>
-            : <FootBar model={this.state.connectModel} />
-
         return (
-            <div>
+            <div class="page">
                 {panelContent}
-                {connectContent}
             </div>
         );
     }

@@ -6,7 +6,7 @@ namespace JoshHarmon.Site.Controllers
     [Route("api/splash")]
     public class SplashController : Controller
     {
-        [HttpGet("")]
+        [HttpGet]
         public IActionResult Index()
         {
             var model = new SplashModel
