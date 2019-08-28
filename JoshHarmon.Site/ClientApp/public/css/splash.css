@@ -10,6 +10,7 @@
     height: 8vw;
     padding-top: 1vw;
     font-size: 4vw;
+    font-weight: 100;
     letter-spacing: 1.6vw;
     text-indent: 1.6vw;
     display: flex;
@@ -80,8 +81,9 @@
     color: rgba(255,255,255,1);
     word-wrap: break-word;
     text-transform: uppercase;
-    text-shadow: 0 0 0.4vw #000;
+    text-shadow: 0 0 0.4vw #8e8e8e;
     font-size: 3.5vw;
+    font-weight: 200;
     letter-spacing: 2vw;
     text-indent: 2vw;
     box-shadow: 0 0 4vw 1.2vw #FFF, inset 0 0 0.8vw 0 #FFF;

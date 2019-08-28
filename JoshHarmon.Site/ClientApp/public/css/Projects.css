@@ -27,19 +27,62 @@
 
 
 
-.projectModal{
-
+.modalContent {
+    display:flex;
+    align-content: center;
+    justify-content: center;
+    height: 50vh;
+    width: 65vw;
+    max-height: 75vh;
+    max-width: 85vw;
+    min-height: 15vh;
+    min-width: 25vw;
+    border-radius: 1em;
+    padding: 3.5vw;
+    box-shadow: 0 0 4vw 1.2vw #FFF, inset 0 0 0.8vw 0 #FFF;
+    background: rgba(255, 255, 255, 0.8);
 }
 
-    .projectModal h1{
-
+    .modalContent img {
+        display: flex;
+        justify-content: center;
+        box-shadow: 0 0 1vw 0.1vw #bfbfbf;
+        border-radius: 1em;
+        width: 50%;
+        object-fit: cover;
     }
 
-    .projectModal img{
-        height: 25vw;
-        width: 25vw;
+.modalDescription {
+    display: flex;
+    flex-direction: column;
+    min-width: 50%;
+    margin: 0vw 1vw 0vw 2vw;
+    padding: 1vw;
+    overflow-wrap: break-word;
+    background: #FFF;
+    border-radius: 1em;
+    box-shadow: 0 0 1vw 0.1vw #bfbfbf;
+}
+
+    .modalDescription h1 {
+        letter-spacing: .05em;
+        font-weight: 200;
     }
 
-    .projectModal p{
-
+    .modalDescription p {
     }
+
+.modalMain {
+    display: flex;
+    justify-content: center;
+    margin: 15vh;
+}
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.4);
+}

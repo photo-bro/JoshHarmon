@@ -1,5 +1,4 @@
-﻿using System;
-using JoshHarmon.Site.Models;
+﻿using JoshHarmon.Site.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JoshHarmon.Site.Controllers

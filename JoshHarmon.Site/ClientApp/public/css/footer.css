@@ -60,6 +60,7 @@ footer {
     align-content: center;
     justify-content: center;
     font-size: 1vw;
+    font-weight: 100;
     letter-spacing: .3vw;
     margin: 4vw 0 1vw 0;
 }

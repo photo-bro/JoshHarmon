@@ -23,7 +23,7 @@ export class Projects extends Component {
 
     }
 
-    static buildProjectIcons(projectModels){
+    static buildProjectIcons(projectModels) {
         return (
             <div class="projects">
                 {projectModels.map(model => <Project model={model} />)}

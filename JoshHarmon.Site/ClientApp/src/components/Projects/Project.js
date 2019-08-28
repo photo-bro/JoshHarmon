@@ -1,17 +1,6 @@
 ﻿import React, { Component } from 'react';
 import Modal from 'react-modal';
 
-const projectModalStyles = {
-    content: {
-        top: '50%',
-        left: '50%',
-        right: 'auto',
-        bottom: 'auto',
-        marginRight: '-50%',
-        transform: 'translate(-50%, -50%)'
-    }
-}
-
 Modal.setAppElement('#root')
 
 export class Project extends Component {
@@ -53,14 +42,19 @@ export class Project extends Component {
                 </div>
 
                 <Modal
+                    className="modalMain"
+                    overlayClassName="modalOverlay"
                     isOpen={this.state.modalOpen}
                     onAfterOpen={this.afterOpen}
-                    style={projectModalStyles}
+                    shouldCloseOnOverlayClick={true}
+                    shouldCloseOnEsc={true}
                     contentLabel={this.state.title}>
-                    <div class="projectModal" onClick={this.closeModal}>
-                        <h1>{this.state.name}</h1>
+                    <div class="modalContent" onClick={this.closeModal}>
                         <img src={this.state.mediaUrl} />
-                        <p>{this.state.content}</p>
+                        <div className="modalDescription">
+                            <h1>{this.state.name}</h1>
+                            <p>{this.state.content}</p>
+                        </div>
                     </div>
                 </Modal>
             </div>
