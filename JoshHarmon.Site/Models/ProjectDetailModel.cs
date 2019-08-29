@@ -10,5 +10,16 @@ namespace JoshHarmon.Site.Models
         public string MediaUrl { get; set; }
 
         public string Content { get; set; }
+
+        public (string Name, ToolType ToolType)[] Tools { get; set; }
+
+        public string ExternalUrl { get; set; }
+    }
+
+    public enum ToolType
+    {
+        Language = 0,
+        Framework,
+        Other
     }
 }
