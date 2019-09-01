@@ -1,5 +1,4 @@
-﻿using System;
-namespace JoshHarmon.Site.Models
+﻿namespace JoshHarmon.Site.Models
 {
     public class SplashModel
     {

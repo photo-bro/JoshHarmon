@@ -1,5 +1,6 @@
 ﻿import React, { Component } from 'react';
 import Modal from 'react-modal';
+import Tool from './Tool';
 
 Modal.setAppElement('#root')
 
@@ -13,31 +14,30 @@ export class Project extends Component {
             name: props.model.name,
             iconUrl: props.model.iconUrl,
             mediaUrl: props.model.mediaUrl,
-            content: props.model.content
+            externalUrl: props.model.externalUrl,
+            content: props.model.content,
+            tools: props.model.tools
         };
 
-        this.openModal = this.openModal.bind(this);
-        this.closeModal = this.closeModal.bind(this);
+        this.toggleModal = this.toggleModal.bind(this);
         this.afterOpen = this.afterOpen.bind(this);
     }
 
-    openModal() {
-        this.setState({ modalOpen: true });
-    }
-
-    closeModal() {
-        this.setState({ modalOpen: false });
+    toggleModal() {
+        this.setState({ modalOpen: !this.state.modalOpen });
     }
 
     afterOpen() {
-
+        this.setState({ modalOpen: true });
     }
 
     render() {
+        let tools = this.state.tools.map(t => <Tool model={t} />);
+
         return (
             <div class="project">
-                <img src={this.state.iconUrl} />
-                <div class="projectName" onClick={this.openModal}>
+                <img src={this.state.iconUrl} onClick={this.toggleModal} />
+                <div class="projectName">
                     {this.state.name}
                 </div>
 
@@ -45,14 +45,20 @@ export class Project extends Component {
                     className="modalMain"
                     overlayClassName="modalOverlay"
                     isOpen={this.state.modalOpen}
-                    onAfterOpen={this.afterOpen}
                     shouldCloseOnOverlayClick={true}
                     shouldCloseOnEsc={true}
+                    onRequestClose={() => this.setState({ modalOpen: false })}
+                    onAfterOpen={this.afterOpen}
                     contentLabel={this.state.title}>
-                    <div class="modalContent" onClick={this.closeModal}>
-                        <img src={this.state.mediaUrl} />
-                        <div className="modalDescription">
+                    <div class="modalContent">
+                        <a href={this.state.externalUrl} target="_blank" class="modalContentItem">
+                            <img src={this.state.mediaUrl} class="modalImg" />
+                        </a>
+                        <div className="modalDescription modalContentItem">
                             <h1>{this.state.name}</h1>
+                            <div className="modalTools">
+                                {tools}
+                            </div>
                             <p>{this.state.content}</p>
                         </div>
                     </div>
@@ -60,5 +66,4 @@ export class Project extends Component {
             </div>
         );
     }
-
 }

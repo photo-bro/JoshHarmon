@@ -1,5 +1,41 @@
-﻿body {
-    font-family: Arial, Helvetica, sans-serif !important;
+﻿header {
+    margin: 0 auto;
+    padding-top: 2vw;
+    background: linear-gradient(180deg, rgba(99,99,99,1) 0%, rgba(185, 185, 185, 0.81) 50%, rgba(255, 255, 255, 0) 100%)
+}
+
+.header-title {
+    margin: 0vh 22vw 2vh 22vw;
+    height: 8vw;
+    padding-top: 1vw;
+    font-size: 4.5vw;
+    font-weight: 300;
+    letter-spacing: 1.2vw;
+    text-indent: 1.2vw;
+    display: flex;
+    justify-content: center;
+    text-shadow: 0 0 2vw rgba(1,1,1,.5), 0 0 3vw rgba(1,1,1,1);
+    color: #FFF;
+    border-radius: .3em;
+    box-shadow: 0 0 4vw 1.2vw #FFF, inset 0 0 0.8vw 0 #FFF;
+}
+
+    .header-title :hover {
+        text-shadow: 0 0 2vw rgba(1,1,1,.8), 0 0 3vw rgba(1,1,1,1);
+    }
+
+    .header-title a {
+        color: inherit;
+        text-decoration: inherit;
+    }
+
+        .header-title a:hover {
+            color: inherit;
+            text-decoration: inherit;
+        }
+
+body {
+    font-family: Helvetica Neue, Helvetica, sans-serif !important;
 }
 
 .glow-title-light {
@@ -17,4 +53,3 @@
 .glow-shadow-dark {
     box-shadow: 0 0 4vw 1.2vw #FFF, inset 0 0 0.8vw 0 #000;
 }
-

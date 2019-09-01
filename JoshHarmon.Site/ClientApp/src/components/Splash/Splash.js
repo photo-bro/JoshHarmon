@@ -21,7 +21,6 @@ export class Splash extends Component {
             .then(data => {               
                 this.setState({
                     panelModels: data.panelModels,
-                    connectModel: data.connectModel,
                     loading: false
                 });
             });

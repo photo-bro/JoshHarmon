@@ -1,5 +1,4 @@
-﻿using System;
-namespace JoshHarmon.Site.Models
+﻿namespace JoshHarmon.Site.Models
 {
     public class ProjectModel
     {
@@ -11,9 +10,16 @@ namespace JoshHarmon.Site.Models
 
         public string Content { get; set; }
 
-        public (string Name, ToolType ToolType)[] Tools { get; set; }
+        public Tool[] Tools { get; set; }
 
         public string ExternalUrl { get; set; }
+    }
+
+    public class Tool
+    {
+        public string Name { get; set; }
+
+        public ToolType ToolType { get; set; }
     }
 
     public enum ToolType

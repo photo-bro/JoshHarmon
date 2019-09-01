@@ -9,9 +9,7 @@ namespace JoshHarmon.Site.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            var model = new SplashModel
-            {
-                PanelModels = new[]
+            var models = new[]
                 {
                     new PanelModel
                     {
@@ -31,33 +29,8 @@ namespace JoshHarmon.Site.Controllers
                         MediaUrl = "/assets/JoshOutOfFocus.jpg",
                         LinkUrl = "https://www.joshharmonimages.com/about"
                     }
-                },
-                ConnectModel = new ConnectModel
-                {
-                    Icons = new[]
-                    {
-                        new ConnectIcons
-                        {
-                            Name = "email",
-                            LinkUrl = "mailto:joshuapharmon@gmail.com",
-                            IconUrl= "/icon/email-icon-black.png"
-                        },
-                        new ConnectIcons
-                        {
-                            Name = "GitHub",
-                            LinkUrl = "https://www.github.com/photo-bro/",
-                            IconUrl= "/icon/GitHub-Mark-120px-plus.png"
-                        },
-                        new ConnectIcons
-                        {
-                            Name = "LinkedIn",
-                            LinkUrl = "https://www.linkedin.com/in/joshuapharmon/",
-                            IconUrl= "/icon/LI-In-Bug Black.png"
-                        }
-                    }
-                }
             };
-            return Ok(model);
+            return Ok(new { PanelModels = models });
         }
     }
 }

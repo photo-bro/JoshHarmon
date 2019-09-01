@@ -14,7 +14,7 @@ export class VisualPanel extends Component {
             <div class="panelContainer" >
                 <img src={this.state.model.mediaUrl} />
                 <div class="panelContainer-title" >
-                    <a href={this.state.model.linkUrl}>
+                    <a href={this.state.model.linkUrl} target="_blank">
                         <p>{this.state.model.title}</p>
                     </a>
                 </div>
