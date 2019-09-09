@@ -43,7 +43,7 @@ namespace JoshHarmon.Site
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            // app.UseHttpsRedirection(); // Disabled - Using NGINX reverse proxy which will handle https
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
 
