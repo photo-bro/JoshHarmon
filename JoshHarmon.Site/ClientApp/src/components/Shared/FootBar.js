@@ -7,7 +7,7 @@ export class FootBar extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            icons: [],
+            connections: [],
             loading: true,
             loadingMessage: 'Loading...'
         };
@@ -16,16 +16,16 @@ export class FootBar extends Component {
             .then(response => response.json())
             .then(data => {
                 this.setState({
-                    icons: data.connectModel.icons,
+                    connections: data.connections,
                     loading: false
                 });
             });
     }
 
-    static buildConnectIcons(iconModels) {
+    static buildConnectIcons(connectModels) {
         return (
             <div class="connections">
-                {iconModels.map(model => <ConnectIcon model={model} />)}
+                {connectModels.map(model => <ConnectIcon model={model} />)}
             </div>
         );
     }
@@ -33,7 +33,7 @@ export class FootBar extends Component {
     render() {
         let icons = this.state.loading
             ? <h3>{this.state.loadingMessage}</h3>
-            : FootBar.buildConnectIcons(this.state.icons)
+            : FootBar.buildConnectIcons(this.state.connections)
 
         return (
             <footer>

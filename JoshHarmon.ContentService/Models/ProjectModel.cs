@@ -1,4 +1,4 @@
-﻿namespace JoshHarmon.Site.Models
+﻿namespace JoshHarmon.ContentService.Models
 {
     public class ProjectModel
     {

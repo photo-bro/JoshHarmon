@@ -1,0 +1,88 @@
+﻿{
+    "Panels": [
+        {
+            "Title": "Visual Artist",
+            "MediaUrl": "/assets/Lone+Aspen+at+Dawn.jpg",
+            "LinkUrl": "https://joshharmon.co/"
+        },
+        {
+            "Title": "Projects",
+            "MediaUrl": "/assets/MedusasBaneLow.png",
+            "LinkUrl": "/projects"
+        },
+        {
+            "Title": "About",
+            "MediaUrl": "/assets/JoshOutOfFocus.jpg",
+            "LinkUrl": "https://www.joshharmonimages.com/about"
+        },
+    ],
+    "Connections": [
+        {
+            "Name": "email",
+            "LinkUrl": "mailto:joshuapharmon@gmail.com",
+            "IconUrl": "/icon/email-icon-black.png"
+        },
+        {
+            "Name": "GitHub",
+            "LinkUrl": "https://www.github.com/photo-bro/",
+            "IconUrl": "/icon/GitHub-Mark-120px-plus.png"
+        },
+        {
+            "Name": "LinkedIn",
+            "LinkUrl": "https://www.linkedin.com/in/joshuapharmon/",
+            "IconUrl": "/icon/LI-In-Bug Black.png"
+        },
+    ],
+    "Projects": [
+        {
+            "Name": "JoshHarmon.Site",
+            "Content": "Josh Harmon's personal website and online tech portfolio. Built on top of AspNetCore with a React frontend. Containerized and deployed via docker image on a self hosted RaspberryPi. As a primarily backend engineer this site represents an effort to become more proficent in frontend design and technologies. While much help and inspiration was found from various online resources -  all code, media assets, and design are 100% original, owned, and copyrighted by Josh Harmon.",
+            "IconUrl": "/icon/email-icon-black.png",
+            "MediaUrl": "/assets/JoshOutOfFocus.jpg",
+            "ExternalUrl": "https://github.com/photo-bro/JoshHarmon",
+            "Tools": [
+                {
+                    "Name": "C#",
+                    "ToolType": 0
+                },
+                {
+                    "Name": "Javascript",
+                    "ToolType": 0
+                },
+                {
+                    "Name": "AspNetCore",
+                    "ToolType": 1
+                },
+                {
+                    "Name": "React",
+                    "ToolType": 1
+                },
+                {
+                    "Name": "Docker",
+                    "ToolType": 2
+                },
+                {
+                    "Name": "RaspberryPi",
+                    "ToolType": 2
+                }
+            ]
+        },
+        {
+            "Name": "Twister",
+            "Content": "Twister is a basic programming language heavily modeled after C. This project consists of a basic Twister to x86_64 assembly compiler. All design and code contained currently has been solely created by Josh Harmon. This project is nothing more than a fun and educational exercise.",
+            "IconUrl": "/icon/glyph-logo_May2016.png",
+            "MediaUrl": "/assets/JoshOutOfFocus.jpg",
+            "ExternalUrl": "https://github.com/photo-bro/Twister",
+            "Tools": [
+                {
+                    "Name": "C#",
+                    "ToolType": 0
+                },
+                {
+                    "Name": ".NET Standard",
+                    "ToolType": 2
+                }
+            ]
+        }
+    ]
+}

@@ -7,7 +7,7 @@ export class Projects extends Component {
     constructor() {
         super();
         this.state = {
-            projectModels: [],
+            projects: [],
             loading: true,
             loadingMessage: "Loading..."
             };
@@ -16,7 +16,7 @@ export class Projects extends Component {
             .then(response => response.json())
             .then(data => {               
                 this.setState({
-                    projectModels: data.projectModels,
+                    projects: data.projects,
                     loading: false
                 });
             });
@@ -35,7 +35,7 @@ export class Projects extends Component {
     render() {
         let projectIcons = this.state.loading
             ? <h3>{this.state.loadingMessage}</h3>
-            : Projects.buildProjectIcons(this.state.projectModels);
+            : Projects.buildProjectIcons(this.state.projects);
 
         return (
             <div>

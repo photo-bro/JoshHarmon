@@ -1,10 +1,13 @@
+using System.IO;
+using JoshHarmon.ContentService.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
+//using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace JoshHarmon.Site
 {
@@ -27,6 +30,8 @@ namespace JoshHarmon.Site
             {
                 configuration.RootPath = "ClientApp/build";
             });
+
+            ConfigureIoc(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,6 +48,7 @@ namespace JoshHarmon.Site
                 app.UseHsts();
             }
 
+
             // app.UseHttpsRedirection(); // Disabled - Using NGINX reverse proxy which will handle https
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
@@ -57,6 +63,17 @@ namespace JoshHarmon.Site
                 {
                     spa.UseReactDevelopmentServer(npmScript: "start");
                 }
+            });
+        }
+
+        private void ConfigureIoc(IServiceCollection services)
+        {
+            services.AddSingleton<IContentRepository>(sp =>
+            {
+                var env = sp.GetRequiredService<IHostingEnvironment>();
+                var name = Configuration.GetValue<string>("JsonContentPath");
+                var logger = sp.GetRequiredService<ILogger<JsonFileContentRespository>>();
+                return new JsonFileContentRespository($"{env.ContentRootPath}{name}", logger);
             });
         }
     }

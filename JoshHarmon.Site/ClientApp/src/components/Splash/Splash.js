@@ -10,8 +10,7 @@ export class Splash extends Component {
     constructor() {
         super();
         this.state = {
-            panelModels: [],
-            connectModels: [],
+            panels: [],
             loading: true,
             loadingMessage: "Loading..."
         };
@@ -20,7 +19,7 @@ export class Splash extends Component {
             .then(response => response.json())
             .then(data => {               
                 this.setState({
-                    panelModels: data.panelModels,
+                    panels: data.panels,
                     loading: false
                 });
             });
@@ -37,7 +36,7 @@ export class Splash extends Component {
     render() {
         let panelContent = this.state.loading
             ? <h3>{this.state.loadingMessage}</h3>
-            : Splash.buildVisualPanels(this.state.panelModels);
+            : Splash.buildVisualPanels(this.state.panels);
 
         return (
             <div class="page">
