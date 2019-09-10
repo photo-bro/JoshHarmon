@@ -38,7 +38,7 @@ export class Projects extends Component {
             : Projects.buildProjectIcons(this.state.projects);
 
         return (
-            <div>
+            <div class="page">
                 {projectIcons}
             </div>
         );

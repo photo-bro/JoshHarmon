@@ -1,5 +1,6 @@
 ﻿header {
     margin: 0 auto;
+    width: 100%;
     padding-top: 2vw;
     background: linear-gradient(180deg, rgba(99,99,99,1) 0%, rgba(185, 185, 185, 0.81) 50%, rgba(255, 255, 255, 0) 100%)
 }
@@ -52,4 +53,15 @@ body {
 
 .glow-shadow-dark {
     box-shadow: 0 0 4vw 1.2vw #FFF, inset 0 0 0.8vw 0 #000;
+}
+
+.page {
+    flex: 1 0 auto;
+}
+
+.layout {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    min-height: 100vh;
 }

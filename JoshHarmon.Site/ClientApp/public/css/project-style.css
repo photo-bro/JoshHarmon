@@ -68,13 +68,17 @@
 
     .modalDescription p {
         margin: 1rem 0 1rem 0;
+        overflow: auto;
     }
 
 .modalMain {
-    margin: 15vh 5vw 0 5vw;
+    width: 90vw;
 }
 
 .modalOverlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: fixed;
     top: 0;
     left: 0;
