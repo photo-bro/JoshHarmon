@@ -1,4 +1,5 @@
-﻿using JoshHarmon.ContentService.Repository.Interface;
+﻿using System.Threading.Tasks;
+using JoshHarmon.ContentService.Repository.Interface;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JoshHarmon.Site.Controllers
@@ -13,25 +14,25 @@ namespace JoshHarmon.Site.Controllers
         }
 
         [HttpGet("api/splash")]
-        public IActionResult GetPanels()
+        public async Task<IActionResult> GetPanels()
         {
-            var models = _contentRepository.ReadAllPanelModels();
+            var models = await _contentRepository.ReadAllPanelModels();
 
             return Ok(new { Panels = models });
         }
 
         [HttpGet("api/connections")]
-        public IActionResult GetConnections()
+        public async Task<IActionResult> GetConnections()
         {
-            var models = _contentRepository.ReadAllConnectModels();
+            var models = await _contentRepository.ReadAllConnectModels();
 
             return Ok(new { Connections = models });
         }
 
         [HttpGet("api/projects")]
-        public IActionResult GetProjects()
+        public async Task<IActionResult> GetProjects()
         {
-            var models = _contentRepository.ReadAllProjectModels();
+            var models = await _contentRepository.ReadAllProjectModels();
 
             return Ok(new { Projects = models });
         }

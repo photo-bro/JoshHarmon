@@ -81,7 +81,7 @@ namespace JoshHarmon.Site
                 var cachedProvider = sp.GetRequiredService<ICacheProvider>();
                 return new CachedJsonFileContentRespository($"{env.ContentRootPath}{name}", logger, cachedProvider);
             });
-            services.AddSingleton<ICached>(sp => sp.GetService<CachedJsonFileContentRespository>());
+            services.AddSingleton<ICached, CachedJsonFileContentRespository>();
         }
     }
 }

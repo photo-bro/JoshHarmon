@@ -60,9 +60,12 @@ namespace JoshHarmon.Cache
         {
             lock (_lock)
             {
-                if (IsExpired(key))
+                if (_cache.ContainsKey(key))
+                {
+                    if (IsExpired(key))
+                        _cache.Remove(key);
                     return true;
-                _cache.Remove(key);
+                }
             }
             return false;
         }

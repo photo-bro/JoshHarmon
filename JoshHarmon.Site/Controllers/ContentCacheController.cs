@@ -56,7 +56,7 @@ namespace JoshHarmon.Site.Controllers
             return Ok();
         }
 
-        [HttpGet("/cache/key")]
+        [HttpGet("/cache/{key}")]
         public async Task<IActionResult> GetItemExpiration(string key)
         {
             DateTime? expiration;

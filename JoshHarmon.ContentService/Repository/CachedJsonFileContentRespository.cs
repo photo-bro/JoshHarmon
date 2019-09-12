@@ -38,23 +38,29 @@ namespace JoshHarmon.ContentService.Repository
             if (await _cacheProvider.ContainsKeyAsync(ConnectModelsKey))
                 return await _cacheProvider.GetAsync<IEnumerable<ConnectModel>>(ConnectModelsKey);
 
-            return await base.ReadAllConnectModels();
+            var models =  await base.ReadAllConnectModels();
+            _ = _cacheProvider.AddAsync(ConnectModelsKey, models);
+            return models;
         }
 
         public override async Task<IEnumerable<PanelModel>> ReadAllPanelModels()
         {
-            if (await _cacheProvider.ContainsKeyAsync(ConnectModelsKey))
+            if (await _cacheProvider.ContainsKeyAsync(PanelModelsKey))
                 return await _cacheProvider.GetAsync<IEnumerable<PanelModel>>(PanelModelsKey);
 
-            return await base.ReadAllPanelModels();
+            var models = await base.ReadAllPanelModels();
+            _ = _cacheProvider.AddAsync(PanelModelsKey, models);
+            return models;
         }
 
         public override async Task<IEnumerable<ProjectModel>> ReadAllProjectModels()
         {
-            if (await _cacheProvider.ContainsKeyAsync(ConnectModelsKey))
+            if (await _cacheProvider.ContainsKeyAsync(ProjectModelsKey))
                 return await _cacheProvider.GetAsync<IEnumerable<ProjectModel>>(ProjectModelsKey);
 
-            return await base.ReadAllProjectModels();
+            var models = await base.ReadAllProjectModels();
+            _ = _cacheProvider.AddAsync(ProjectModelsKey, models);
+            return models;
         }
     }
 }
