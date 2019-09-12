@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 using JoshHarmon.ContentService.Models;
+using JoshHarmon.ContentService.Repository.Interface;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
@@ -36,10 +38,13 @@ namespace JoshHarmon.ContentService.Repository
             _logger = logger;
         }
 
-        public IEnumerable<PanelModel> ReadAllPanelModels() => Content?.Panels;
+        public virtual async Task<IEnumerable<PanelModel>> ReadAllPanelModels()
+            => await Task.FromResult(Content?.Panels);
 
-        public IEnumerable<ConnectModel> ReadAllConnectModels() => Content?.Connections;
+        public virtual async Task<IEnumerable<ConnectModel>> ReadAllConnectModels()
+            => await Task.FromResult(Content?.Connections);
 
-        public IEnumerable<ProjectModel> ReadAllProjectModels() => Content?.Projects;
+        public virtual async Task<IEnumerable<ProjectModel>> ReadAllProjectModels()
+            => await Task.FromResult(Content?.Projects);
     }
 }

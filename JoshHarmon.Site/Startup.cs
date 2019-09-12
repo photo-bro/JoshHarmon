@@ -1,5 +1,8 @@
 using System.IO;
+using JoshHarmon.Cache;
+using JoshHarmon.Cache.Interface;
 using JoshHarmon.ContentService.Repository;
+using JoshHarmon.ContentService.Repository.Interface;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 //using Microsoft.AspNetCore.HttpsPolicy;
@@ -68,13 +71,17 @@ namespace JoshHarmon.Site
 
         private void ConfigureIoc(IServiceCollection services)
         {
+            services.AddSingleton<ICacheConfig>(Configuration.GetSection("CacheConfig").Get<CacheConfig>());
+            services.AddSingleton<ICacheProvider, MemoryCacheProvider>();
             services.AddSingleton<IContentRepository>(sp =>
             {
                 var env = sp.GetRequiredService<IHostingEnvironment>();
                 var name = Configuration.GetValue<string>("JsonContentPath");
                 var logger = sp.GetRequiredService<ILogger<JsonFileContentRespository>>();
-                return new JsonFileContentRespository($"{env.ContentRootPath}{name}", logger);
+                var cachedProvider = sp.GetRequiredService<ICacheProvider>();
+                return new CachedJsonFileContentRespository($"{env.ContentRootPath}{name}", logger, cachedProvider);
             });
+            services.AddSingleton<ICached>(sp => sp.GetService<CachedJsonFileContentRespository>());
         }
     }
 }

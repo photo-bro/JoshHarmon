@@ -1,4 +1,4 @@
-﻿using JoshHarmon.ContentService.Repository;
+﻿using JoshHarmon.ContentService.Repository.Interface;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JoshHarmon.Site.Controllers

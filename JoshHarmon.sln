@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JoshHarmon.Site", "JoshHarm
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JoshHarmon.ContentService", "JoshHarmon.ContentService\JoshHarmon.ContentService.csproj", "{FA1F1603-2401-4E87-A0AB-DE8505D3B153}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JoshHarmon.Cache", "JoshHarmon.Cache\JoshHarmon.Cache.csproj", "{739D1376-4D24-4A6B-BD10-5CAAD1CC6DAC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,5 +21,9 @@ Global
 		{FA1F1603-2401-4E87-A0AB-DE8505D3B153}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA1F1603-2401-4E87-A0AB-DE8505D3B153}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA1F1603-2401-4E87-A0AB-DE8505D3B153}.Release|Any CPU.Build.0 = Release|Any CPU
+		{739D1376-4D24-4A6B-BD10-5CAAD1CC6DAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{739D1376-4D24-4A6B-BD10-5CAAD1CC6DAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{739D1376-4D24-4A6B-BD10-5CAAD1CC6DAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{739D1376-4D24-4A6B-BD10-5CAAD1CC6DAC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
