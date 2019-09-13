@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using JoshHarmon.Cache.Cached.Interface;
 using JoshHarmon.Cache.CacheProvider.Interface;
@@ -40,7 +41,7 @@ namespace JoshHarmon.ContentService.Repository
                 return await _cacheProvider.GetAsync<ConnectModel[]>(ConnectModelsKey);
 
             var models = await base.ReadAllConnectModels();
-            _ = _cacheProvider.AddAsync(ConnectModelsKey, models);
+            _ = _cacheProvider.AddAsync(ConnectModelsKey, models.ToArray());
             return models;
         }
 
@@ -50,7 +51,7 @@ namespace JoshHarmon.ContentService.Repository
                 return await _cacheProvider.GetAsync<PanelModel[]>(PanelModelsKey);
 
             var models = await base.ReadAllPanelModels();
-            _ = _cacheProvider.AddAsync(PanelModelsKey, models);
+            _ = _cacheProvider.AddAsync(PanelModelsKey, models.ToArray());
             return models;
         }
 
@@ -60,7 +61,7 @@ namespace JoshHarmon.ContentService.Repository
                 return await _cacheProvider.GetAsync<ProjectModel[]>(ProjectModelsKey);
 
             var models = await base.ReadAllProjectModels();
-            _ = _cacheProvider.AddAsync(ProjectModelsKey, models);
+            _ = _cacheProvider.AddAsync(ProjectModelsKey, models.ToArray());
             return models;
         }
     }

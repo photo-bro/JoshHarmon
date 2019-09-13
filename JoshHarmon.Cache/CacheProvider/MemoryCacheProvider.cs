@@ -23,7 +23,7 @@ namespace JoshHarmon.Cache
             _cache = existingCache;
         }
 
-        public async Task<bool> AddAsync<T>(string key, T item) => await Task.Run(() => Add(key, item));
+        public async Task<bool> AddAsync<T>(string key, T item) => await Task.FromResult(Add(key, item));
 
         private bool Add<T>(string key, T item)
         {
@@ -55,7 +55,7 @@ namespace JoshHarmon.Cache
             }
         }
 
-        public async Task<bool> ContainsKeyAsync(string key) => await Task.Run(() => ContainsKey(key));
+        public async Task<bool> ContainsKeyAsync(string key) => await Task.FromResult(ContainsKey(key));
 
         private bool ContainsKey(string key)
         {
@@ -71,7 +71,7 @@ namespace JoshHarmon.Cache
             return false;
         }
 
-        public async Task<T> GetAsync<T>(string key) => await Task.Run(() => Get<T>(key));
+        public async Task<T> GetAsync<T>(string key) => await Task.FromResult(Get<T>(key));
 
         public T Get<T>(string key)
         {
@@ -102,7 +102,7 @@ namespace JoshHarmon.Cache
 
         private bool IsEmpty() => _cache.Count == 0;
 
-        public async Task<bool> RemoveAsync(string key) => await Task.Run(() => Remove(key));
+        public async Task<bool> RemoveAsync(string key) => await Task.FromResult(Remove(key));
 
         private bool Remove(string key)
         {
