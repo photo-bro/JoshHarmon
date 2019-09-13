@@ -64,7 +64,10 @@ namespace JoshHarmon.Cache
                 if (_cache.ContainsKey(key))
                 {
                     if (IsExpired(key))
+                    {
                         _cache.Remove(key);
+                        return false;
+                    }
                     return true;
                 }
             }
