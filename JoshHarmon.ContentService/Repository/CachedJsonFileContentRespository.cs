@@ -36,7 +36,7 @@ namespace JoshHarmon.ContentService.Repository
         public override async Task<IEnumerable<ConnectModel>> ReadAllConnectModels()
         {
             if (await _cacheProvider.ContainsKeyAsync(ConnectModelsKey))
-                return await _cacheProvider.GetAsync<IEnumerable<ConnectModel>>(ConnectModelsKey);
+                return await _cacheProvider.GetAsync<ConnectModel[]>(ConnectModelsKey);
 
             var models =  await base.ReadAllConnectModels();
             _ = _cacheProvider.AddAsync(ConnectModelsKey, models);
@@ -46,7 +46,7 @@ namespace JoshHarmon.ContentService.Repository
         public override async Task<IEnumerable<PanelModel>> ReadAllPanelModels()
         {
             if (await _cacheProvider.ContainsKeyAsync(PanelModelsKey))
-                return await _cacheProvider.GetAsync<IEnumerable<PanelModel>>(PanelModelsKey);
+                return await _cacheProvider.GetAsync<PanelModel[]>(PanelModelsKey);
 
             var models = await base.ReadAllPanelModels();
             _ = _cacheProvider.AddAsync(PanelModelsKey, models);
@@ -56,7 +56,7 @@ namespace JoshHarmon.ContentService.Repository
         public override async Task<IEnumerable<ProjectModel>> ReadAllProjectModels()
         {
             if (await _cacheProvider.ContainsKeyAsync(ProjectModelsKey))
-                return await _cacheProvider.GetAsync<IEnumerable<ProjectModel>>(ProjectModelsKey);
+                return await _cacheProvider.GetAsync<ProjectModel[]>(ProjectModelsKey);
 
             var models = await base.ReadAllProjectModels();
             _ = _cacheProvider.AddAsync(ProjectModelsKey, models);
