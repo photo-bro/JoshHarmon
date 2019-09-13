@@ -42,10 +42,7 @@ namespace JoshHarmon.Cache
             return true;
         }
 
-        public async Task ClearAsync()
-        {
-            await Task.Run(Clear);
-        }
+        public async Task ClearAsync() => await Task.Run(Clear);
 
         private void Clear()
         {

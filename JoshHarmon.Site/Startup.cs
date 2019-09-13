@@ -76,11 +76,9 @@ namespace JoshHarmon.Site
             {
                 var env = sp.GetRequiredService<IHostingEnvironment>();
                 var name = Configuration.GetValue<string>("JsonContentPath");
-                var logger = sp.GetRequiredService<ILogger<JsonFileContentRespository>>();
                 var cachedProvider = sp.GetRequiredService<ICacheProvider>();
                 return new CachedJsonFileContentRespository(cacheProvider: cachedProvider,
-                                                            fileName: $"{env.ContentRootPath}{name}",
-                                                            baseLogger: logger);
+                                                            fileName: $"{env.ContentRootPath}{name}");
             });
             services.AddSingleton<IContentRepository>(sp => sp.GetRequiredService<CachedJsonFileContentRespository>());
             services.AddSingleton<ICached>(sp => sp.GetRequiredService<CachedJsonFileContentRespository>());

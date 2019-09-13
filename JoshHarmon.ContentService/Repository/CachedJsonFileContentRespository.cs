@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using JoshHarmon.Cache.Cached.Interface;
 using JoshHarmon.Cache.CacheProvider.Interface;
 using JoshHarmon.ContentService.Models;
-using Microsoft.Extensions.Logging;
 
 namespace JoshHarmon.ContentService.Repository
 {
@@ -17,18 +16,13 @@ namespace JoshHarmon.ContentService.Repository
 
         private readonly ICacheProvider _cacheProvider;
 
-        public CachedJsonFileContentRespository(ICacheProvider cacheProvider,
-            string fileName,
-            ILogger<JsonFileContentRespository> baseLogger)
-            : base(fileName, baseLogger)
+        public CachedJsonFileContentRespository(ICacheProvider cacheProvider, string fileName)
+            : base(fileName)
         {
             _cacheProvider = cacheProvider;
         }
 
-        public async Task FlushAsync()
-        {
-            await _cacheProvider.ClearAsync();
-        }
+        public async Task FlushAsync() => await _cacheProvider.ClearAsync();
 
         public async Task<DateTime?> GetKeyExpirationAsync(string key)
             => await _cacheProvider.GetExpirationAsync(key);
@@ -36,32 +30,21 @@ namespace JoshHarmon.ContentService.Repository
         public async Task PurgeKeyAsync(string key) => await _cacheProvider.RemoveAsync(key);
 
         public override async Task<IEnumerable<ConnectModel>> ReadAllConnectModels()
-        {
-            if (await _cacheProvider.ContainsKeyAsync(ConnectModelsKey))
-                return await _cacheProvider.GetAsync<ConnectModel[]>(ConnectModelsKey);
-
-            var models = await base.ReadAllConnectModels();
-            _ = _cacheProvider.AddAsync(ConnectModelsKey, models.ToArray());
-            return models;
-        }
+            => await GetCollectionFromCache(ConnectModelsKey, base.ReadAllConnectModels);
 
         public override async Task<IEnumerable<PanelModel>> ReadAllPanelModels()
-        {
-            if (await _cacheProvider.ContainsKeyAsync(PanelModelsKey))
-                return await _cacheProvider.GetAsync<PanelModel[]>(PanelModelsKey);
-
-            var models = await base.ReadAllPanelModels();
-            _ = _cacheProvider.AddAsync(PanelModelsKey, models.ToArray());
-            return models;
-        }
+            => await GetCollectionFromCache(PanelModelsKey, base.ReadAllPanelModels);
 
         public override async Task<IEnumerable<ProjectModel>> ReadAllProjectModels()
-        {
-            if (await _cacheProvider.ContainsKeyAsync(ProjectModelsKey))
-                return await _cacheProvider.GetAsync<ProjectModel[]>(ProjectModelsKey);
+            => await GetCollectionFromCache(ProjectModelsKey, base.ReadAllProjectModels);
 
-            var models = await base.ReadAllProjectModels();
-            _ = _cacheProvider.AddAsync(ProjectModelsKey, models.ToArray());
+        private async Task<IEnumerable<T>> GetCollectionFromCache<T>(string key, Func<Task<IEnumerable<T>>> fallbackRetrievalFunc)
+        {
+            if (await _cacheProvider.ContainsKeyAsync(key))
+                return await _cacheProvider.GetAsync<T[]>(key);
+
+            var models = await fallbackRetrievalFunc();
+            _ = _cacheProvider.AddAsync(key, models.ToArray());
             return models;
         }
     }

@@ -4,7 +4,6 @@ using System.IO;
 using System.Threading.Tasks;
 using JoshHarmon.ContentService.Models;
 using JoshHarmon.ContentService.Repository.Interface;
-using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
 namespace JoshHarmon.ContentService.Repository
@@ -12,7 +11,6 @@ namespace JoshHarmon.ContentService.Repository
     public class JsonFileContentRespository : IContentRepository
     {
         private readonly string _fileName;
-        private readonly ILogger<JsonFileContentRespository> _logger;
 
         private string FileString => File.ReadAllText(_fileName);
 
@@ -26,16 +24,14 @@ namespace JoshHarmon.ContentService.Repository
                 }
                 catch (Exception e)
                 {
-                    _logger.LogError(e, "Error deserializing json content at '{FilePath}'.", _fileName);
-                    return new ContentModel();
+                    throw new Exception($"Error deserializing json content at '{_fileName}'.", e);
                 }
             }
         }
 
-        public JsonFileContentRespository(string fileName, ILogger<JsonFileContentRespository> logger)
+        public JsonFileContentRespository(string fileName)
         {
             _fileName = fileName;
-            _logger = logger;
         }
 
         public virtual async Task<IEnumerable<PanelModel>> ReadAllPanelModels()
