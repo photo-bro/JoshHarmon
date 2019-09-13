@@ -12,8 +12,8 @@ namespace JoshHarmon.ContentService.Repository
     public class CachedJsonFileContentRespository : JsonFileContentRespository, ICached
     {
         public static string PanelModelsKey = "panel-models";
-        public static string ConnectModelsKey = "projects-models";
-        public static string ProjectModelsKey = "connect-models";
+        public static string ConnectModelsKey = "connect-models";
+        public static string ProjectModelsKey = "project-models";
 
         private readonly ICacheProvider _cacheProvider;
 
