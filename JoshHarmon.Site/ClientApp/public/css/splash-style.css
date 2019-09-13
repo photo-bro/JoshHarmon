@@ -46,8 +46,8 @@
     text-shadow: 0 0 0.4vw #8e8e8e;
     font-size: 2.5em;
     font-weight: 200;
-    letter-spacing: 2vw;
-    text-indent: 2vw;
+    letter-spacing: .75em;
+    text-indent: .75em;
     box-shadow: 0 0 4vw 1.2vw #FFF, inset 0 0 0.8vw 0 #FFF;
     border-radius: 0.15em;
 }
@@ -63,11 +63,15 @@
 @media screen and (max-width: 1000px) {
     .panelContainer-title {
         font-size: 1.5em;
+        letter-spacing: .5em;
+        text-indent: .5em;
     }
 }
 
 @media screen and (max-width: 320px) {
     .panelContainer-title {
         font-size: 1em;
+        letter-spacing: .5em;
+        text-indent: .5em;
     }
 }
