@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace JoshHarmon.Cache.Interface
+namespace JoshHarmon.Cache.Cached.Interface
 {
     public interface ICached
     {

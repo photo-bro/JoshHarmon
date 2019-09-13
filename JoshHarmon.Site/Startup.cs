@@ -1,5 +1,6 @@
-using System.IO;
 using JoshHarmon.Cache;
+using JoshHarmon.Cache.Cached.Interface;
+using JoshHarmon.Cache.CacheProvider.Interface;
 using JoshHarmon.Cache.Interface;
 using JoshHarmon.ContentService.Repository;
 using JoshHarmon.ContentService.Repository.Interface;
@@ -23,7 +24,6 @@ namespace JoshHarmon.Site
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
@@ -37,7 +37,6 @@ namespace JoshHarmon.Site
             ConfigureIoc(services);
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
@@ -73,15 +72,19 @@ namespace JoshHarmon.Site
         {
             services.AddSingleton<ICacheConfig>(Configuration.GetSection("CacheConfig").Get<CacheConfig>());
             services.AddSingleton<ICacheProvider, MemoryCacheProvider>();
-            services.AddSingleton<IContentRepository>(sp =>
+            services.AddSingleton(sp =>
             {
                 var env = sp.GetRequiredService<IHostingEnvironment>();
                 var name = Configuration.GetValue<string>("JsonContentPath");
                 var logger = sp.GetRequiredService<ILogger<JsonFileContentRespository>>();
                 var cachedProvider = sp.GetRequiredService<ICacheProvider>();
-                return new CachedJsonFileContentRespository($"{env.ContentRootPath}{name}", logger, cachedProvider);
+                return new CachedJsonFileContentRespository(cacheProvider: cachedProvider,
+                                                            fileName: $"{env.ContentRootPath}{name}",
+                                                            baseLogger: logger);
             });
-            services.AddSingleton<ICached, CachedJsonFileContentRespository>();
+            services.AddSingleton<IContentRepository>(sp => sp.GetRequiredService<CachedJsonFileContentRespository>());
+            services.AddSingleton<ICached>(sp => sp.GetRequiredService<CachedJsonFileContentRespository>());
         }
+
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using JoshHarmon.Cache.Interface;
+using JoshHarmon.Cache.Cached.Interface;
 using JoshHarmon.Site.Filters;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -18,7 +18,7 @@ namespace JoshHarmon.Site.Controllers
             _logger = logger;
         }
 
-        [LocalHostFilter]
+        [LocalHost]
         [HttpDelete("/cache/purge")]
         public async Task<IActionResult> PurgeCache()
         {
@@ -34,17 +34,17 @@ namespace JoshHarmon.Site.Controllers
                 { StatusCode = 500 };
             }
 
-            return Ok();
+            return Ok("Cache purged");
         }
 
-        [LocalHostFilter]
+        [LocalHost]
         [HttpDelete("/cache/purge/{key}")]
         public async Task<IActionResult> PurgeCacheItem(string key)
         {
             try
             {
                 await _contentCache.PurgeKeyAsync(key);
-                _logger.LogInformation("Key {Key} purged from content cache at {LocalTime}", DateTime.Now);
+                _logger.LogInformation("Key {Key} purged from content cache at {LocalTime}", key, DateTime.Now);
             }
             catch (Exception ex)
             {
@@ -53,7 +53,7 @@ namespace JoshHarmon.Site.Controllers
                 { StatusCode = 500 };
             }
 
-            return Ok();
+            return Ok($"Item with key '{key}' purged");
         }
 
         [HttpGet("/cache/{key}")]

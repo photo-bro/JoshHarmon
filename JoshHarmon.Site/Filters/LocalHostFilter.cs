@@ -5,7 +5,10 @@ using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace JoshHarmon.Site.Filters
 {
-    public class LocalHostFilterAttribute : Attribute, IResourceFilter
+    /// <summary>
+    /// Require request to originate from localhost (127.0.0.1 or ::1) only
+    /// </summary>
+    public class LocalHost : Attribute, IResourceFilter
     {
         private readonly IList<string> _validHosts = new[] { "127.0.0.1", "::1", "localhost" };
 

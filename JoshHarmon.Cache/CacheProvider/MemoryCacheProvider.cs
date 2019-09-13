@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using JoshHarmon.Cache.CacheProvider.Interface;
 using JoshHarmon.Cache.Interface;
 
 namespace JoshHarmon.Cache
@@ -8,7 +9,7 @@ namespace JoshHarmon.Cache
     public class MemoryCacheProvider : ICacheProvider
     {
         private readonly ICacheConfig _config;
-        private readonly IDictionary<string, (object Item, DateTime ModifiedAt)> _cache;
+        private readonly IDictionary<string, (object Item, DateTime TimeStamp)> _cache;
         private readonly object _lock = new object();
 
         private DateTime Now() => _config.UseUtc ? DateTime.UtcNow : DateTime.Now;
@@ -131,10 +132,10 @@ namespace JoshHarmon.Cache
                 return null;
             }
 
-            return _cache[key].ModifiedAt + _config.DefaultExpirationDuration;
+            return _cache[key].TimeStamp + _config.DefaultExpirationDuration;
         }
 
         private bool IsExpired(string key)
-            => Now() - _cache[key].ModifiedAt > _config.DefaultExpirationDuration;
+            => Now() - _cache[key].TimeStamp > _config.DefaultExpirationDuration;
     }
 }

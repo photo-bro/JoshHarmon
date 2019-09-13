@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace JoshHarmon.Cache.Interface
+namespace JoshHarmon.Cache.CacheProvider.Interface
 {
     public interface ICacheProvider
     {
