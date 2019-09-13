@@ -2,10 +2,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 3vw 12vw 3vw 12vw;
+    margin: 3vw 5vw 3vw 5vw;
     min-height: 75vh;
-    min-width: 75vw;
-    box-shadow: 0 0 1vw 0.1vw rgba(0,0,0,1);
+    box-shadow: 0 0 1vw 0.1vw #a0a0a0;
     border-radius: 1em;
 }
 
@@ -45,7 +44,7 @@
     word-wrap: break-word;
     text-transform: uppercase;
     text-shadow: 0 0 0.4vw #8e8e8e;
-    font-size: 3.5vw;
+    font-size: 2.5em;
     font-weight: 200;
     letter-spacing: 2vw;
     text-indent: 2vw;
@@ -60,4 +59,15 @@
         .panelContainer-title p:hover {
             text-shadow: 0 0 4vw #FFF;
         }
-       
+
+@media screen and (max-width: 1000px) {
+    .panelContainer-title {
+        font-size: 1.5em;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .panelContainer-title {
+        font-size: 1em;
+    }
+}
