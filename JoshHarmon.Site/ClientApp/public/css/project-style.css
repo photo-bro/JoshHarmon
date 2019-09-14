@@ -1,5 +1,6 @@
 ﻿.projects {
     display: flex;
+    flex-flow: wrap;
     align-content: center;
     justify-content: center;
     margin: 0;
@@ -7,22 +8,39 @@
 
 .project {
     display: flex;
-    margin: 5vw;
+    flex-direction: column;
+    margin: 1em;
     align-items: center;
     justify-content: center;
+    border: #b1b1b1 solid 1px;
+    border-radius: .5em;
+    padding: 1em;
+    box-shadow: 0 0 0.5em 0.15em #ccc;
+    width: 40vw;
 }
 
+    .project:hover {
+        box-shadow: 0 0 0.5em 0.2em #bbb;
+    }
+
     .project img {
-        max-height: 15vw;
-        max-width: 15vw;
-        min-height: 15vw;
-        min-width: 15vw;
-        height: auto;
-        width: auto;
+        max-height: 128px;
+        max-width: 128px;
+        min-height: 5vw;
+        min-width: 5vw;
+    }
+
+    .project p {
+        margin: 0 0 .5em 0;
+        font-size: .8em;
+        font-weight: 300;
     }
 
 .projectName {
-    position: absolute;
+    /*position: absolute;*/
+    margin: 0 1em 0 1em;
+    font-size: 2em;
+    font-weight: 200;
 }
 
 .modalContent {
@@ -32,7 +50,7 @@
     max-width: 90vw;
     min-height: 25vh;
     border-radius: .5em;
-    padding: 2vw;
+    padding: 1em;
     box-shadow: 0 0 4vw 1.2vw #FFF, inset 0 0 0.8vw 0 #FFF;
     background: rgba(255, 255, 255, 0.8);
 }
@@ -69,6 +87,7 @@
     .modalDescription p {
         margin: 1rem 0 1rem 0;
         overflow: auto;
+        font-weight: 300;
     }
 
 .modalMain {
@@ -87,7 +106,7 @@
     background-color: rgba(0,0,0,0.4);
 }
 
-.modalTools {
+.tools {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -111,4 +130,39 @@
 
 .toolOther {
     background: #6cf179;
+}
+
+/* Large mobile devices (iPads) and older laptops */
+@media screen and (max-width: 1200px) {
+    .projectName {
+        font-size: 1.5em;
+    }
+}
+
+/* Mobile devices */
+@media screen and (max-width: 320px) {
+    .projectName {
+        font-size: 1em;
+    }
+
+    .project {
+        width: auto;
+    }
+
+    .modalContent {
+        max-height: 75vh;
+    }
+
+    .modalDescription h1 {
+        font-size: 1.2em;
+    }
+
+    .modalContent p {
+        font-size: .75em;
+    }
+
+    .tool {
+        font-size: .6em;
+        border-radius: 2px;
+    }
 }

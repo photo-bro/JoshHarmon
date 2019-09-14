@@ -33,14 +33,22 @@ export class Project extends Component {
 
     render() {
         let tools = this.state.tools.map(t => <Tool model={t} />);
+        let shortDescr = this.state.content.slice(0, 64) + ' ...';
 
         return (
-            <div class="project">
-                <img src={this.state.iconUrl} onClick={this.toggleModal} />
-                <div class="projectName">
-                    {this.state.name}
-                </div>
+            <div>
+                <div class="project" onClick={this.toggleModal}>
 
+                    <div class="projectName">
+                        {this.state.name}
+                    </div>
+                    <p>
+                        {shortDescr}
+                    </p>
+                    <div className="tools">
+                        {tools}
+                    </div>
+                </div>
                 <Modal
                     className="modalMain"
                     overlayClassName="modalOverlay"
@@ -51,12 +59,14 @@ export class Project extends Component {
                     onAfterOpen={this.afterOpen}
                     contentLabel={this.state.title}>
                     <div class="modalContent">
-                        <a href={this.state.externalUrl} target="_blank" class="modalContentItem">
-                            <img src={this.state.mediaUrl} class="modalImg" />
-                        </a>
+                        <div className="modalContentItem">
+                            <a href={this.state.externalUrl} target="_blank">
+                                <img src={this.state.mediaUrl} class="modalImg" />
+                            </a>
+                        </div>
                         <div className="modalDescription modalContentItem">
                             <h1>{this.state.name}</h1>
-                            <div className="modalTools">
+                            <div className="tools">
                                 {tools}
                             </div>
                             <p>{this.state.content}</p>
