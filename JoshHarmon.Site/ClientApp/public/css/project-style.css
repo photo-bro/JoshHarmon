@@ -16,7 +16,7 @@
     border-radius: .5em;
     padding: 1em;
     box-shadow: 0 0 0.5em 0.15em #ccc;
-    width: 40vw;
+    width: 35vw;
 }
 
     .project:hover {
@@ -118,6 +118,7 @@
     border-radius: 5px;
     color: #FFF;
     text-shadow: 0 0 0.5em #adadad;
+    font-size: .75em;
 }
 
 .toolLanguage {

@@ -38,7 +38,6 @@ export class Project extends Component {
         return (
             <div>
                 <div class="project" onClick={this.toggleModal}>
-
                     <div class="projectName">
                         {this.state.name}
                     </div>
