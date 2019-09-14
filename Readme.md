@@ -19,6 +19,7 @@ As a primarily backend engineer this site represents an effort to become more pr
  - [x] Containerized 
  - [x] DotNet + NodeJs RaspberryPi support
  - [x] Cached content service (static file based)
+ - [ ] Custom About page
  - [ ] Tech blog
  - [ ] Dynamic external content service
  - [ ] Deploy via Docker 
@@ -26,6 +27,8 @@ As a primarily backend engineer this site represents an effort to become more pr
 
 ## Todo
 
+ - [ ] Proper error page
+ - [ ] Add more project content (and assets)
  - [ ] Cleanup and reorganize CSS
  - [ ] Support webm/gif/video panels on splash page
  - [ ] Adjust NGINX to allow better asset caching
