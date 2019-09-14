@@ -36,7 +36,7 @@
     "Projects": [
         {
             "Name": "JoshHarmon.Site",
-            "Content": "Josh Harmon's personal website and online tech portfolio. Built on top of AspNetCore with a React frontend. Containerized and deployed via docker image on a self hosted RaspberryPi. As a primarily backend engineer this site represents an effort to become more proficent in frontend design and technologies. While much help and inspiration was found from various online resources -  all code, media assets, and design are 100% original, owned, and copyrighted by Josh Harmon.",
+            "Content": "Josh Harmon's personal website and online tech portfolio. Built on top of AspNetCore with a React frontend. Containerized and deployed via docker image on a self hosted RaspberryPi. As a primarily backend engineer this site represents an effort to become more proficient in frontend design and technologies. While much help and inspiration was found from various online resources -  all code, media assets, and design are 100% original, owned, and copyrighted by Josh Harmon.",
             "IconUrl": "/icon/email-icon-black.png",
             "MediaUrl": "/assets/JoshOutOfFocus.jpg",
             "ExternalUrl": "https://github.com/photo-bro/JoshHarmon",

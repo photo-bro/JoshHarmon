@@ -98,7 +98,7 @@ namespace JoshHarmon.Cache
             return (T)item;
         }
 
-        public async Task<bool> IsEmptyAsync() => await Task.Run(IsEmpty);
+        public async Task<bool> IsEmptyAsync() => await Task.FromResult(IsEmpty());
 
         private bool IsEmpty() => _cache.Count == 0;
 

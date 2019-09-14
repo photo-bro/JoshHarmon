@@ -73,11 +73,12 @@ body {
     border-right: solid #b1b1b1 2px;
     box-shadow: 0 0 0.5em 0.2em #a0a0a0;
     max-width: 1200px;
+    overflow: auto;
 }
 
 
 /* Large mobile devices (iPads) and older laptops */
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1200px) {
     .layout {
         max-width: 800px;
     }
