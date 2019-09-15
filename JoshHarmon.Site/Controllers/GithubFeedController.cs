@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using JoshHarmon.Github.Interface;
 using JoshHarmon.Github.Models;
@@ -59,7 +60,7 @@ namespace JoshHarmon.Site.Controllers
             }
 
 
-            return Ok(new { Commits = commits });
+            return Ok(new { Commits = commits.Take(10) });
         }
     }
 }

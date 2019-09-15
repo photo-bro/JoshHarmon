@@ -45,7 +45,7 @@ namespace JoshHarmon.Github
         }
 
         public async Task<IEnumerable<Commit>> GetRepositoryCommitsAsync(string repositoryName)
-             => await _cacheProvider.TryGetFromCacheAsync(
+             => await _cacheProvider.TryGetEnumerableFromCacheAsync(
                  key: GetFormattedCacheKey(repositoryName, "repo-commits"),
                  retrievalFunc: () => GetRepositoryCommitsAsyncImpl(repositoryName));
 

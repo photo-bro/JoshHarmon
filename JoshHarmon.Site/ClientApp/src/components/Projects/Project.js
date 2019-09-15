@@ -1,6 +1,7 @@
 ﻿import React, { Component } from 'react';
 import Modal from 'react-modal';
 import Tool from './Tool';
+import { RepoStats } from './RepoStats';
 
 Modal.setAppElement('#root')
 
@@ -12,6 +13,7 @@ export class Project extends Component {
         this.state = {
             modalOpen: false,
             name: props.model.name,
+            repositoryName: props.model.repositoryName,
             iconUrl: props.model.iconUrl,
             mediaUrl: props.model.mediaUrl,
             externalUrl: props.model.externalUrl,
@@ -59,9 +61,7 @@ export class Project extends Component {
                     contentLabel={this.state.title}>
                     <div class="modalContent">
                         <div className="modalContentItem">
-                            <a href={this.state.externalUrl} target="_blank">
-                                <img src={this.state.mediaUrl} class="modalImg" />
-                            </a>
+                            <RepoStats repoName={this.state.repositoryName} />
                         </div>
                         <div className="modalDescription modalContentItem">
                             <h1>{this.state.name}</h1>
