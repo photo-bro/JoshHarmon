@@ -4,6 +4,7 @@ using System.IO;
 using System.Threading.Tasks;
 using JoshHarmon.ContentService.Models;
 using JoshHarmon.ContentService.Repository.Interface;
+using JoshHarmon.Shared;
 using Newtonsoft.Json;
 
 namespace JoshHarmon.ContentService.Repository
@@ -31,6 +32,8 @@ namespace JoshHarmon.ContentService.Repository
 
         public JsonFileContentRespository(string fileName)
         {
+            Assert.NotNullOrEmpty(fileName);
+
             _fileName = fileName;
         }
 

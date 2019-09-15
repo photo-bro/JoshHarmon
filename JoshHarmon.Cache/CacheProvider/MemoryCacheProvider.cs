@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using JoshHarmon.Cache.CacheProvider.Interface;
 using JoshHarmon.Cache.Interface;
+using JoshHarmon.Shared;
 
 namespace JoshHarmon.Cache
 {
@@ -19,6 +20,9 @@ namespace JoshHarmon.Cache
 
         public MemoryCacheProvider(ICacheConfig config, IDictionary<string, (object Item, DateTime ModifiedAt)> existingCache)
         {
+            Assert.NotNull(config);
+            Assert.NotNull(existingCache);
+
             _config = config;
             _cache = existingCache;
         }

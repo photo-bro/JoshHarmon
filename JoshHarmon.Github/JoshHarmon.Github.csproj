@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="Octokit" Version="0.33.0" />
+        <PackageReference Include="Octokit.Reactive" Version="0.33.0" />
+    </ItemGroup>
+    <ItemGroup>
+        <Folder Include="Interface\" />
+        <Folder Include="Models\" />
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\JoshHarmon.Cache\JoshHarmon.Cache.csproj" />
+        <ProjectReference Include="..\JoshHarmon.Shared\JoshHarmon.Shared.csproj" />
+    </ItemGroup>
+</Project>

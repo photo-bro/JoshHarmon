@@ -13,4 +13,7 @@
     <Folder Include="CacheProvider\Interface\" />
     <Folder Include="Cached\Interface\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JoshHarmon.Shared\JoshHarmon.Shared.csproj" />
+  </ItemGroup>
 </Project>

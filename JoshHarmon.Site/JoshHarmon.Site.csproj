@@ -35,6 +35,8 @@
     <ItemGroup>
         <ProjectReference Include="..\JoshHarmon.ContentService\JoshHarmon.ContentService.csproj" />
         <ProjectReference Include="..\JoshHarmon.Cache\JoshHarmon.Cache.csproj" />
+        <ProjectReference Include="..\JoshHarmon.Github\JoshHarmon.Github.csproj" />
+        <ProjectReference Include="..\JoshHarmon.Shared\JoshHarmon.Shared.csproj" />
     </ItemGroup>
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
         <!-- Ensure Node.js is installed -->

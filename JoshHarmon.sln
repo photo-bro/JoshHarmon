@@ -12,6 +12,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Readme.md = Readme.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JoshHarmon.Github", "JoshHarmon.Github\JoshHarmon.Github.csproj", "{EFCF2B91-58D0-4F7C-806A-C8D8AFB554E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JoshHarmon.Shared", "JoshHarmon.Shared\JoshHarmon.Shared.csproj", "{8A141D68-5345-4931-A19B-E75B7E67075B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +34,13 @@ Global
 		{739D1376-4D24-4A6B-BD10-5CAAD1CC6DAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{739D1376-4D24-4A6B-BD10-5CAAD1CC6DAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{739D1376-4D24-4A6B-BD10-5CAAD1CC6DAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFCF2B91-58D0-4F7C-806A-C8D8AFB554E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFCF2B91-58D0-4F7C-806A-C8D8AFB554E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFCF2B91-58D0-4F7C-806A-C8D8AFB554E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFCF2B91-58D0-4F7C-806A-C8D8AFB554E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A141D68-5345-4931-A19B-E75B7E67075B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A141D68-5345-4931-A19B-E75B7E67075B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A141D68-5345-4931-A19B-E75B7E67075B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A141D68-5345-4931-A19B-E75B7E67075B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
