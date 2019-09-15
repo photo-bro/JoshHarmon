@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using JoshHarmon.Github.Interface;
+using JoshHarmon.Github.Models;
+using JoshHarmon.Shared;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -13,26 +16,50 @@ namespace JoshHarmon.Site.Controllers
 
         public GithubFeedController(IGithubService githubService, ILogger<GithubFeedController> logger)
         {
+            Assert.NotNull(githubService);
+            Assert.NotNull(logger);
+
             _githubService = githubService;
             _logger = logger;
         }
 
-        [HttpGet("/api/github/feeds/{repositoryName}")]
-        public async Task<IActionResult> GetRepositoryActivity(string repositoryName)
+        [HttpGet("/api/github/{repositoryName}/stats")]
+        public async Task<IActionResult> GetRepositoryStats(string repositoryName)
         {
-            Octokit.EventInfo feed;
+            RepoStats stats;
             try
             {
-                feed = await _githubService.GetRepositoryEvents(repositoryName);
+                stats = await _githubService.GetRepositoryStatsAsync(repositoryName);
             }
             catch (Exception e)
             {
-                _logger.LogError(e, "Error retrieving event feed for GitHub repository '{Repository}'", repositoryName);
+                _logger.LogError(e, "Error retrieving statistics for GitHub repository '{Repository}'",
+                    repositoryName);
                 return new StatusCodeResult(500);
             }
 
 
-            return Ok(feed);
+            return Ok(new { Stats = stats });
+        }
+
+
+        [HttpGet("/api/github/{repositoryName}/commits")]
+        public async Task<IActionResult> GetRepositoryCommits(string repositoryName)
+        {
+            IEnumerable<Commit> commits;
+            try
+            {
+                commits = await _githubService.GetRepositoryCommitsAsync(repositoryName);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, "Error retrieving commit information for GitHub repository '{Repository}'",
+                    repositoryName);
+                return new StatusCodeResult(500);
+            }
+
+
+            return Ok(new { Commits = commits });
         }
     }
 }

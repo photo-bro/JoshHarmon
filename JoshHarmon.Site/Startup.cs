@@ -1,9 +1,10 @@
 using JoshHarmon.Cache;
-using JoshHarmon.Cache.Cached.Interface;
 using JoshHarmon.Cache.CacheProvider.Interface;
 using JoshHarmon.Cache.Interface;
 using JoshHarmon.ContentService.Repository;
 using JoshHarmon.ContentService.Repository.Interface;
+using JoshHarmon.Github;
+using JoshHarmon.Github.Interface;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 //using Microsoft.AspNetCore.HttpsPolicy;
@@ -11,7 +12,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 
 namespace JoshHarmon.Site
 {
@@ -71,18 +71,16 @@ namespace JoshHarmon.Site
         private void ConfigureIoc(IServiceCollection services)
         {
             services.AddSingleton<ICacheConfig>(Configuration.GetSection("CacheConfig").Get<CacheConfig>());
+            services.AddSingleton<IGithubConfig>(Configuration.GetSection("GithubConfig").Get<GithubConfig>());
             services.AddSingleton<ICacheProvider, MemoryCacheProvider>();
-            services.AddSingleton(sp =>
+            services.AddSingleton<IContentRepository>(sp =>
             {
                 var env = sp.GetRequiredService<IHostingEnvironment>();
                 var name = Configuration.GetValue<string>("JsonContentPath");
-                var cachedProvider = sp.GetRequiredService<ICacheProvider>();
-                return new CachedJsonFileContentRespository(cacheProvider: cachedProvider,
-                                                            fileName: $"{env.ContentRootPath}{name}");
+                return new JsonFileContentRespository($"{env.ContentRootPath}{name}");
             });
-            services.AddSingleton<IContentRepository>(sp => sp.GetRequiredService<CachedJsonFileContentRespository>());
-            services.AddSingleton<ICached>(sp => sp.GetRequiredService<CachedJsonFileContentRespository>());
+            services.AddSingleton<ICachedContentRepository, CachedContentRepository>();
+            services.AddSingleton<IGithubService, CachedGithubService>();
         }
-
     }
 }

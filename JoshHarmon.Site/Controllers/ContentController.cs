@@ -1,15 +1,18 @@
 ﻿using System.Threading.Tasks;
 using JoshHarmon.ContentService.Repository.Interface;
+using JoshHarmon.Shared;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JoshHarmon.Site.Controllers
 {
     public class ContentController : Controller
     {
-        private readonly IContentRepository _contentRepository;
+        private readonly ICachedContentRepository _contentRepository;
 
-        public ContentController(IContentRepository contentRepository)
+        public ContentController(ICachedContentRepository contentRepository)
         {
+            Assert.NotNull(contentRepository);
+
             _contentRepository = contentRepository;
         }
 

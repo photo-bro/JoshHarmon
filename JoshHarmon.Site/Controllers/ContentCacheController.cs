@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using JoshHarmon.Cache.Cached.Interface;
+using JoshHarmon.Shared;
 using JoshHarmon.Site.Filters;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -9,12 +11,15 @@ namespace JoshHarmon.Site.Controllers
 {
     public class ContentCacheController : Controller
     {
-        private readonly ICached _contentCache;
+        private readonly ICached[] _contentCaches;
         private readonly ILogger<ContentCacheController> _logger;
 
-        public ContentCacheController(ICached contentCache, ILogger<ContentCacheController> logger)
+        public ContentCacheController(ICached[] contentCaches, ILogger<ContentCacheController> logger)
         {
-            _contentCache = contentCache;
+            Assert.NotNull(contentCaches);
+            Assert.NotNull(logger);
+
+            _contentCaches = contentCaches;
             _logger = logger;
         }
 
@@ -24,7 +29,8 @@ namespace JoshHarmon.Site.Controllers
         {
             try
             {
-                await _contentCache.FlushAsync();
+                var tasks = _contentCaches.Select(c => c.FlushAsync());
+                await Task.WhenAll(tasks);
                 _logger.LogInformation("Content cache purged at {LocalTime}", DateTime.Now);
             }
             catch (Exception ex)
@@ -43,7 +49,8 @@ namespace JoshHarmon.Site.Controllers
         {
             try
             {
-                await _contentCache.PurgeKeyAsync(key);
+                var tasks = _contentCaches.Select(c => c.PurgeKeyAsync(key));
+                await Task.WhenAll(tasks);
                 _logger.LogInformation("Key {Key} purged from content cache at {LocalTime}", key, DateTime.Now);
             }
             catch (Exception ex)
@@ -59,10 +66,12 @@ namespace JoshHarmon.Site.Controllers
         [HttpGet("/cache/{key}")]
         public async Task<IActionResult> GetItemExpiration(string key)
         {
-            DateTime? expiration;
+            DateTime?[] expirations;
             try
             {
-                expiration = await _contentCache.GetKeyExpirationAsync(key);
+                var expirationTasks = _contentCaches.Select(c => c.GetKeyExpirationAsync(key));
+                expirations = (await Task.WhenAll(expirationTasks)).Where(e => e != null).ToArray();
+
             }
             catch (Exception ex)
             {
@@ -71,7 +80,13 @@ namespace JoshHarmon.Site.Controllers
                 { StatusCode = 500 };
             }
 
-            return Ok(expiration?.ToString("O") ?? "Item not found");
+            var output = string.Join("\n",
+                expirations?
+                .Select(e => e?.ToString("O") ?? "")
+                .Where(s => !string.IsNullOrEmpty(s)));
+            output = string.IsNullOrEmpty(output) ? "Item not found" : output;
+
+            return Ok(output);
         }
     }
 }

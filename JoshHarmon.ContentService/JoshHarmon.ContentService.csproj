@@ -17,5 +17,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\JoshHarmon.Cache\JoshHarmon.Cache.csproj" />
+    <ProjectReference Include="..\JoshHarmon.Shared\JoshHarmon.Shared.csproj" />
   </ItemGroup>
 </Project>
