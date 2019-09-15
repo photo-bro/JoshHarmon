@@ -15,10 +15,8 @@ namespace JoshHarmon.Shared
 
         public static void True<T>(Predicate<T> predicate, T obj)
         {
-            if (!predicate.Invoke(obj))
-            {
-                throw new AssertionFailedException($"Predicate was 'false' when 'true was expected.");
-            }
+            NotNull(predicate);
+            True(predicate.Invoke(obj));
         }
 
         public static void True(bool value)

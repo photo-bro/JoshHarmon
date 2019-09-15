@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using JoshHarmon.Cache.Cached.Interface;
@@ -11,10 +12,10 @@ namespace JoshHarmon.Site.Controllers
 {
     public class ContentCacheController : Controller
     {
-        private readonly ICached[] _contentCaches;
+        private readonly IEnumerable<ICached> _contentCaches;
         private readonly ILogger<ContentCacheController> _logger;
 
-        public ContentCacheController(ICached[] contentCaches, ILogger<ContentCacheController> logger)
+        public ContentCacheController(IEnumerable<ICached> contentCaches, ILogger<ContentCacheController> logger)
         {
             Assert.NotNull(contentCaches);
             Assert.NotNull(logger);

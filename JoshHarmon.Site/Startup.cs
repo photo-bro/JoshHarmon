@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using JoshHarmon.Cache;
+using JoshHarmon.Cache.Cached.Interface;
 using JoshHarmon.Cache.CacheProvider.Interface;
 using JoshHarmon.Cache.Interface;
 using JoshHarmon.ContentService.Repository;
@@ -73,6 +75,7 @@ namespace JoshHarmon.Site
             services.AddSingleton<ICacheConfig>(Configuration.GetSection("CacheConfig").Get<CacheConfig>());
             services.AddSingleton<IGithubConfig>(Configuration.GetSection("GithubConfig").Get<GithubConfig>());
             services.AddSingleton<ICacheProvider, MemoryCacheProvider>();
+
             services.AddSingleton<IContentRepository>(sp =>
             {
                 var env = sp.GetRequiredService<IHostingEnvironment>();
@@ -81,6 +84,9 @@ namespace JoshHarmon.Site
             });
             services.AddSingleton<ICachedContentRepository, CachedContentRepository>();
             services.AddSingleton<IGithubService, CachedGithubService>();
+
+            services.AddSingleton<ICached, CachedContentRepository>();
+            services.AddSingleton<ICached, CachedGithubService>();
         }
     }
 }
