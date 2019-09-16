@@ -1,8 +1,7 @@
 ﻿import React, { Component } from 'react';
 import Modal from 'react-modal';
 import Tool from './Tool';
-import { RecentRepoActivity } from './RecentRepoActivity';
-import { RepoContributions } from './RepoContributions';
+import { ProjectModalDetail } from './ProjectModalDetail';
 
 Modal.setAppElement('#root')
 
@@ -60,23 +59,12 @@ export class Project extends Component {
                     onRequestClose={() => this.setState({ modalOpen: false })}
                     onAfterOpen={this.afterOpen}
                     contentLabel={this.state.title}>
-                    <div class="modalContent">
-                        <div className="modalContentItem">
-                            <RecentRepoActivity repoName={this.state.repositoryName} />
-                        </div>
-                        <div className="modalDescription modalContentItem">
-                            <div className="modalDescriptionItem">
-                                <h1>{this.state.name}</h1>
-                                <div className="tools">
-                                    {tools}
-                                </div>
-                                <p>{this.state.content}</p>
-                            </div>
-                            <div className="modalDescriptionItem">
-                                <RepoContributions repoName={this.state.repositoryName} />
-                            </div>
-                        </div>
-                    </div>
+                    <ProjectModalDetail
+                        repositoryName={this.state.repositoryName}
+                        name={this.state.name}
+                        content={this.state.content}
+                        tools={tools}
+                    />
                 </Modal>
             </div>
         );
