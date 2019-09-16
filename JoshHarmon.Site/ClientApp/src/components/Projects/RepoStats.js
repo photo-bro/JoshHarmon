@@ -60,10 +60,7 @@ export class RepoStats extends Component {
 
         return (
             <div>
-                {'CreatedAt: ' + statsModel.createdAt}<br />
-                {'LastActivity: ' + statsModel.lastActivity}<br />
-                {'Total Commits: ' + statsModel.totalCommits}<br />
-                <h4>{'Contributors:'} </h4>
+                <h4>Contributors</h4>
                 <div>
                     {contributors}
                 </div>
@@ -100,9 +97,8 @@ export class RepoStats extends Component {
 
         return (
             <div class="RepoStats" >
-                <h2>{'Statistics'}</h2>
                 {stats}
-                <h2>{'Recent Commits'}</h2>
+                <h2>Recent Activity</h2>
                 {commits}
             </div>
         );
