@@ -1,7 +1,8 @@
 ﻿import React, { Component } from 'react';
 import Modal from 'react-modal';
 import Tool from './Tool';
-import { RepoStats } from './RepoStats';
+import { RecentRepoActivity } from './RecentRepoActivity';
+import { RepoContributions } from './RepoContributions';
 
 Modal.setAppElement('#root')
 
@@ -61,14 +62,19 @@ export class Project extends Component {
                     contentLabel={this.state.title}>
                     <div class="modalContent">
                         <div className="modalContentItem">
-                            <RepoStats repoName={this.state.repositoryName} />
+                            <RecentRepoActivity repoName={this.state.repositoryName} />
                         </div>
                         <div className="modalDescription modalContentItem">
-                            <h1>{this.state.name}</h1>
-                            <div className="tools">
-                                {tools}
+                            <div className="modalDescriptionItem">
+                                <h1>{this.state.name}</h1>
+                                <div className="tools">
+                                    {tools}
+                                </div>
+                                <p>{this.state.content}</p>
                             </div>
-                            <p>{this.state.content}</p>
+                            <div className="modalDescriptionItem">
+                                <RepoContributions repoName={this.state.repositoryName} />
+                            </div>
                         </div>
                     </div>
                 </Modal>
