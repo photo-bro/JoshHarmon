@@ -16,7 +16,7 @@
     border-radius: .5em;
     padding: 1em;
     box-shadow: 0 0 0.5em 0.15em #ccc;
-    width: 35vw;
+    max-width: 350px;
 }
 
     .project:hover {
@@ -66,6 +66,7 @@
 .modalContentItem {
     flex: 1 1 0;
     width: 0;
+    overflow: scroll;
 }
 
 .modalDescription {
@@ -77,6 +78,7 @@
     background: #FFF;
     border-radius: .5em;
     box-shadow: 0 0 1vw 0.1vw #bfbfbf;
+    justify-content: space-between;
 }
 
     .modalDescription h1 {
@@ -104,6 +106,9 @@
     right: 0;
     bottom: 0;
     background-color: rgba(0,0,0,0.4);
+}
+
+.modalDescriptionItem {
 }
 
 .tools {
@@ -137,6 +142,10 @@
 @media screen and (max-width: 1200px) {
     .projectName {
         font-size: 1.5em;
+    }
+
+    .project {
+        width: auto;
     }
 }
 

@@ -35,7 +35,7 @@ export class RecentRepoActivity extends Component {
     static buildCommitsDiv(commitModels) {
         if (!commitModels) return (<div />);
         return (
-            <div>
+            <div class="commits">
                 {commitModels.map(c => <Commit model={c} />)}
             </div>
         );

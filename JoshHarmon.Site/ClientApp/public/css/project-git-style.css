@@ -1,0 +1,59 @@
+﻿
+.repoActivity {
+    display: flex;
+    flex-direction: column;
+    padding: 1vw;
+    overflow-wrap: break-word;
+    background: #FFF;
+    border-radius: .5em;
+    box-shadow: 0 0 1vw 0.1vw #ccc;
+}
+
+    .repoActivity h2 {
+        font-size: 1.5em;
+    }
+
+.commits {
+    display: flex;
+    flex-direction: column;
+    line-height: normal;
+    overflow: auto;
+}
+
+.commit {
+    margin: .2em 0 .2em 0;
+    padding: 0 .2em 0 .2em;
+    border: solid #b1b1b1 1px;
+    border-radius: .15em;
+    box-shadow: 0 0 0.15em 0.05em #ccc;
+}
+
+    .commit a {
+        font-size: .6em;
+    }
+
+    .commit p {
+        font-size: .75em;
+        font-weight: 300;
+        margin: 0 0 .1em 0;
+    }
+
+.commitDetails {
+    font-size: .75em;
+}
+
+.contributors {
+    display: flex;
+    flex-direction: column;
+}
+
+    .contributors h3 {
+        font-size: 1.5em;
+    }
+
+.contributor {
+    font-size: .9em;
+}
+
+    .contributor a {
+    }

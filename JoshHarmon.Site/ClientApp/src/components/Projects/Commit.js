@@ -18,11 +18,7 @@ export class Commit extends Component {
 
     render() {
         return (
-            <div class="commit" >
-                <a href={this.state.url}>
-                    {this.state.sha}{this.state.dateTime}
-                </a>
-                <br />
+            <div class="commit" >               
                 <div class="commitDetails">
                     {this.state.dateTime}
                     &nbsp;-&nbsp;
@@ -30,6 +26,9 @@ export class Commit extends Component {
                     &nbsp;:&nbsp;
                     <i>{this.state.email}</i>
                 </div>
+                 <a href={this.state.url}>
+                    {this.state.sha}
+                </a>
                 <p>
                     {this.state.message}
                 </p>

@@ -65,6 +65,7 @@ export class RepoContributions extends Component {
 
         return (
             <div class="contributors">
+                <h3>Contributors</h3>
                 {contributors}
             </div>
         );
