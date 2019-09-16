@@ -31,7 +31,12 @@ namespace JoshHarmon.Github
             _config = config;
             try
             {
-                _client = new ObservableGitHubClient(new ProductHeaderValue(_config.UserName));
+                _client = new ObservableGitHubClient(
+                    gitHubClient: new GitHubClient(
+                        productInformation: new ProductHeaderValue(_config.UserName))
+                    {
+                        Credentials = new Credentials(_config.AccessToken)
+                    });
             }
             catch (Exception e)
             {
@@ -86,12 +91,14 @@ namespace JoshHarmon.Github
                     WeeklyAverageCommits = (int)c.Weeks.Average(w => w.C),
                 }).ToArray();
 
-            var languages = await _client?.Repository?.GetAllLanguages(_config.UserName, repositoryName)
-                ?.Select(l => new RepoLanguage
-                {
-                    Language = l?.Name,
-                    BytesWritten = (int?)l?.NumberOfBytes ?? 0
-                })?.ToArray() ?? new RepoLanguage[0];
+            //var langs = await _client.Repository.GetAllLanguages(_config.UserName, repositoryName).ToList();
+
+            //var languages = langs
+            //    .Select(l => new RepoLanguage
+            //    {
+            //        Language = l?.Name,
+            //        BytesWritten = (int?)l?.NumberOfBytes ?? 0
+            //    })?.ToArray() ?? new RepoLanguage[0];
 
             return new RepoStats
             {
@@ -99,7 +106,7 @@ namespace JoshHarmon.Github
                 LastActivity = repo.UpdatedAt.DateTime,
                 Contributors = contributors,
                 TotalCommits = contributors.Sum(c => c.TotalCommits),
-                Languages = languages
+                //Languages = languages
             };
         }
 
