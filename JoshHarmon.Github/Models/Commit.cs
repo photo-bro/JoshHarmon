@@ -12,5 +12,7 @@ namespace JoshHarmon.Github.Models
         public string Message { get; set; }
 
         public string Sha { get; set; }
+
+        public string Url { get; set; }
     }
 }

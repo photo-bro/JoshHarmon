@@ -1,6 +1,7 @@
 ﻿import React, { Component } from 'react';
 import Modal from 'react-modal';
 import Tool from './Tool';
+import { ProjectModalDetail } from './ProjectModalDetail';
 
 Modal.setAppElement('#root')
 
@@ -12,6 +13,7 @@ export class Project extends Component {
         this.state = {
             modalOpen: false,
             name: props.model.name,
+            repositoryName: props.model.repositoryName,
             iconUrl: props.model.iconUrl,
             mediaUrl: props.model.mediaUrl,
             externalUrl: props.model.externalUrl,
@@ -57,20 +59,13 @@ export class Project extends Component {
                     onRequestClose={() => this.setState({ modalOpen: false })}
                     onAfterOpen={this.afterOpen}
                     contentLabel={this.state.title}>
-                    <div class="modalContent">
-                        <div className="modalContentItem">
-                            <a href={this.state.externalUrl} target="_blank">
-                                <img src={this.state.mediaUrl} class="modalImg" />
-                            </a>
-                        </div>
-                        <div className="modalDescription modalContentItem">
-                            <h1>{this.state.name}</h1>
-                            <div className="tools">
-                                {tools}
-                            </div>
-                            <p>{this.state.content}</p>
-                        </div>
-                    </div>
+                    <ProjectModalDetail
+                        repositoryName={this.state.repositoryName}
+                        repositoryUrl={this.state.externalUrl}
+                        name={this.state.name}
+                        content={this.state.content}
+                        tools={tools}
+                    />
                 </Modal>
             </div>
         );

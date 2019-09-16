@@ -35,12 +35,12 @@ namespace JoshHarmon.ContentService.Repository
         public Task PurgeKeyAsync(string key) => _cacheProvider.RemoveAsync(key);
 
         public async Task<IEnumerable<ConnectModel>> ReadAllConnectModels()
-            => await _cacheProvider.TryGetFromCacheAsync(ConnectModelsKey, _contentRepository.ReadAllConnectModels);
+            => await _cacheProvider.TryGetEnumerableFromCacheAsync(ConnectModelsKey, _contentRepository.ReadAllConnectModels);
 
         public async Task<IEnumerable<PanelModel>> ReadAllPanelModels()
-            => await _cacheProvider.TryGetFromCacheAsync(PanelModelsKey, _contentRepository.ReadAllPanelModels);
+            => await _cacheProvider.TryGetEnumerableFromCacheAsync(PanelModelsKey, _contentRepository.ReadAllPanelModels);
 
         public async Task<IEnumerable<ProjectModel>> ReadAllProjectModels()
-            => await _cacheProvider.TryGetFromCacheAsync(ProjectModelsKey, _contentRepository.ReadAllProjectModels);
+            => await _cacheProvider.TryGetEnumerableFromCacheAsync(ProjectModelsKey, _contentRepository.ReadAllProjectModels);
     }
 }

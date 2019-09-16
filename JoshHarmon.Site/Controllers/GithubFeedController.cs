@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using JoshHarmon.Github.Interface;
 using JoshHarmon.Github.Models;
@@ -38,10 +39,8 @@ namespace JoshHarmon.Site.Controllers
                 return new StatusCodeResult(500);
             }
 
-
             return Ok(new { Stats = stats });
         }
-
 
         [HttpGet("/api/github/{repositoryName}/commits")]
         public async Task<IActionResult> GetRepositoryCommits(string repositoryName)
@@ -58,8 +57,26 @@ namespace JoshHarmon.Site.Controllers
                 return new StatusCodeResult(500);
             }
 
+            return Ok(new { Commits = commits.Take(10) });
+        }
 
-            return Ok(new { Commits = commits });
+
+        [HttpGet("/api/github/{repositoryName}/contributors")]
+        public async Task<IActionResult> GetRepositoryContributors(string repositoryName)
+        {
+            IEnumerable<RepoContributor> contributors;
+            try
+            {
+                contributors = await _githubService.GetRepositoryContributorsAsync(repositoryName);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, "Error retrieving contributor information for GitHub repository '{Repository}'",
+                    repositoryName);
+                return new StatusCodeResult(500);
+            }
+
+            return Ok(new { Contributors = contributors });
         }
     }
 }
