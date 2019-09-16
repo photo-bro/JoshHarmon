@@ -7,6 +7,7 @@
     background: #FFF;
     border-radius: .5em;
     box-shadow: 0 0 1vw 0.1vw #ccc;
+    max-height: -webkit-fill-available;
 }
 
     .repoActivity h2 {
@@ -23,7 +24,7 @@
 .commit {
     margin: .2em 0 .2em 0;
     padding: 0 .2em 0 .2em;
-    border: solid #b1b1b1 1px;
+    border: solid #CCC 1px;
     border-radius: .15em;
     box-shadow: 0 0 0.15em 0.05em #ccc;
 }

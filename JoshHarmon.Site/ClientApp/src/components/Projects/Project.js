@@ -61,6 +61,7 @@ export class Project extends Component {
                     contentLabel={this.state.title}>
                     <ProjectModalDetail
                         repositoryName={this.state.repositoryName}
+                        repositoryUrl={this.state.externalUrl}
                         name={this.state.name}
                         content={this.state.content}
                         tools={tools}

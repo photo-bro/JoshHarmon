@@ -10,6 +10,7 @@ export class ProjectModalDetail extends Component {
 
         this.state = {
             repositoryName: props.repositoryName,
+            repositoryUrl: props.repositoryUrl,
             name: props.name,
             content: props.content,
             tools: props.tools
@@ -24,7 +25,9 @@ export class ProjectModalDetail extends Component {
                 </div>
                 <div className="modalDescription modalContentItem">
                     <div className="modalDescriptionItem">
-                        <h1>{this.state.name}</h1>
+                        <a href={this.state.repositoryUrl} >
+                            <h1>{this.state.name}</h1>
+                        </a>
                         <div className="tools">
                             {this.state.tools}
                         </div>

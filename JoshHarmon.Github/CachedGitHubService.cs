@@ -125,7 +125,7 @@ namespace JoshHarmon.Github
                                              {
                                                  Name = c.Type == "Anonymous" ? "Anonymous" : c.Login,
                                                  Contributions = c.Contributions,
-                                                 Url = c.Url ?? string.Empty
+                                                 Url = c.HtmlUrl ?? string.Empty
                                              })
                                          .ToList();
 
