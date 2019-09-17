@@ -1,14 +1,14 @@
 ﻿{
     "Panels": [
         {
-            "Title": "Visual Artist",
-            "MediaUrl": "/assets/Lone+Aspen+at+Dawn.jpg",
-            "LinkUrl": "https://joshharmon.co/"
-        },
-        {
             "Title": "Projects",
             "MediaUrl": "/assets/MedusasBaneLow.png",
             "LinkUrl": "/projects"
+        },
+        {
+            "Title": "Visual Artist",
+            "MediaUrl": "/assets/Lone+Aspen+at+Dawn.jpg",
+            "LinkUrl": "https://joshharmon.co/"
         },
         {
             "Title": "About",
@@ -85,6 +85,95 @@
                     "ToolType": 2
                 }
             ]
-        }
+        },
+        {
+            "Name": "Pyaera",
+            "RepositoryName": "Pyaera",
+            "Content": "Pyaera is a cross platform computer version of Aera. It supports all the rules and features of Aera but with a sleek and stylish interface including cool sounds and music! So grab a friend and play!",
+            "IconUrl": "#",
+            "MediaUrl": "#",
+            "ExternalUrl": "https://github.com/photo-bro/Pyaera",
+            "Tools": [
+                {
+                    "Name": "Python 2",
+                    "ToolType": 0
+                },
+                {
+                    "Name": "PyGame",
+                    "ToolType": 1
+                }
+            ]
+        },
+        {
+            "Name": "MASM32 Quicksort",
+            "RepositoryName": "MASM32-QuickSort",
+            "Content": "Every been tired of modern programming languages with all their fancy type inference and generics? Or perhaps you like working closer to the metal. Or maybe you just forgot how to code a quicksort and this is the first google hit you've come across. Regardless this is a very simple and unoptimized implementation of a quicksort for integers using MASM32 and the Irvine32 library.",
+            "IconUrl": "#",
+            "MediaUrl": "#",
+            "ExternalUrl": "https://github.com/photo-bro/Pyaera",
+            "Tools": [
+                {
+                    "Name": "x86 Assembly",
+                    "ToolType": 0
+                },
+                {
+                    "Name": "Irvine32",
+                    "ToolType": 1
+                }
+            ]
+        },
+        {
+            "Name": "JoshPiler",
+            "RepositoryName": "JoshPiler",
+            "Content": "Every been tired of existing Modula-2 compiler solutions? Perhaps you couldn't even find a proper Modula-2 compiler for your needs. If so JoshPiler is the answer you have been looking for! JoshPiler is a simple Modula-2 to x86 MASM32 compiler.",
+            "IconUrl": "#",
+            "MediaUrl": "#",
+            "ExternalUrl": "https://github.com/photo-bro/Pyaera",
+            "Tools": [
+                {
+                    "Name": "C#",
+                    "ToolType": 0
+                },
+                {
+                    "Name": "Modula-2",
+                    "ToolType": 0
+                },
+
+                {
+                    "Name": "x86 Assembly",
+                    "ToolType": 0
+                },
+                {
+                    "Name": "WinForms",
+                    "ToolType": 1
+                },
+                {
+                    "Name": "Irvine32",
+                    "ToolType": 1
+                }
+            ]
+        },
+        {
+            "Name": "Squawk",
+            "RepositoryName": "Squawk",
+            "Content": "Has your time machine malfunctioned and you are stuck in 1872 without a way to communicate? Do you have a Raspberry Pi or two laying around? Squawk can be the solution you are looking for! Squawk is a Python 3 peer to peer morse code encoded chat client. With Squawk, a RaspberryPi Model B, and a PiFaceDigitalIO board you could conceivably have a computerized telegraph system to communicate to your hearts desire. Or just a simple and fun way to communicate with friends.",
+            "IconUrl": "#",
+            "MediaUrl": "#",
+            "ExternalUrl": "https://github.com/photo-bro/Pyaera",
+            "Tools": [
+                {
+                    "Name": "Python 3",
+                    "ToolType": 0
+                },
+                {
+                    "Name": "RaspberryPi",
+                    "ToolType": 2
+                },
+                {
+                    "Name": "GPIO",
+                    "ToolType": 2
+                }
+            ]
+        },
     ]
 }
