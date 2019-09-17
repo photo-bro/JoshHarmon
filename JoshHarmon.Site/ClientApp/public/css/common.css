@@ -11,8 +11,8 @@ header {
     padding-bottom: .5vw;
     font-size: 3em;
     font-weight: 300;
-    letter-spacing: 1.2vw;
-    text-indent: 1.2vw;
+    letter-spacing: .8vw;
+    text-indent: .8vw;
     display: flex;
     justify-content: center;
     text-shadow: 0 0 2vw rgba(255, 255, 255, 0.5), 0 0 3vw rgb(255, 255, 255);

@@ -45,18 +45,16 @@
 
 .modalContent {
     display: flex;
-    justify-content: center;
-    max-height: 90vh;
-    max-width: 90vw;
+    justify-content: space-between;
+    height: 75vh;
     min-height: 25vh;
-    border-radius: .5em;
-    padding: 1em;
+    border-radius: .3em;
     box-shadow: 0 0 4vw 1.2vw #FFF, inset 0 0 0.8vw 0 #FFF;
     background: rgba(255, 255, 255, 0.8);
 }
 
 .modalImg {
-    box-shadow: 0 0 1vw 0.1vw #bfbfbf;
+    box-shadow: 0 0 .5em 0.1em #bfbfbf;
     width: 100%;
     height: 100%;
     border-radius: .5em;
@@ -65,22 +63,26 @@
 
 .modalContentItem {
     flex: 1 1 0;
+    padding: .5em;
     width: 0;
+    height: 100%;
+    overflow: hidden;
 }
 
 .modalDescription {
     display: flex;
     flex-direction: column;
-    margin: 0vw 0vw 0vw 2vw;
-    padding: 1vw;
+    height: 100%;
+    overflow-y: scroll;
+    padding: .5em;
     overflow-wrap: break-word;
     background: #FFF;
-    border-radius: .5em;
+    border-radius: .3em;
     box-shadow: 0 0 1vw 0.1vw #bfbfbf;
     justify-content: space-between;
 }
 
-    .modalDescription h1 {
+    .modalDescription a h1 {
         letter-spacing: .05em;
         font-weight: 200;
     }
@@ -170,8 +172,8 @@
         max-height: 75vh;
     }
 
-    .modalDescription h1 {
-        font-size: 1.2em;
+    .modalDescription a h1 {
+        font-size: 1.5em !important;
     }
 
     .modalContent p {

@@ -5,9 +5,10 @@
     padding: 1vw;
     overflow-wrap: break-word;
     background: #FFF;
-    border-radius: .5em;
+    border-radius: .3em;
     box-shadow: 0 0 1vw 0.1vw #ccc;
-    max-height: -webkit-fill-available;
+    height: 100%;
+    overflow: hidden;
 }
 
     .repoActivity h2 {
@@ -17,8 +18,9 @@
 .commits {
     display: flex;
     flex-direction: column;
+    padding: 0 .2em 0 .2em;
     line-height: normal;
-    overflow: auto;
+    overflow-y: auto;
 }
 
 .commit {
@@ -27,10 +29,14 @@
     border: solid #CCC 1px;
     border-radius: .15em;
     box-shadow: 0 0 0.15em 0.05em #ccc;
+    overflow: hidden;
+    min-height: 65px;
+    text-overflow: ellipsis;
 }
 
     .commit a {
         font-size: .6em;
+        overflow-wrap: normal;
     }
 
     .commit p {
@@ -41,6 +47,7 @@
 
 .commitDetails {
     font-size: .75em;
+    word-break: break-word;
 }
 
 .contributors {
@@ -57,4 +64,45 @@
 }
 
     .contributor a {
+        font-weight: 800;
+        color: none;
     }
+
+
+/* Large mobile devices (iPads) and older laptops */
+@media screen and (max-width: 1200px) {
+}
+
+/* Mobile devices */
+@media screen and (max-width: 320px) {
+    .repoActivity h2 {
+        font-size: 1em !important;
+    }
+
+    .commitDetails {
+        font-size: .6em !important;
+        word-break: break-all;
+        white-space: nowrap;
+    }
+
+        .commitDetails i {
+            visibility: hidden;
+            overflow-wrap: normal;
+        }
+
+    .commit a {
+        font-size: .4em !important;
+    }
+
+    .commit p {
+        font-size: .6em !important;
+    }
+
+    .contributors h3 {
+        font-size: .75em !important;
+    }
+
+    .contributor {
+        font-size: .6em !important;
+    }
+}

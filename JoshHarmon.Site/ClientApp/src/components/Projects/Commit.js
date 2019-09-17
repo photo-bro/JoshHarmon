@@ -20,8 +20,8 @@ export class Commit extends Component {
         return (
             <div class="commit" >               
                 <div class="commitDetails">
-                    {this.state.dateTime}
-                    &nbsp;-&nbsp;
+                    {this.state.dateTime.substring(0, 10)}
+                    &nbsp;&nbsp;
                     <b>{this.state.name}</b>
                     &nbsp;:&nbsp;
                     <i>{this.state.email}</i>

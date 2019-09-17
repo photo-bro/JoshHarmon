@@ -14,7 +14,7 @@ export class TopBar extends Component {
             <header>
                 <div class="header-title" >
                     <a href={window.location.origin}>
-                        Josh Harmon
+                        Josh<b>Harmon</b>
                     </a>
                 </div>
             </header>

@@ -23,18 +23,20 @@ export class ProjectModalDetail extends Component {
                 <div className="modalContentItem">
                     <RecentRepoActivity repoName={this.state.repositoryName} />
                 </div>
-                <div className="modalDescription modalContentItem">
-                    <div className="modalDescriptionItem">
-                        <a href={this.state.repositoryUrl} >
-                            <h1>{this.state.name}</h1>
-                        </a>
-                        <div className="tools">
-                            {this.state.tools}
+                <div className="modalContentItem">
+                    <div class="modalDescription">
+                        <div className="modalDescriptionItem">
+                            <a href={this.state.repositoryUrl} >
+                                <h1>{this.state.name}</h1>
+                            </a>
+                            <div className="tools">
+                                {this.state.tools}
+                            </div>
+                            <p>{this.state.content}</p>
                         </div>
-                        <p>{this.state.content}</p>
-                    </div>
-                    <div className="modalDescriptionItem">
-                        <RepoContributions repoName={this.state.repositoryName} />
+                        <div className="modalDescriptionItem">
+                            <RepoContributions repoName={this.state.repositoryName} />
+                        </div>
                     </div>
                 </div>
             </div>
