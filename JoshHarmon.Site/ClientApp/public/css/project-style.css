@@ -47,6 +47,7 @@
 .modalContent {
     display: flex;
     justify-content: space-between;
+    padding: .5em;
     height: 75vh;
     min-height: 25vh;
     border-radius: .3em;
@@ -74,7 +75,7 @@
     display: flex;
     flex-direction: column;
     height: 100%;
-    overflow-y: scroll;
+    overflow-y: auto;
     padding: .5em;
     overflow-wrap: break-word;
     background: #FFF;
@@ -171,6 +172,11 @@
 
     .modalContent {
         max-height: 75vh;
+        padding: .15em !important;
+    }
+
+    .modalContentItem {
+        padding: .15em !important;
     }
 
     .modalDescription a h1 {

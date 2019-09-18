@@ -110,7 +110,7 @@
             "Content": "Every been tired of modern programming languages with all their fancy type inference and generics? Or perhaps you like working closer to the metal. Or maybe you just forgot how to code a quicksort and this is the first google hit you've come across. Regardless this is a very simple and unoptimized implementation of a quicksort for integers using MASM32 and the Irvine32 library.",
             "IconUrl": "#",
             "MediaUrl": "#",
-            "ExternalUrl": "https://github.com/photo-bro/Pyaera",
+            "ExternalUrl": "https://github.com/photo-bro/MASM32-QuickSort",
             "Tools": [
                 {
                     "Name": "x86 Assembly",
@@ -128,7 +128,7 @@
             "Content": "Every been tired of existing Modula-2 compiler solutions? Perhaps you couldn't even find a proper Modula-2 compiler for your needs. If so JoshPiler is the answer you have been looking for! JoshPiler is a simple Modula-2 to x86 MASM32 compiler.",
             "IconUrl": "#",
             "MediaUrl": "#",
-            "ExternalUrl": "https://github.com/photo-bro/Pyaera",
+            "ExternalUrl": "https://github.com/photo-bro/JoshPiler",
             "Tools": [
                 {
                     "Name": "C#",
@@ -159,7 +159,7 @@
             "Content": "Has your time machine malfunctioned and you are stuck in 1872 without a way to communicate? Do you have a Raspberry Pi or two laying around? Squawk can be the solution you are looking for! Squawk is a Python 3 peer to peer morse code encoded chat client. With Squawk, a RaspberryPi Model B, and a PiFaceDigitalIO board you could conceivably have a computerized telegraph system to communicate to your hearts desire. Or just a simple and fun way to communicate with friends.",
             "IconUrl": "#",
             "MediaUrl": "#",
-            "ExternalUrl": "https://github.com/photo-bro/Pyaera",
+            "ExternalUrl": "https://github.com/photo-bro/Squawk",
             "Tools": [
                 {
                     "Name": "Python 3",

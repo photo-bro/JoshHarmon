@@ -24,19 +24,22 @@
 }
 
 .commit {
+    display: flex;
+    flex-direction: column;
     margin: .2em 0 .2em 0;
     padding: 0 .2em 0 .2em;
     border: solid #CCC 1px;
     border-radius: .15em;
     box-shadow: 0 0 0.15em 0.05em #ccc;
-    overflow: hidden;
-    min-height: 65px;
     text-overflow: ellipsis;
 }
 
     .commit a {
         font-size: .6em;
         overflow-wrap: normal;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
     }
 
     .commit p {
@@ -48,6 +51,9 @@
 .commitDetails {
     font-size: .75em;
     word-break: break-word;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .contributors {
