@@ -1,0 +1,22 @@
+﻿.notFound {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+}
+
+    .notFound h1 {
+        text-shadow: 0 0 0.4em #bfbfbf;
+        color: #616161;
+    }
+
+    .notFound h2 {
+        font-weight: 200;
+        color: #616161;
+    }
+
+    .notFound a{
+        font-weight: 200;
+        letter-spacing: .2em;
+    }
