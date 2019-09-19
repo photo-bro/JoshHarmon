@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web;
 using JoshHarmon.Github.Interface;
 using JoshHarmon.Github.Models;
 using JoshHarmon.Shared;
@@ -57,7 +58,7 @@ namespace JoshHarmon.Site.Controllers
                 return new StatusCodeResult(500);
             }
 
-            return Ok(new { Commits = commits.Take(10) });
+            return Ok(new { Commits = commits.Take(20) });
         }
 
 

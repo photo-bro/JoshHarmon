@@ -5,7 +5,6 @@ export class Commit extends Component {
 
     constructor(props) {
         super(props);
-
         this.state = {
             name: props.model.committerName,
             email: props.model.committerEmail,
@@ -25,16 +24,8 @@ export class Commit extends Component {
                         <div style={{ minWidth: "fit-content" }}>
                             <b>{this.state.name}</b>
                         </div>
-                        <div
-                            style={{
-                                display: "flex",
-                                flexDirection: "row",
-                                padding: "0 .5em 0 0"
-                            }}
-                        >
+                        <div>
                             <i>{this.state.email}</i>
-                            &nbsp;&nbsp;
-                            <div>{this.state.sha}</div>
                         </div>
                     </div>
                 </a>

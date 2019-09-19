@@ -39,7 +39,7 @@ export class FootBar extends Component {
             <footer>
                 {icons}
                 <div class="builtWith">
-                    Constructed with .NET Core + React &nbsp;&nbsp; <b>|</b>&nbsp;&nbsp; Deployed with Docker on Raspberry PI &nbsp;&nbsp;<b>|</b>&nbsp;&nbsp; Run with recycled electrons
+                    Constructed with .NET Core + React &nbsp;&nbsp; <b>|</b>&nbsp;&nbsp; Deployed on Raspberry PI &nbsp;&nbsp;<b>|</b>&nbsp;&nbsp; Run with recycled electrons
                     </div>
                 <div class="copyright">
                     &copy;2019 Josh Harmon - All rights reserved
