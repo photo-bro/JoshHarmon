@@ -175,11 +175,11 @@
 
     .modalContent {
         max-height: 75vh;
-        padding: .15em !important;
+        padding: .1em !important;
     }
 
     .modalContentItem {
-        padding: .15em !important;
+        margin: .1em !important;
     }
 
     .modalDescription a h1 {
