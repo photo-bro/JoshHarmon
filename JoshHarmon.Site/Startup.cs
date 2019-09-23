@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using JoshHarmon.Cache;
 using JoshHarmon.Cache.Cached.Interface;
 using JoshHarmon.Cache.CacheProvider.Interface;

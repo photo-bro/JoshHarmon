@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using JoshHarmon.Cache.Cached.Interface;
 using JoshHarmon.Shared;
@@ -25,13 +26,13 @@ namespace JoshHarmon.Site.Controllers
         }
 
         [LocalHost]
-        [HttpDelete("/cache/purge")]
-        public async Task<IActionResult> PurgeCache()
+        [HttpDelete("/cache")]
+        public IActionResult PurgeCache()
         {
             try
             {
-                var tasks = _contentCaches.Select(c => c.FlushAsync());
-                await Task.WhenAll(tasks);
+                var t = Task.WhenAll(_contentCaches.Select(async c => await c.FlushAsync()));
+                t.Start();
                 _logger.LogInformation("Content cache purged at {LocalTime}", DateTime.Now);
             }
             catch (Exception ex)
@@ -41,11 +42,11 @@ namespace JoshHarmon.Site.Controllers
                 { StatusCode = 500 };
             }
 
-            return Ok("Cache purged");
+            return Accepted("Cache purged");
         }
 
         [LocalHost]
-        [HttpDelete("/cache/purge/{key}")]
+        [HttpDelete("/cache/{key}")]
         public async Task<IActionResult> PurgeCacheItem(string key)
         {
             try
@@ -67,11 +68,25 @@ namespace JoshHarmon.Site.Controllers
         [HttpGet("/cache/{key}")]
         public async Task<IActionResult> GetItemExpiration(string key)
         {
-            DateTime?[] expirations;
+            CacheInfo[] cacheInfos;
             try
             {
-                var expirationTasks = _contentCaches.Select(c => c.GetKeyExpirationAsync(key));
-                expirations = (await Task.WhenAll(expirationTasks)).Where(e => e != null).ToArray();
+                var tasks = _contentCaches.Select(async c => (CacheName: c.GetType().ToString(), Expiration: await c.GetKeyExpirationAsync(key)));
+
+                cacheInfos = (await Task.WhenAll(tasks))
+                    .Where(ci => ci.Expiration != null)
+                    .Select(ci => new CacheInfo
+                    {
+                        Name = ci.CacheName,
+                        Items = new[] {
+                            new CacheItemExpiration {
+                                ItemKey = key,
+                                Expiration = ci.Expiration.Value
+                            }
+                        }
+                    })
+                    .ToArray();
+
 
             }
             catch (Exception ex)
@@ -81,13 +96,46 @@ namespace JoshHarmon.Site.Controllers
                 { StatusCode = 500 };
             }
 
-            var output = string.Join("\n",
-                expirations?
-                .Select(e => e?.ToString("O") ?? "")
-                .Where(s => !string.IsNullOrEmpty(s)));
-            output = string.IsNullOrEmpty(output) ? "Item not found" : output;
+            if (cacheInfos == null || cacheInfos.Length == 0)
+            {
+                return NotFound($"Item with key '{key}' not found in cache");
+            }
 
-            return Ok(output);
+            return Ok(new { Caches = cacheInfos });
         }
+
+        [LocalHost]
+        [HttpGet("/cache/")]
+        public async Task<IActionResult> GetCacheItems()
+        {
+            var keyTasks = _contentCaches.Select(async c => (CacheName: c.GetType().ToString(), Keys: await c.GetAllKeysAsync()));
+
+            var keys = await Task.WhenAll(keyTasks);
+
+            var cacheInfos = keys.Select(c => new CacheInfo
+            {
+                Name = c.CacheName,
+                Items = c.Keys.Select(k => new CacheItemExpiration
+                {
+                    ItemKey = k.Key,
+                    Expiration = k.Expiration
+                }).ToArray()
+            })
+                .ToArray();
+
+            return Ok(new { Caches = cacheInfos });
+        }
+    }
+
+    internal class CacheInfo
+    {
+        public string Name { get; set; }
+        public CacheItemExpiration[] Items { get; set; }
+    }
+
+    internal class CacheItemExpiration
+    {
+        public string ItemKey { get; set; }
+        public DateTime Expiration { get; set; }
     }
 }

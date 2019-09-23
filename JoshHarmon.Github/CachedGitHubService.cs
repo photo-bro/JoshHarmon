@@ -161,6 +161,9 @@ namespace JoshHarmon.Github
 
         public Task PurgeKeyAsync(string key) => _cacheProvider.RemoveAsync(key);
 
+        public Task<IEnumerable<(string Key, DateTime Expiration)>> GetAllKeysAsync()
+            => _cacheProvider.GetAllKeysAsync();
+
         private string GetFormattedCacheKey(string name, string action) => $"{KeyPrefix}_{action}_{name}";
     }
 }

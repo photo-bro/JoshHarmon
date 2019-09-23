@@ -39,7 +39,7 @@ namespace JoshHarmon.Shared
             {
                 var message = string.IsNullOrEmpty(parameterName)
                     ? $"'{nameof(value)}' was null or empty."
-                    : $"'{parameterName}' was null or empty.";
+                    : $"Parameter '{parameterName}' was null or empty.";
                 throw new AssertionFailedException(message);
             }
         }

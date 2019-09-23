@@ -21,6 +21,10 @@
         <PackageReference Include="Serilog.Sinks.RollingFile" Version="3.3.0" />
     </ItemGroup>
     <ItemGroup>
+        <!-- Don't show logfiles in directory-->
+        <Content Remove="logfiles/*" />
+    </ItemGroup>
+    <ItemGroup>
         <!-- Don't publish the SPA source files, but do show them in the project files list -->
         <Content Remove="$(SpaRoot)**" />
         <None Remove="$(SpaRoot)**" />

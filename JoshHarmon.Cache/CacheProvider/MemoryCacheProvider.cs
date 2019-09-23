@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using JoshHarmon.Cache.CacheProvider.Interface;
@@ -138,6 +139,12 @@ namespace JoshHarmon.Cache
 
             return _cache[key].TimeStamp + _config.DefaultExpirationDuration;
         }
+
+        public Task<IEnumerable<(string Key, DateTime Expiration)>> GetAllKeysAsync()
+            => Task.FromResult(GetAllKeys());
+
+        private IEnumerable<(string Key, DateTime Expiration)> GetAllKeys()
+            => _cache.Select(kv => (kv.Key, Expiration: kv.Value.TimeStamp));
 
         private bool IsExpired(string key)
             => Now() - _cache[key].TimeStamp > _config.DefaultExpirationDuration;

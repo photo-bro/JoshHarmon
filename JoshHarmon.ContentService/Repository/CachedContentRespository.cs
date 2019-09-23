@@ -34,6 +34,9 @@ namespace JoshHarmon.ContentService.Repository
 
         public Task PurgeKeyAsync(string key) => _cacheProvider.RemoveAsync(key);
 
+        public Task<IEnumerable<(string Key, DateTime Expiration)>> GetAllKeysAsync()
+             => _cacheProvider.GetAllKeysAsync();
+
         public async Task<IEnumerable<ConnectModel>> ReadAllConnectModels()
             => await _cacheProvider.TryGetEnumerableFromCacheAsync(ConnectModelsKey, _contentRepository.ReadAllConnectModels);
 
