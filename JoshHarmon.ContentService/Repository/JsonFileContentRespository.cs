@@ -32,7 +32,7 @@ namespace JoshHarmon.ContentService.Repository
 
         public JsonFileContentRespository(string fileName)
         {
-            Assert.NotNullOrEmpty(fileName);
+            Assert.NotNullOrEmpty(fileName, nameof(fileName));
 
             _fileName = fileName;
         }

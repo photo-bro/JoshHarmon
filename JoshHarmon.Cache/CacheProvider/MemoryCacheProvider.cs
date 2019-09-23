@@ -18,13 +18,13 @@ namespace JoshHarmon.Cache
         public MemoryCacheProvider(ICacheConfig config) : this(config, new Dictionary<string, (object Item, DateTime ModifiedAt)>())
         { }
 
-        public MemoryCacheProvider(ICacheConfig config, IDictionary<string, (object Item, DateTime ModifiedAt)> existingCache)
+        public MemoryCacheProvider(ICacheConfig config, IDictionary<string, (object Item, DateTime ModifiedAt)> cacheStore)
         {
-            Assert.NotNull(config);
-            Assert.NotNull(existingCache);
+            Assert.NotNull(config, nameof(config));
+            Assert.NotNull(cacheStore, nameof(cacheStore));
 
             _config = config;
-            _cache = existingCache;
+            _cache = cacheStore;
         }
 
         public async Task<bool> AddAsync<T>(string key, T item) => await Task.FromResult(Add(key, item));

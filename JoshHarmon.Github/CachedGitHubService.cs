@@ -24,19 +24,31 @@ namespace JoshHarmon.Github
 
         public CachedGithubService(ICacheProvider cacheProvider, IGithubConfig config)
         {
-            Assert.NotNull(cacheProvider);
-            Assert.NotNull(config);
+            Assert.NotNull(cacheProvider, nameof(cacheProvider));
+            Assert.NotNull(config, nameof(config));
+            Assert.NotNullOrEmpty(config.UserName, nameof(config.UserName));
 
             _cacheProvider = cacheProvider;
             _config = config;
             try
             {
-                _client = new ObservableGitHubClient(
-                    gitHubClient: new GitHubClient(
-                        productInformation: new ProductHeaderValue(_config.UserName))
-                    {
-                        Credentials = new Credentials(_config.AccessToken)
-                    });
+                if (string.IsNullOrEmpty(_config.AccessToken))
+                {
+                    // Public client if no access token is configured.
+                    // NOTE: Rate limit is 60 resource calls an hour
+                    _client = new ObservableGitHubClient(new ProductHeaderValue(_config.UserName));
+                }
+                else
+                {
+                    // Authenticated Client is preferrable
+                    // NOTE: Rate limit is 5000 resource calls an hour
+                    _client = new ObservableGitHubClient(
+                        gitHubClient: new GitHubClient(
+                            productInformation: new ProductHeaderValue(_config.UserName))
+                        {
+                            Credentials = new Credentials(_config.AccessToken)
+                        });
+                }
             }
             catch (Exception e)
             {
@@ -45,7 +57,7 @@ namespace JoshHarmon.Github
 
             if (_client == null)
             {
-                throw new ArgumentException($"Github user '{_config.UserName}' not found or invalid");
+                throw new ArgumentException($"Unable to create GithubClient");
             }
         }
 
@@ -119,7 +131,10 @@ namespace JoshHarmon.Github
         {
             var contributors = await _client
                                          .Repository
-                                         .GetAllContributors(owner: _config.UserName, name: repositoryName, includeAnonymous: true)
+                                         .GetAllContributors(
+                                            owner: _config.UserName,
+                                            name: repositoryName,
+                                            includeAnonymous: true)
                                          .Select(c =>
                                              new RepoContributor
                                              {

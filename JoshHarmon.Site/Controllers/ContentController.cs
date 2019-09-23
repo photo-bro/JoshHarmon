@@ -11,7 +11,7 @@ namespace JoshHarmon.Site.Controllers
 
         public ContentController(ICachedContentRepository contentRepository)
         {
-            Assert.NotNull(contentRepository);
+            Assert.NotNull(contentRepository, nameof(contentRepository));
 
             _contentRepository = contentRepository;
         }

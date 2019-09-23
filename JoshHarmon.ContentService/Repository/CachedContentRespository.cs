@@ -21,8 +21,8 @@ namespace JoshHarmon.ContentService.Repository
         public CachedContentRepository(IContentRepository contentRepository,
             ICacheProvider cacheProvider)
         {
-            Assert.NotNull(contentRepository);
-            Assert.NotNull(cacheProvider);
+            Assert.NotNull(contentRepository, nameof(contentRepository));
+            Assert.NotNull(cacheProvider, nameof(cacheProvider));
 
             _contentRepository = contentRepository;
             _cacheProvider = cacheProvider;

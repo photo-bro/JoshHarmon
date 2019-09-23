@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace JoshHarmon.Site.Controllers
 {
-    [Route("/")]
     public class HealthCheckController : Controller
     {
         [HttpGet]

@@ -18,8 +18,8 @@ namespace JoshHarmon.Site.Controllers
 
         public GithubFeedController(IGithubService githubService, ILogger<GithubFeedController> logger)
         {
-            Assert.NotNull(githubService);
-            Assert.NotNull(logger);
+            Assert.NotNull(githubService, nameof(githubService));
+            Assert.NotNull(logger, nameof(logger));
 
             _githubService = githubService;
             _logger = logger;

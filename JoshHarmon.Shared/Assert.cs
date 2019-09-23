@@ -5,33 +5,42 @@ namespace JoshHarmon.Shared
 {
     public static class Assert
     {
-        public static void NotNull<T>(T obj) where T : class
+        public static void NotNull<T>(T obj, string parameterName = null) where T : class
         {
             if (obj == null)
             {
-                throw new AssertionFailedException($"Object with type '{typeof(T)}' was null when not-null was expected.");
+                var message = string.IsNullOrEmpty(parameterName)
+                    ? $"Object with type '{typeof(T)}' was null when not-null was expected."
+                    : $"Parameter '{parameterName}' with type '{typeof(T)}' was null when not-null was expected.";
+                throw new AssertionFailedException(message);
             }
         }
 
-        public static void True<T>(Predicate<T> predicate, T obj)
+        public static void True<T>(Predicate<T> predicate, T obj, string parameterName = null)
         {
-            NotNull(predicate);
-            True(predicate.Invoke(obj));
+            NotNull(predicate, parameterName);
+            True(predicate.Invoke(obj), parameterName);
         }
 
-        public static void True(bool value)
+        public static void True(bool value, string parameterName = null)
         {
             if (!value)
             {
-                throw new AssertionFailedException($"'{nameof(value)}' was 'false' when 'true' was expected.");
+                var message = string.IsNullOrEmpty(parameterName)
+                    ? $"'{nameof(value)}' was 'false' when 'true' was expected."
+                    : $"Parameter '{parameterName}' was 'false' when 'true' was expected.";
+                throw new AssertionFailedException(message);
             }
         }
 
-        public static void NotNullOrEmpty(string value)
+        public static void NotNullOrEmpty(string value, string parameterName = null)
         {
             if (string.IsNullOrEmpty(value))
             {
-                throw new AssertionFailedException($"'{nameof(value)}' was null or empty.");
+                var message = string.IsNullOrEmpty(parameterName)
+                    ? $"'{nameof(value)}' was null or empty."
+                    : $"'{parameterName}' was null or empty.";
+                throw new AssertionFailedException(message);
             }
         }
 

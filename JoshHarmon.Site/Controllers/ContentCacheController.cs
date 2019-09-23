@@ -17,8 +17,8 @@ namespace JoshHarmon.Site.Controllers
 
         public ContentCacheController(IEnumerable<ICached> contentCaches, ILogger<ContentCacheController> logger)
         {
-            Assert.NotNull(contentCaches);
-            Assert.NotNull(logger);
+            Assert.NotNull(contentCaches, nameof(contentCaches));
+            Assert.NotNull(logger, nameof(logger));
 
             _contentCaches = contentCaches;
             _logger = logger;
