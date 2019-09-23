@@ -11,12 +11,12 @@ using Microsoft.Extensions.Logging;
 
 namespace JoshHarmon.Site.Controllers
 {
-    public class ContentCacheController : Controller
+    public class CachingController : Controller
     {
         private readonly IEnumerable<ICached> _contentCaches;
-        private readonly ILogger<ContentCacheController> _logger;
+        private readonly ILogger<CachingController> _logger;
 
-        public ContentCacheController(IEnumerable<ICached> contentCaches, ILogger<ContentCacheController> logger)
+        public CachingController(IEnumerable<ICached> contentCaches, ILogger<CachingController> logger)
         {
             Assert.NotNull(contentCaches, nameof(contentCaches));
             Assert.NotNull(logger, nameof(logger));

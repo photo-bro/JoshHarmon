@@ -144,7 +144,7 @@ namespace JoshHarmon.Cache
             => Task.FromResult(GetAllKeys());
 
         private IEnumerable<(string Key, DateTime Expiration)> GetAllKeys()
-            => _cache.Select(kv => (kv.Key, Expiration: kv.Value.TimeStamp));
+            => _cache.Select(kv => (kv.Key, Expiration: kv.Value.TimeStamp + _config.DefaultExpirationDuration));
 
         private bool IsExpired(string key)
             => Now() - _cache[key].TimeStamp > _config.DefaultExpirationDuration;
