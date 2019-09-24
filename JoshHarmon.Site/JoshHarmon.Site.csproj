@@ -21,6 +21,9 @@
         <PackageReference Include="Serilog.Sinks.RollingFile" Version="3.3.0" />
     </ItemGroup>
     <ItemGroup>
+        <None Include="DefaultContent.json" CopyToOutputDirectory="Always" />
+    </ItemGroup>
+    <ItemGroup>
         <!-- Don't show logfiles in directory-->
         <Content Remove="logfiles/*" />
     </ItemGroup>
