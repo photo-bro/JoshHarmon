@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using JoshHarmon.Cache.Cached.Interface;
 using JoshHarmon.Shared;
@@ -75,19 +74,10 @@ namespace JoshHarmon.Site.Controllers
 
                 cacheInfos = (await Task.WhenAll(tasks))
                     .Where(ci => ci.Expiration != null)
-                    .Select(ci => new CacheInfo
-                    {
-                        Name = ci.CacheName,
-                        Items = new[] {
-                            new CacheItemExpiration {
-                                ItemKey = key,
-                                Expiration = ci.Expiration.Value
-                            }
-                        }
-                    })
+                    .Select(ci => new CacheInfo(name: ci.CacheName, items: new[] {
+                        new CacheItemExpiration (itemKey: key, expiration: ci.Expiration ?? default)
+                    }))
                     .ToArray();
-
-
             }
             catch (Exception ex)
             {
@@ -112,15 +102,12 @@ namespace JoshHarmon.Site.Controllers
 
             var keys = await Task.WhenAll(keyTasks);
 
-            var cacheInfos = keys.Select(c => new CacheInfo
-            {
-                Name = c.CacheName,
-                Items = c.Keys.Select(k => new CacheItemExpiration
-                {
-                    ItemKey = k.Key,
-                    Expiration = k.Expiration
-                }).ToArray()
-            })
+            var cacheInfos = keys.Select(c => new CacheInfo(
+                name: c.CacheName,
+                items: c.Keys.Select(k => new CacheItemExpiration(
+                     itemKey: k.Key,
+                     expiration: k.Expiration
+                 )).ToArray()))
                 .ToArray();
 
             return Ok(new { Caches = cacheInfos });
@@ -129,13 +116,25 @@ namespace JoshHarmon.Site.Controllers
 
     internal class CacheInfo
     {
-        public string Name { get; set; }
-        public CacheItemExpiration[] Items { get; set; }
+        public string Name { get; }
+        public CacheItemExpiration[] Items { get; }
+
+        public CacheInfo(string name, CacheItemExpiration[] items)
+        {
+            Name = name;
+            Items = items;
+        }
     }
 
     internal class CacheItemExpiration
     {
-        public string ItemKey { get; set; }
-        public DateTime Expiration { get; set; }
+        public string ItemKey { get; }
+        public DateTime Expiration { get; }
+
+        public CacheItemExpiration(string itemKey, DateTime expiration)
+        {
+            ItemKey = itemKey;
+            Expiration = expiration;
+        }
     }
 }

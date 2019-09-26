@@ -10,13 +10,11 @@ using JoshHarmon.Github;
 using JoshHarmon.Github.Interface;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-//using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Net.Http.Headers;
 
 namespace JoshHarmon.Site
@@ -32,6 +30,8 @@ namespace JoshHarmon.Site
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddRouting();
+
             services.AddResponseCompression(opt =>
             {
                 opt.Providers.Add<BrotliCompressionProvider>();
@@ -53,7 +53,9 @@ namespace JoshHarmon.Site
             });
 
             services.AddResponseCaching();
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddControllersWithViews();
+            services.AddRazorPages();
 
 
             // In production, the React files will be served from this directory
@@ -65,10 +67,13 @@ namespace JoshHarmon.Site
             ConfigureIoc(services);
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseResponseCompression();
             app.UseResponseCaching();
+
+            app.UseRouting();
+            app.UseEndpoints(conf => { conf.MapControllers(); });
 
             if (env.IsDevelopment())
             {
@@ -95,7 +100,6 @@ namespace JoshHarmon.Site
                     ctx.Context.Response.Headers[HeaderNames.CacheControl] = $"public,max-age=3600";
                 }
             });
-            app.UseMvc();
             app.UseSpa(spa =>
             {
                 spa.Options.SourcePath = "ClientApp";
@@ -115,7 +119,7 @@ namespace JoshHarmon.Site
 
             services.AddSingleton<IContentRepository>(sp =>
             {
-                var env = sp.GetRequiredService<IHostingEnvironment>();
+                var env = sp.GetRequiredService<IWebHostEnvironment>();
                 var name = Configuration.GetValue<string>("JsonContentPath");
                 return new JsonFileContentRespository($"{env.ContentRootPath}{name}");
             });
