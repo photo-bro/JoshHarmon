@@ -10,10 +10,16 @@ namespace JoshHarmon.Site.Controllers
         [Route("/api/ping")]
         public IActionResult Ping() => Ok();
 
-
         [HttpGet]
         [Route("/healthcheck")]
         [Route("/api/healthcheck")]
-        public IActionResult HealthCheck() => Ok($"Healthy - {DateTime.UtcNow}");
+        public IActionResult HealthCheck()
+        {
+            var health = "Healthy";
+            var machineInfo = $"{Environment.MachineName} {Environment.OSVersion}";
+            var serverTime = $"Server Time - {DateTime.Now}";
+
+            return Ok(string.Join(Environment.NewLine, new[] { health, machineInfo, serverTime }));
+        }
     }
 }
