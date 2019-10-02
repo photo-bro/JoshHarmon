@@ -82,7 +82,6 @@ namespace JoshHarmon.Github
                             })
                             .ToList();
 
-
         public async Task<RepoStats> GetRepositoryStatsAsync(string repositoryName)
             => await _cacheProvider.TryGetFromCacheAsync(
                 key: GetFormattedCacheKey(repositoryName, "repo-stats"),
