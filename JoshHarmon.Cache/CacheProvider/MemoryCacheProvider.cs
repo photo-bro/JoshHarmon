@@ -35,6 +35,11 @@ namespace JoshHarmon.Cache
 
         private bool Add<T>(string key, T item)
         {
+            if (item == default)
+            {
+                throw new ArgumentNullException($"'{nameof(item)}' cannot be null or default");
+            }
+
             lock (_lock)
             {
                 if (_cache.ContainsKey(key))

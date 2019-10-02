@@ -5,7 +5,7 @@ namespace JoshHarmon.Shared
 {
     public static class Assert
     {
-        public static void NotNull<T>(T obj, string parameterName = null) where T : class
+        public static void NotNull<T>(T? obj, string? parameterName = null) where T : class
         {
             if (obj == null)
             {
@@ -16,13 +16,13 @@ namespace JoshHarmon.Shared
             }
         }
 
-        public static void True<T>(Predicate<T> predicate, T obj, string parameterName = null)
+        public static void True<T>(Predicate<T> predicate, T obj, string? parameterName = null)
         {
             NotNull(predicate, parameterName);
             True(predicate.Invoke(obj), parameterName);
         }
 
-        public static void True(bool value, string parameterName = null)
+        public static void True(bool value, string? parameterName = null)
         {
             if (!value)
             {
@@ -33,7 +33,7 @@ namespace JoshHarmon.Shared
             }
         }
 
-        public static void NotNullOrEmpty(string value, string parameterName = null)
+        public static void NotNullOrEmpty(string? value, string? parameterName = null)
         {
             if (string.IsNullOrEmpty(value))
             {

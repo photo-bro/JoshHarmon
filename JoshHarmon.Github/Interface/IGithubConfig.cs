@@ -1,10 +1,9 @@
-﻿using System;
-namespace JoshHarmon.Github.Interface
+﻿namespace JoshHarmon.Github.Interface
 {
     public interface IGithubConfig
     {
-        string UserName { get; set; }
+        string? UserName { get; }
 
-        string AccessToken { get; set; }
+        string? AccessToken { get; }
     }
 }

@@ -12,9 +12,11 @@
         <LangVersion>latest</LangVersion>
         <Nullable>enable</Nullable>
         <OutputPath>bin\Debug\netcoreapp3.0</OutputPath>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
         <LangVersion>latest</LangVersion>
+        <Nullable>enable</Nullable>
     </PropertyGroup>
     <ItemGroup>
         <PackageReference Include="Serilog" Version="2.8.0" />
