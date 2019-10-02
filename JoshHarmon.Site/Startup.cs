@@ -1,6 +1,7 @@
 using System;
 using System.IO.Compression;
 using System.Linq;
+using App.Metrics;
 using JoshHarmon.Cache;
 using JoshHarmon.Cache.Cached.Interface;
 using JoshHarmon.Cache.CacheProvider.Interface;
@@ -55,11 +56,15 @@ namespace JoshHarmon.Site
             {
                 opt.Level = CompressionLevel.Fastest;
             });
-
             services.AddResponseCaching();
 
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+            // Metrics
+            services.AddMetricsEndpoints();
+            services.AddMetricsTrackingMiddleware();
+            services.AddMetricsReportingHostedService();
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -88,6 +93,10 @@ namespace JoshHarmon.Site
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            app.UseMetricsAllMiddleware();
+            app.UseMetricsAllEndpoints();
+
             // app.UseHttpsRedirection(); // Disabled - Using NGINX reverse proxy which will handle https
             app.UseStaticFiles(new StaticFileOptions
             {

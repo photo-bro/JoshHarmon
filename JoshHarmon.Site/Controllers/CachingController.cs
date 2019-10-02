@@ -65,15 +65,21 @@ namespace JoshHarmon.Site.Controllers
         [HttpGet("/cache/{key}")]
         public async Task<IActionResult> GetItemExpiration(string key)
         {
-            var cacheInfo = (CacheName: _cacheProvider.GetType().ToString(),
-                            Expiration: await _cacheProvider.GetExpirationAsync(key));
+            var exp = await _cacheProvider.GetExpirationAsync(key);
 
-            if (cacheInfo == default)
+            if (exp == null)
             {
                 return NotFound($"Item with key '{key}' not found in cache");
             }
 
-            return Ok(new { Caches = cacheInfo });
+            return Ok(new
+            {
+                Caches = new CacheInfo(name: _cacheProvider.GetType().Name,
+                                       items: new[]
+                                       {
+                                           new CacheItemExpiration(key, exp.Value)
+                                       })
+            });
         }
 
         [LocalHost]
