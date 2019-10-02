@@ -22,15 +22,15 @@ namespace JoshHarmon.Site
 {
     public class Startup
     {
+        private readonly DateTime _instanceStartTime;
+
+        public IConfiguration Configuration { get; }
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
             _instanceStartTime = DateTime.UtcNow;
         }
-
-        public IConfiguration Configuration { get; }
-
-        private readonly DateTime _instanceStartTime;
 
         public void ConfigureServices(IServiceCollection services)
         {
