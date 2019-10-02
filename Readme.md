@@ -7,7 +7,7 @@ As a primarily backend engineer this site represents an effort to become more pr
 
 ## Features
  - Javascript + React 
- - AspNetCore 2.2 Web API
+ - AspNetCore 3 Web API
  - Deployed and hosted on Raspberry Pi 4
  - File based content service with caching control
  - Multiple screen size support
@@ -19,18 +19,21 @@ As a primarily backend engineer this site represents an effort to become more pr
  - [x] Containerized 
  - [x] DotNet + NodeJs RaspberryPi support
  - [x] Cached content service (static file based)
- - [ ] Custom About page
- - [ ] Tech blog
+ - [ ] Custom About / Resume page
+ - [ ] Tech blog platform
  - [ ] Dynamic external content service
  - [ ] Deploy via Docker 
  - [ ] ...
 
-## Todo
+## Misc Todo
 
- - [ ] Proper error page
- - [ ] Add more project content (and assets)
+ - [x] Migrate to .Net Core 3
+ - [x] Proper error page
+ - [x] Add more project content (and assets)
+ - [x] Browser and server response caching
+ - [x] Server response compression
+ - [x] Adjust DNS to point to RaspberryPi
+ - [ ] Optimize static asset sizes
  - [ ] Cleanup and reorganize CSS
  - [ ] Support webm/gif/video panels on splash page
- - [ ] Adjust NGINX to allow better asset caching
- - [ ] Adjust DNS to point to RaspberryPi
  - [ ] ...
