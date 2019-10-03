@@ -8,6 +8,7 @@
         <Nullable>enable</Nullable>
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
         <NoStdLib>false</NoStdLib>
+        <NoWarn>1701;1702;NU1605</NoWarn>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
         <LangVersion>latest</LangVersion>
