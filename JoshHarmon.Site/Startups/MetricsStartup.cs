@@ -1,5 +1,6 @@
 ﻿using App.Metrics;
 using App.Metrics.Extensions.Configuration;
+using JoshHarmon.Web.Middleware;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,6 +28,7 @@ namespace JoshHarmon.Site.Startups
         {
             app.UseMetricsAllMiddleware();
             app.UseMetricsAllEndpoints();
+            app.UseMiddleware<VisitorTrackingMiddleware>();
 
             return app;
         }
