@@ -5,6 +5,7 @@ dotnet publish -c Release -r linux-arm -o ./Releases/pi/joshharmon-site-VERSION
 sudo systemctl stop joshharmon-site
 
 # Move prior release to rollback
+cd /home/pi/JoshHarmon.Site
 mv joshharmon-site/ rollback/
 
 # Transfer packages to PI (From develop machine)

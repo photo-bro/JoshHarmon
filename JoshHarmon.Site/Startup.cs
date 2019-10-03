@@ -24,6 +24,7 @@ namespace JoshHarmon.Site
     {
         private readonly DateTime _instanceStartTime;
 
+
         public IConfiguration Configuration { get; }
 
         public Startup(IConfiguration configuration)
@@ -31,6 +32,9 @@ namespace JoshHarmon.Site
             Configuration = configuration;
             _instanceStartTime = DateTime.UtcNow;
         }
+        public static int StaticAssetCacheDuration(IWebHostEnvironment env)
+            => env.IsDevelopment() ? 0
+                                   : 7 * 24 * 60 * 60; // 1 week
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -93,14 +97,14 @@ namespace JoshHarmon.Site
             {
                 OnPrepareResponse = ctx =>
                 {
-                    ctx.Context.Response.Headers[HeaderNames.CacheControl] = $"public,max-age=3600";
+                    ctx.Context.Response.Headers[HeaderNames.CacheControl] = $"public,max-age={StaticAssetCacheDuration(env)}";
                 }
             });
             app.UseSpaStaticFiles(new StaticFileOptions
             {
                 OnPrepareResponse = ctx =>
                 {
-                    ctx.Context.Response.Headers[HeaderNames.CacheControl] = $"public,max-age=3600";
+                    ctx.Context.Response.Headers[HeaderNames.CacheControl] = $"public,max-age={StaticAssetCacheDuration(env)}";
                 }
             });
             app.UseSpa(spa =>
