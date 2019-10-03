@@ -1,6 +1,5 @@
 using System;
 using System.IO;
-using App.Metrics.AspNetCore;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -45,7 +44,6 @@ namespace JoshHarmon.Site
                 .UseConfiguration(Configuration)
                 .ConfigureKestrel(o => o.AllowSynchronousIO = true)
                 .ConfigureLogging(log => log.AddSerilog(Log.Logger))
-                .UseMetrics()
                 .UseStartup<Startup>()
                 .UseSerilog();
     }

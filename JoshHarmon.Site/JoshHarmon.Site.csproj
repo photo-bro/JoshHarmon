@@ -13,10 +13,15 @@
         <Nullable>enable</Nullable>
         <OutputPath>bin\Debug\netcoreapp3.0</OutputPath>
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+        <NoWarn>1701;1702;NU1605;</NoWarn>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
         <LangVersion>latest</LangVersion>
         <Nullable>enable</Nullable>
+        <NoWarn>$(NoWarn);NU1605</NoWarn>
+    </PropertyGroup>
+    <PropertyGroup>
+        <PublishTrimmed>true</PublishTrimmed>
     </PropertyGroup>
     <ItemGroup>
         <PackageReference Include="Serilog" Version="2.8.0" />
@@ -26,16 +31,9 @@
         <PackageReference Include="Serilog.Sinks.RollingFile" Version="3.3.0" />
         <PackageReference Include="Microsoft.AspNetCore.SpaServices" Version="3.0.0" />
         <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.0.0" />
-        <PackageReference Include="App.Metrics.Reporting.Console" Version="3.1.0" />
-        <PackageReference Include="App.Metrics.Reporting.TextFile" Version="3.1.0" />
         <PackageReference Include="App.Metrics" Version="3.1.0" />
-        <PackageReference Include="App.Metrics.Formatters.Json" Version="3.1.0" />
-        <PackageReference Include="App.Metrics.Formatters.Ascii" Version="3.1.0" />
-        <PackageReference Include="App.Metrics.Core" Version="3.1.0" />
-        <PackageReference Include="App.Metrics.Extensions.Configuration" Version="3.1.0" />
         <PackageReference Include="App.Metrics.AspNetCore" Version="3.1.0" />
-        <PackageReference Include="App.Metrics.Extensions.DependencyInjection" Version="3.1.0" />
-        <PackageReference Include="App.Metrics.AspNetCore.Tracking" Version="3.1.0" />
+        <PackageReference Include="App.Metrics.Reporting.TextFile" Version="3.1.0" />
     </ItemGroup>
     <ItemGroup>
         <None Include="DefaultContent.json" CopyToOutputDirectory="Always" />
@@ -49,7 +47,10 @@
         <Content Remove="$(SpaRoot)**" />
         <None Remove="$(SpaRoot)**" />
         <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+    </ItemGroup>
+    <ItemGroup>
         <Content Remove="DefaultContent.json" />
+        <None Remove="DefaultContent.json" />
         <None Include="DefaultContent.json" />
     </ItemGroup>
     <ItemGroup>
@@ -60,6 +61,7 @@
         <Folder Include="ClientApp\public\assets\" />
         <Folder Include="ClientApp\src\components\Projects\" />
         <Folder Include="Filters\" />
+        <Folder Include="Startups\" />
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\JoshHarmon.ContentService\JoshHarmon.ContentService.csproj" />

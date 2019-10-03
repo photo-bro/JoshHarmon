@@ -1,7 +1,4 @@
 using System;
-using System.IO.Compression;
-using System.Linq;
-using App.Metrics;
 using JoshHarmon.Cache;
 using JoshHarmon.Cache.Cached.Interface;
 using JoshHarmon.Cache.CacheProvider.Interface;
@@ -10,14 +7,12 @@ using JoshHarmon.ContentService.Repository;
 using JoshHarmon.ContentService.Repository.Interface;
 using JoshHarmon.Github;
 using JoshHarmon.Github.Interface;
+using JoshHarmon.Site.Startups;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.ResponseCompression;
-using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Net.Http.Headers;
 
 namespace JoshHarmon.Site
 {
@@ -36,50 +31,18 @@ namespace JoshHarmon.Site
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRouting();
-
-            services.AddResponseCompression(opt =>
-            {
-                opt.Providers.Add<BrotliCompressionProvider>();
-                opt.Providers.Add<GzipCompressionProvider>();
-                opt.EnableForHttps = true;
-                opt.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(new[] {
-                    "application/xhtml+xml",
-                    "application/atom+xml",
-                    "image/svg+xml",
-                });
-            });
-            services.Configure<GzipCompressionProviderOptions>(opt =>
-            {
-                opt.Level = CompressionLevel.Fastest;
-            });
-            services.Configure<BrotliCompressionProviderOptions>(opt =>
-            {
-                opt.Level = CompressionLevel.Fastest;
-            });
-            services.AddResponseCaching();
-
+            services.AddConfiguredReponseCompressionAndCaching();
             services.AddControllersWithViews();
             services.AddRazorPages();
-
-            // Metrics
-            services.AddMetricsEndpoints();
-            services.AddMetricsTrackingMiddleware();
-            services.AddMetricsReportingHostedService();
-
-            // In production, the React files will be served from this directory
-            services.AddSpaStaticFiles(configuration =>
-            {
-                configuration.RootPath = "ClientApp/build";
-            });
+            services.AddAppMetrics(Configuration);
+            services.AddConfiguredStaticFiles();
 
             ConfigureIoc(services);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseResponseCompression();
-            app.UseResponseCaching();
-
+            app.UseConfiguredResponseCompressionAndCaching();
             app.UseRouting();
             app.UseEndpoints(conf => { conf.MapControllers(); });
 
@@ -94,33 +57,8 @@ namespace JoshHarmon.Site
                 app.UseHsts();
             }
 
-            app.UseMetricsAllMiddleware();
-            app.UseMetricsAllEndpoints();
-
-            // app.UseHttpsRedirection(); // Disabled - Using NGINX reverse proxy which will handle https
-            app.UseStaticFiles(new StaticFileOptions
-            {
-                OnPrepareResponse = ctx =>
-                {
-                    ctx.Context.Response.Headers[HeaderNames.CacheControl] = $"public,max-age=3600";
-                }
-            });
-            app.UseSpaStaticFiles(new StaticFileOptions
-            {
-                OnPrepareResponse = ctx =>
-                {
-                    ctx.Context.Response.Headers[HeaderNames.CacheControl] = $"public,max-age=3600";
-                }
-            });
-            app.UseSpa(spa =>
-            {
-                spa.Options.SourcePath = "ClientApp";
-
-                if (env.IsDevelopment())
-                {
-                    spa.UseReactDevelopmentServer(npmScript: "start");
-                }
-            });
+            app.UseAppMetrics();
+            app.UseConfiguredStaticFiles(env);
         }
 
         private void ConfigureIoc(IServiceCollection services)
