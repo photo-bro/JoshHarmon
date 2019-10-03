@@ -1,27 +1,46 @@
-﻿namespace JoshHarmon.ContentService.Models
+﻿using System;
+
+namespace JoshHarmon.ContentService.Models
 {
     public class ProjectModel
     {
-        public string Name { get; set; }
+        public ProjectModel(string name, string repositoryName, string iconUrl, string mediaUrl, string content, Tool[] tools, string externalUrl)
+        {
+            Name = name ?? throw new ArgumentNullException(nameof(name));
+            RepositoryName = repositoryName ?? throw new ArgumentNullException(nameof(repositoryName));
+            IconUrl = iconUrl ?? throw new ArgumentNullException(nameof(iconUrl));
+            MediaUrl = mediaUrl ?? throw new ArgumentNullException(nameof(mediaUrl));
+            Content = content ?? throw new ArgumentNullException(nameof(content));
+            Tools = tools ?? throw new ArgumentNullException(nameof(tools));
+            ExternalUrl = externalUrl ?? throw new ArgumentNullException(nameof(externalUrl));
+        }
 
-        public string RepositoryName { get; set; }
+        public string Name { get; }
 
-        public string IconUrl { get; set; }
+        public string RepositoryName { get; }
 
-        public string MediaUrl { get; set; }
+        public string IconUrl { get; }
 
-        public string Content { get; set; }
+        public string MediaUrl { get; }
 
-        public Tool[] Tools { get; set; }
+        public string Content { get; }
 
-        public string ExternalUrl { get; set; }
+        public Tool[] Tools { get; }
+
+        public string ExternalUrl { get; }
     }
 
     public class Tool
     {
-        public string Name { get; set; }
+        public Tool(string name, ToolType toolType)
+        {
+            Name = name ?? throw new ArgumentNullException(nameof(name));
+            ToolType = toolType;
+        }
 
-        public ToolType ToolType { get; set; }
+        public string Name { get; }
+
+        public ToolType ToolType { get; }
     }
 
     public enum ToolType

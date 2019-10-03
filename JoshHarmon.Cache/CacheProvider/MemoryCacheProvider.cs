@@ -11,15 +11,18 @@ namespace JoshHarmon.Cache
     public class MemoryCacheProvider : ICacheProvider
     {
         private readonly ICacheConfig _config;
-        private readonly IDictionary<string, (object Item, DateTime TimeStamp)> _cache;
+        private readonly IDictionary<string, (object Item, DateTime ExpiresAt)> _cache;
         private readonly object _lock = new object();
 
         private DateTime Now() => _config.UseUtc ? DateTime.UtcNow : DateTime.Now;
 
-        public MemoryCacheProvider(ICacheConfig config) : this(config, new Dictionary<string, (object Item, DateTime ModifiedAt)>())
+        private DateTime KeyExpireTime => Now() + _config.DefaultExpirationDuration;
+
+        public MemoryCacheProvider(ICacheConfig config)
+            : this(config, new Dictionary<string, (object Item, DateTime ExpiresAt)>())
         { }
 
-        public MemoryCacheProvider(ICacheConfig config, IDictionary<string, (object Item, DateTime ModifiedAt)> cacheStore)
+        public MemoryCacheProvider(ICacheConfig config, IDictionary<string, (object Item, DateTime ExpiresAt)> cacheStore)
         {
             Assert.NotNull(config, nameof(config));
             Assert.NotNull(cacheStore, nameof(cacheStore));
@@ -28,10 +31,15 @@ namespace JoshHarmon.Cache
             _cache = cacheStore;
         }
 
-        public async Task<bool> AddAsync<T>(string key, T item) => await Task.FromResult(Add(key, item));
+        public Task<bool> AddAsync<T>(string key, T item) => Task.FromResult(Add(key, item));
 
         private bool Add<T>(string key, T item)
         {
+            if (item == default)
+            {
+                throw new ArgumentNullException($"'{nameof(item)}' cannot be null or default");
+            }
+
             lock (_lock)
             {
                 if (_cache.ContainsKey(key))
@@ -42,12 +50,12 @@ namespace JoshHarmon.Cache
                     _cache.Remove(key);
                 }
 
-                _cache.Add(key, (item, Now()));
+                _cache.Add(key, (item, KeyExpireTime));
             }
             return true;
         }
 
-        public async Task ClearAsync() => await Task.Run(Clear);
+        public Task ClearAsync() => Task.Run(Clear);
 
         private void Clear()
         {
@@ -57,7 +65,7 @@ namespace JoshHarmon.Cache
             }
         }
 
-        public async Task<bool> ContainsKeyAsync(string key) => await Task.FromResult(ContainsKey(key));
+        public Task<bool> ContainsKeyAsync(string key) => Task.FromResult(ContainsKey(key));
 
         private bool ContainsKey(string key)
         {
@@ -76,7 +84,7 @@ namespace JoshHarmon.Cache
             return false;
         }
 
-        public async Task<T> GetAsync<T>(string key) => await Task.FromResult(Get<T>(key));
+        public Task<T> GetAsync<T>(string key) => Task.FromResult(Get<T>(key));
 
         public T Get<T>(string key)
         {
@@ -103,11 +111,11 @@ namespace JoshHarmon.Cache
             return (T)item;
         }
 
-        public async Task<bool> IsEmptyAsync() => await Task.FromResult(IsEmpty());
+        public Task<bool> IsEmptyAsync() => Task.FromResult(IsEmpty());
 
         private bool IsEmpty() => _cache.Count == 0;
 
-        public async Task<bool> RemoveAsync(string key) => await Task.FromResult(Remove(key));
+        public Task<bool> RemoveAsync(string key) => Task.FromResult(Remove(key));
 
         private bool Remove(string key)
         {
@@ -121,8 +129,7 @@ namespace JoshHarmon.Cache
             return true;
         }
 
-        public async Task<DateTime?> GetExpirationAsync(string key)
-            => await Task.FromResult(GetExpiration(key));
+        public Task<DateTime?> GetExpirationAsync(string key) => Task.FromResult(GetExpiration(key));
 
         private DateTime? GetExpiration(string key)
         {
@@ -137,16 +144,27 @@ namespace JoshHarmon.Cache
                 return null;
             }
 
-            return _cache[key].TimeStamp + _config.DefaultExpirationDuration;
+            return _cache[key].ExpiresAt;
         }
 
         public Task<IEnumerable<(string Key, DateTime Expiration)>> GetAllKeysAsync()
             => Task.FromResult(GetAllKeys());
 
         private IEnumerable<(string Key, DateTime Expiration)> GetAllKeys()
-            => _cache.Select(kv => (kv.Key, Expiration: kv.Value.TimeStamp + _config.DefaultExpirationDuration));
+        {
+            PruneCache();
+            return _cache.Select(kv => (kv.Key, Expiration: kv.Value.ExpiresAt));
+        }
 
-        private bool IsExpired(string key)
-            => Now() - _cache[key].TimeStamp > _config.DefaultExpirationDuration;
+        private void PruneCache()
+        {
+            var cache = _cache.ToList();
+            foreach (var item in cache.Where(i => IsExpired(i.Key)))
+            {
+                _cache.Remove(item.Key);
+            }
+        }
+
+        private bool IsExpired(string key) => _cache[key].ExpiresAt < Now();
     }
 }

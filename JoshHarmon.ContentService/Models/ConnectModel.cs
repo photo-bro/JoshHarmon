@@ -1,11 +1,20 @@
-﻿namespace JoshHarmon.ContentService.Models
+﻿using System;
+
+namespace JoshHarmon.ContentService.Models
 {
     public class ConnectModel
     {
-        public string Name { get; set; }
+        public ConnectModel(string name, string iconUrl, string linkUrl)
+        {
+            Name = name ?? throw new ArgumentNullException(nameof(name));
+            IconUrl = iconUrl ?? throw new ArgumentNullException(nameof(iconUrl));
+            LinkUrl = linkUrl ?? throw new ArgumentNullException(nameof(linkUrl));
+        }
 
-        public string IconUrl { get; set; }
+        public string Name { get; }
 
-        public string LinkUrl { get; set; }
+        public string IconUrl { get; }
+
+        public string LinkUrl { get; }
     }
 }

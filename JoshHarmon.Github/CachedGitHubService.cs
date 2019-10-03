@@ -71,17 +71,15 @@ namespace JoshHarmon.Github
                             .Repository
                             .Commit
                             .GetAll(_config.UserName, repositoryName)
-                            .Select(ghc => new Commit
-                            {
-                                CommitterName = ghc.Commit.Committer.Name,
-                                CommitterEmail = ghc.Commit.Committer.Email,
-                                DateTime = ghc.Commit.Committer.Date.DateTime,
-                                Message = ghc.Commit.Message,
-                                Sha = ghc.Sha,
-                                Url = ghc.HtmlUrl
-                            })
+                            .Select(ghc => new Commit(
+                                committerName: ghc.Commit.Committer.Name,
+                                committerEmail: ghc.Commit.Committer.Email,
+                                dateTime: ghc.Commit.Committer.Date.DateTime,
+                                message: ghc.Commit.Message,
+                                sha: ghc.Sha,
+                                url: ghc.HtmlUrl
+                            ))
                             .ToList();
-
 
         public async Task<RepoStats> GetRepositoryStatsAsync(string repositoryName)
             => await _cacheProvider.TryGetFromCacheAsync(
@@ -94,14 +92,14 @@ namespace JoshHarmon.Github
 
             var contributors = await _client.Repository.Statistics.GetContributors(_config.UserName, repositoryName)
                 .SelectMany(c => c)
-                .Select(c => new RepoContributorStats
-                {
-                    Name = c.Author.Login,
-                    TotalCommits = c.Weeks.Sum(w => w.C),
-                    WeeklyAverageAdditions = (int)c.Weeks.Average(w => w.A),
-                    WeeklyAverageDeletions = (int)c.Weeks.Average(w => w.D),
-                    WeeklyAverageCommits = (int)c.Weeks.Average(w => w.C),
-                }).ToArray();
+                .Select(c => new RepoContributorStats(
+                    name: c.Author.Login,
+                    totalCommits: c.Weeks.Sum(w => w.C),
+                    weeklyAverageAdditions: (int)c.Weeks.Average(w => w.A),
+                    weeklyAverageDeletions: (int)c.Weeks.Average(w => w.D),
+                    weeklyAverageCommits: (int)c.Weeks.Average(w => w.C),
+                    url: null)
+                ).ToArray();
 
             //var langs = await _client.Repository.GetAllLanguages(_config.UserName, repositoryName).ToList();
 
@@ -112,14 +110,12 @@ namespace JoshHarmon.Github
             //        BytesWritten = (int?)l?.NumberOfBytes ?? 0
             //    })?.ToArray() ?? new RepoLanguage[0];
 
-            return new RepoStats
-            {
-                CreatedAt = repo.CreatedAt.DateTime,
-                LastActivity = repo.UpdatedAt.DateTime,
-                Contributors = contributors,
-                TotalCommits = contributors.Sum(c => c.TotalCommits),
-                //Languages = languages
-            };
+            return new RepoStats(
+                createdAt: repo.CreatedAt.DateTime,
+                lastActivity: repo.UpdatedAt.DateTime,
+                totalCommits: contributors.Sum(c => c.TotalCommits),
+                contributors: contributors,
+                languages: new RepoLanguage[0]);
         }
 
         public async Task<IEnumerable<RepoContributor>> GetRepositoryContributorsAsync(string repositoryName)
@@ -136,23 +132,21 @@ namespace JoshHarmon.Github
                                             name: repositoryName,
                                             includeAnonymous: true)
                                          .Select(c =>
-                                             new RepoContributor
-                                             {
-                                                 Name = c.Type == "Anonymous" ? "Anonymous" : c.Login,
-                                                 Contributions = c.Contributions,
-                                                 Url = c.HtmlUrl ?? string.Empty
-                                             })
+                                             new RepoContributor(
+                                                 name: c.Type == "Anonymous" ? "Anonymous" : c.Login,
+                                                 contributions: c.Contributions,
+                                                 url: c.HtmlUrl ?? string.Empty)
+                                             )
                                          .ToList();
 
             return contributors
                  .GroupBy(c => c.Name)
                  .Select(g => g.Aggregate((agg, e) =>
-                     new RepoContributor
-                     {
-                         Name = agg.Name,
-                         Contributions = agg.Contributions + e.Contributions,
-                         Url = agg.Url
-                     }));
+                     new RepoContributor(
+                         name: agg.Name,
+                         contributions: agg.Contributions + e.Contributions,
+                         url: agg.Url)
+                     ));
         }
 
         public Task FlushAsync() => _cacheProvider.ClearAsync();

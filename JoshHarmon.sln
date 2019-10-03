@@ -10,6 +10,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6F353293-1E07-4234-8B37-9894FD5A417C}"
 	ProjectSection(SolutionItems) = preProject
 		Readme.md = Readme.md
+		Build.txt = Build.txt
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JoshHarmon.Github", "JoshHarmon.Github\JoshHarmon.Github.csproj", "{94F684D6-13E6-4748-9F11-51EA7C4E3198}"

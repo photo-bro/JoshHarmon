@@ -1,3 +1,4 @@
+using System;
 using System.IO.Compression;
 using System.Linq;
 using JoshHarmon.Cache;
@@ -21,12 +22,15 @@ namespace JoshHarmon.Site
 {
     public class Startup
     {
+        private readonly DateTime _instanceStartTime;
+
+        public IConfiguration Configuration { get; }
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            _instanceStartTime = DateTime.UtcNow;
         }
-
-        public IConfiguration Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -56,7 +60,6 @@ namespace JoshHarmon.Site
 
             services.AddControllersWithViews();
             services.AddRazorPages();
-
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -115,6 +118,7 @@ namespace JoshHarmon.Site
         {
             services.AddSingleton<ICacheConfig>(Configuration.GetSection("CacheConfig").Get<CacheConfig>());
             services.AddSingleton<IGithubConfig>(Configuration.GetSection("GithubConfig").Get<GithubConfig>());
+            services.AddSingleton<Func<DateTime>>(ctx => () => _instanceStartTime);
             services.AddSingleton<ICacheProvider, MemoryCacheProvider>();
 
             services.AddSingleton<IContentRepository>(sp =>
