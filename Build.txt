@@ -1,1 +1,17 @@
-﻿
+﻿# Build Release to PI .Net Core 3.0 (From develop machine)
+dotnet publish -c Release -r linux-arm -o ./Releases/pi/joshharmon-site-VERSION
+
+# Stop systemd service
+sudo systemctl stop joshharmon-site
+
+# Move prior release to rollback
+mv joshharmon-site/ rollback/
+
+# Transfer packages to PI (From develop machine)
+scp -P 5888 -r joshharmon-site-VERSION/ pi@joshpi.local:/home/pi/JoshHarmon.Site
+
+# Rename so systemd service recognizes app
+mv joshharmon-site-VERSION/ joshharmon-site/
+
+# Start systemd service
+sudo systemctl start joshharmon-site
