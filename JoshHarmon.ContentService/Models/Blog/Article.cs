@@ -1,24 +1,18 @@
-﻿using System;
-namespace JoshHarmon.ContentService.Models.Blog
+﻿namespace JoshHarmon.ContentService.Models.Blog
 {
     public class Article
     {
-        public Article(string id, string title, DateTime publishDate)
+        public Article(ArticleMeta meta, string summary, string content)
         {
-            Id = id;
-            Title = title;
-            PublishDate = publishDate;
+            Meta = meta;
+            Summary = summary;
+            Content = content;
         }
 
-        public string Id { get; }
+        ArticleMeta Meta { get; }
 
-        public string Title { get; }
+        public string Summary { get; }
 
-        public DateTime PublishDate { get; }
-
-        public string? Summary { get; set; }
-
-        public string? Content { get; set; }
-
+        public string Content { get; }
     }
 }
