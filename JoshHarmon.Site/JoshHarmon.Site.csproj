@@ -58,6 +58,7 @@
         <Folder Include="ClientApp\public\assets\" />
         <Folder Include="ClientApp\src\components\Projects\" />
         <Folder Include="Filters\" />
+        <Folder Include="ClientApp\src\components\Blog\" />
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\JoshHarmon.ContentService\JoshHarmon.ContentService.csproj" />

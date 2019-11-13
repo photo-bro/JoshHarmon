@@ -44,7 +44,7 @@ namespace JoshHarmon.Site.Controllers
             if (article == null)
                 return NotFound();
 
-            return Ok(new { Article = article });
+            return Ok(new { Data = new { Article = article } });
         }
 
 
