@@ -14,15 +14,16 @@ namespace JoshHarmon.ContentService.Repository
     {
         const string ContentFileExtension = ".content";
 
-        private readonly string _blogRootDirectory;
-        private IDictionary<string, ArticleMeta> _cachedMeta;
-        private IDictionary<string, Article> _cachedContent;
+        private readonly IBlogConfig _config;
+        private readonly IDictionary<string, ArticleMeta> _cachedMeta;
+        private readonly IDictionary<string, Article> _cachedContent;
 
-        public BlogFileRepository(BlogConfig config)
+        public BlogFileRepository(IBlogConfig config)
         {
-            _blogRootDirectory = config.BlogArticlesPath ?? "../Blog";
+            _config = config;
+            _config.BlogContentPath = string.IsNullOrEmpty(config.BlogContentPath) ? "../Blog" : config.BlogContentPath;
 
-            Assert.True(Directory.Exists(_blogRootDirectory), $"'{nameof(_blogRootDirectory)}' does not exist");
+            Assert.True(Directory.Exists(_config.BlogContentPath), $"'{nameof(_config.BlogContentPath)}' does not exist");
 
             _cachedMeta = new Dictionary<string, ArticleMeta>();
             _cachedContent = new Dictionary<string, Article>();
@@ -32,7 +33,7 @@ namespace JoshHarmon.ContentService.Repository
 
         private async Task LoadArticleMetaData()
         {
-            var allFiles = Directory.GetFiles(_blogRootDirectory);
+            var allFiles = Directory.GetFiles(_config.BlogContentPath);
 
             if (allFiles.Length == 0)
                 return;
@@ -41,8 +42,8 @@ namespace JoshHarmon.ContentService.Repository
             {
                 var plainFileName = Path.GetFileNameWithoutExtension(jsonFile);
 
-                // skip articles that don't have content
-                if (!allFiles.Contains($"{plainFileName}{ContentFileExtension}"))
+                // skip articles that don't have correlated content file
+                if (!allFiles.Contains($"{_config.BlogContentPath}/{plainFileName}{ContentFileExtension}"))
                     continue;
 
                 // skip duplicates
@@ -53,7 +54,7 @@ namespace JoshHarmon.ContentService.Repository
                 {
                     var rawFileContents = await File.ReadAllTextAsync(jsonFile);
                     var meta = JsonConvert.DeserializeObject<ArticleMeta>(rawFileContents);
-                    _cachedMeta.Add(Path.GetFileNameWithoutExtension(jsonFile), meta);
+                    _cachedMeta.Add(plainFileName, meta);
                 }
                 catch (Exception e)
                 {
@@ -64,18 +65,18 @@ namespace JoshHarmon.ContentService.Repository
 
         private async Task<Article> ReadArticleContent(string fileName, ArticleMeta meta)
         {
-            var contentPath = $"{_blogRootDirectory}{fileName}{ContentFileExtension}";
+            var contentPath = $"{_config.BlogContentPath}/{fileName}{ContentFileExtension}";
             Assert.True(File.Exists(contentPath), $"File '{contentPath}' does not exist");
 
             var rawContent = await File.ReadAllTextAsync(contentPath);
 
+            // TODO: Auto generate summary?
             var article = new Article(meta, string.Empty, rawContent);
 
             _cachedContent.Add(meta.Id, article);
 
             return article;
         }
-
 
         public async Task<Article?> ReadArticleAsync(string articleId)
         {
@@ -94,14 +95,30 @@ namespace JoshHarmon.ContentService.Repository
 
         public async Task<IEnumerable<Article>> ReadArticlesByDateAsync(DateTime from, DateTime to)
         {
-            var metas = _cachedMeta.Where(m => m.Value.PublishDate > from && m.Value.PublishDate <= to);
+            var metas = await ReadArticleMetasAsync(from, to);
 
-            var articleTasks = metas.Select(m => ReadArticleAsync(m.Value.Id));
+            if (metas == null || !metas.Any())
+            {
+                return new Article[0];
+            }
+
+            var articleTasks = metas.Select(m => ReadArticleAsync(m.Id));
 
             var articles = await Task.WhenAll(articleTasks);
 
             return articles;
         }
 
+        public async Task<IEnumerable<ArticleMeta>> ReadArticleMetasAsync(DateTime from, DateTime to)
+        {
+            var metas = _cachedMeta.Where(m => m.Value.PublishDate > from && m.Value.PublishDate <= to);
+
+            if (metas == null || !metas.Any())
+            {
+                return new ArticleMeta[0];
+            }
+
+            return await Task.FromResult(metas.Select(m => m.Value));
+        }
     }
 }

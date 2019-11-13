@@ -9,7 +9,7 @@
             Content = content;
         }
 
-        ArticleMeta Meta { get; }
+        public ArticleMeta Meta { get; }
 
         public string Summary { get; }
 

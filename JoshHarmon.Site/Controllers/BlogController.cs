@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using JoshHarmon.ContentService.Models.Blog;
-using JoshHarmon.ContentService.Repository;
 using JoshHarmon.ContentService.Repository.Interface;
 using JoshHarmon.Shared.Web;
 using Microsoft.AspNetCore.Mvc;
@@ -14,27 +11,28 @@ namespace JoshHarmon.Site.Controllers
     {
         private readonly IBlogRepository _blogRepository;
 
-        public BlogController()
+        public BlogController(IBlogRepository blogRepository)
         {
-            _blogRepository = new BlogFileRepository();
+            _blogRepository = blogRepository;
         }
 
-
         [HttpGet("/api/blog")]
-        public async Task<IActionResult> GetArticles([FromRoute] DateTime? from, [FromRoute] DateTime? to, [FromRoute] int? limit)
+        public async Task<IActionResult> GetArticlesMeta([FromRoute] DateTime? from,
+            [FromRoute] DateTime? to, [FromRoute] int? limit)
         {
             var startDate = from ?? DateTime.MinValue;
             var endDate = to ?? DateTime.Now;
             var max = limit ?? 10;
 
-            var articles = (await _blogRepository.ReadArticlesByDateAsync(startDate, endDate)).Take(max).ToList();
-
+            var metas = (await _blogRepository.ReadArticleMetasAsync(startDate, endDate))
+                .Take(max)
+                .ToList();
 
             return Ok(
                 new
                 {
-                    Data = articles,
-                    Page = new Page(startDate, endDate, max, articles.Count)
+                    Data = metas,
+                    Page = new Page(startDate, endDate, max, metas.Count)
                 });
         }
 
@@ -49,5 +47,7 @@ namespace JoshHarmon.Site.Controllers
             return Ok(new { Article = article });
         }
 
+
+        // TODO: Add CRUD endpoints for adding + parsing blog points via webservice
     }
 }

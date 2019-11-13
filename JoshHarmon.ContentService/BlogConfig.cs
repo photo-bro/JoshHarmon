@@ -1,8 +1,9 @@
-﻿using System;
+﻿using JoshHarmon.ContentService.Repository.Interface;
+
 namespace JoshHarmon.ContentService
 {
-    public class BlogConfig
+    public class BlogConfig : IBlogConfig
     {
-        public string? BlogArticlesPath { get; set; }
+        public string? BlogContentPath { get; set; }
     }
 }
