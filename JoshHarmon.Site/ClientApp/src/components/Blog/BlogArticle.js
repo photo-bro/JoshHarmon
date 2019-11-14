@@ -1,4 +1,5 @@
 ﻿import React, { Component } from 'react';
+import { MarkdownView } from './MarkdownView';
 
 export class BlogArticle extends Component {
     static displayName = BlogArticle.name;
@@ -33,7 +34,7 @@ export class BlogArticle extends Component {
                     <h4>{article.meta.publishDate}</h4>
                 </div>
                 <hr / >
-                <p>{article.content}</p>
+                <MarkdownView rawText={article.content} />
             </div>
         );
     }
