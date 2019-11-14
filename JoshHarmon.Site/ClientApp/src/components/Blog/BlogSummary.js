@@ -14,9 +14,9 @@ export class BlogSummary extends Component {
         return(
            <div class="blogSummary">
                 <a href={"/blog/" + this.state.meta.id}><h1>{this.state.meta.title}</h1></a>
-                <br />
                 <h3>{this.state.meta.author}</h3>
                 <h4>{this.state.meta.publishDate}</h4>
+                <hr />
            </div>
         );
     }

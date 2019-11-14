@@ -3,20 +3,20 @@ namespace JoshHarmon.Shared.Web
 {
     public class Page
     {
-        public Page(DateTime from, DateTime to, int limit, int count)
+        public Page(DateTime from, DateTime to, int offset, int total)
         {
             From = from;
             To = to;
-            Limit = limit;
-            Count = count;
+            Offset = offset;
+            Total = total;
         }
 
         public DateTime From { get; }
 
         public DateTime To { get; }
 
-        public int Limit { get; }
+        public int Offset { get; }
 
-        public int Count { get; }
+        public int Total { get; }
     }
 }

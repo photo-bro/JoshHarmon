@@ -27,10 +27,12 @@ export class BlogArticle extends Component {
     {
         return(
             <div class="blogArticle">
-                <h1>{article.meta.title}</h1>
-                <h3>{article.meta.author}</h3>
-                <h4>{article.meta.publishDate}</h4>
-                <br / >
+                <div class="blogHeader">
+                    <h1>{article.meta.title}</h1>
+                    <h3>{article.meta.author}</h3>
+                    <h4>{article.meta.publishDate}</h4>
+                </div>
+                <hr / >
                 <p>{article.content}</p>
             </div>
         );
@@ -39,10 +41,12 @@ export class BlogArticle extends Component {
     render() {
         let entry = this.state.loading
             ? <h3>{this.state.loadingMessage}</h3>
-            : BlogArticle.buildBlogArticle(this.state.article);                    
+            : BlogArticle.buildBlogArticle(this.state.article);
 
         return(
-            <div>{entry}</div>
+            <div class="page">
+                {entry}
+            </div>
         );
     }
 }

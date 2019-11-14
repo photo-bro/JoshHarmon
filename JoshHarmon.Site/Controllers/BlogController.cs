@@ -17,22 +17,31 @@ namespace JoshHarmon.Site.Controllers
         }
 
         [HttpGet("/api/blog")]
-        public async Task<IActionResult> GetArticlesMeta([FromRoute] DateTime? from,
-            [FromRoute] DateTime? to, [FromRoute] int? limit)
+        public async Task<IActionResult> GetArticlesMeta([FromQuery] DateTime? from,
+            [FromQuery] DateTime? to, [FromQuery] int? limit, [FromQuery] int? offset)
         {
             var startDate = from ?? DateTime.MinValue;
             var endDate = to ?? DateTime.Now;
-            var max = limit ?? 10;
+            var take = limit ?? 10;
+            var skip = offset ?? 0;
 
-            var metas = (await _blogRepository.ReadArticleMetasAsync(startDate, endDate))
-                .Take(max)
+            var metas = (await _blogRepository.ReadArticleMetasAsync(startDate, endDate)).ToList();
+            var totalCount = metas.Count;
+
+            var filteredMetas = metas
+                .Skip(skip)
+                .Take(take)
                 .ToList();
 
             return Ok(
                 new
                 {
-                    Data = metas,
-                    Page = new Page(startDate, endDate, max, metas.Count)
+                    Data = filteredMetas,
+                    Page = new Page(
+                        from: startDate,
+                        to: endDate,
+                        offset: skip,
+                        total: totalCount)
                 });
         }
 
