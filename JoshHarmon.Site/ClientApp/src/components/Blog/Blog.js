@@ -73,9 +73,10 @@ export class Blog extends Component {
             : <a href={newerPage}>Newer Posts</a>
 
         return(
-            <div class="blogPage">
+            <div class="blogPageControl">
                 {olderAnchor}
                 {newerAnchor}
+                <hr />
             </div>
         );
     }
@@ -91,8 +92,15 @@ export class Blog extends Component {
 
         return(
             <div class="page">
-                {summaries}
-                {pageDiv}
+                <div class="blogPage">
+                    <div class="blogTitle">
+                        recent posts:
+                    <br />
+                    <hr />
+                    </div>
+                    {summaries}
+                    {pageDiv}
+                </div>
             </div>
         );
     }

@@ -1,5 +1,6 @@
 ﻿import React, { Component } from 'react';
-import { MarkdownView } from './MarkdownView';
+import { MarkdownView } from '../Shared/MarkdownView';
+import { BlogSummary } from './BlogSummary';
 
 export class BlogArticle extends Component {
     static displayName = BlogArticle.name;
@@ -13,7 +14,9 @@ export class BlogArticle extends Component {
             loadingMessage: "Loading..."
         };
 
-        fetch('api/blog/' + this.state.id, { method: 'get' })
+        const url = 'api/blog/' + this.state.id;
+
+        fetch(url, { method: 'get' })
             .then(response => response.json())
             .then(data => {               
                 this.setState({
@@ -30,12 +33,17 @@ export class BlogArticle extends Component {
             <div class="blogArticle">
                 <div class="blogHeader">
                     <h1>{article.meta.title}</h1>
-                    <h3>{article.meta.author}</h3>
-                    <h4>{article.meta.publishDate}</h4>
+                    <div>
+                        <h3>{article.meta.author}</h3>
+                        <h4>{article.meta.publishDate}</h4>
+                    </div>
                 </div>
                 <hr / >
-                <MarkdownView rawText={article.content} />
-            </div>
+                <div class="blogArticleContent" >
+                    <MarkdownView rawText={article.content} />
+                </div>
+                <hr />
+              </div>
         );
     }
 
