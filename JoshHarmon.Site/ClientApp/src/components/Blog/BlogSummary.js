@@ -16,40 +16,55 @@ export class BlogSummary extends Component {
         return "/blog/" + meta.id;
     }
 
-    static buildArticleAnchor(meta) {
+    static buildArticleHeader(meta) {
         if (!meta.bannerMediaPath || meta.bannerMediaPath === '')
         {
             return (
-                <a href={BlogSummary.articleLink(meta)}>
-                    <h1>{meta.title}</h1>
-                </a>
+                <div>
+                    <a href={BlogSummary.articleLink(meta)}>
+                        <h1>{meta.title}</h1>
+                    </a>
+                    {BlogSummary.buildSubtitleDiv(meta)}
+                </div>
             );
         }
 
         return(
-            <a href={BlogSummary.articleLink(meta)}>
-                <img src={meta.bannerMediaPath} />
-                <h1>{meta.title}</h1>
-            </a>
+            <div>
+                <a href={BlogSummary.articleLink(meta)}>
+                    <h1>{meta.title}</h1>
+                </a>
+                {BlogSummary.buildSubtitleDiv(meta)}
+                <br />
+                <a href={BlogSummary.articleLink(meta)}>
+                    <img src={meta.bannerMediaPath} />
+                </a>
+            </div>
         );
     }
 
+    static buildSubtitleDiv(meta) {
+        return(
+            <div class="blogSubtitle">
+                    <h3><b>{meta.author}</b></h3>
+                    <i><h3><PrettyDate dateTime={meta.publishDate} /></h3></i>
+            </div>
+        );
+    }
+
+
+
     render() {
-        let articleAnchor = BlogSummary.buildArticleAnchor(this.state.meta);
+        let articleHeader = BlogSummary.buildArticleHeader(this.state.meta);
 
         return(
            <div class="blogSummary">
-                {articleAnchor}
-                <div class="blogSubtitle">
-                    <h3><b>{this.state.meta.author}</b></h3>
-                    <i><h3><PrettyDate dateTime={this.state.meta.publishDate} /></h3></i>
-                </div>
+                {articleHeader}
                 <br />
                 <p>{this.state.meta.summary}</p>
                 <a href={BlogSummary.articleLink(this.state.meta)}>read more...</a>
-                <hr />                
+                <hr />
            </div>
         );
     }
-
 }
