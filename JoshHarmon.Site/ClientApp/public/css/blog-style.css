@@ -34,7 +34,17 @@
 
 .blogPageControl {
     flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    color: #484848;
+    font-size: 1.2em;
 }
+
+    .blogPageControl a {
+        color: inherit;
+        text-decoration: inherit;
+    }
 
 .blogSubtitle {
     display: flex;
@@ -63,7 +73,7 @@
     .blogHeader h1 {
         font-weight: 700;
         font-size: 3.5em;
-        color: #616161;
+        color: #484848;
         word-break: break-word;
     }
 

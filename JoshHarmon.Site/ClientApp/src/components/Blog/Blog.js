@@ -2,22 +2,23 @@
 import queryString from 'query-string';
 import { BlogSummary } from './BlogSummary';
 
-
 export class Blog extends Component {
     static displayName = Blog.name;
+    static defaultLimit = 10;
 
     constructor(props) {
         super(props);
         
+        const queryValues = queryString.parse(props.location.search);
+
         this.state = {
             blogMetas: [],
             page: {},
             loading: true,
             loadingMessage: "Loading...",
-            rawQueryString: props.location.search
+            limit: queryValues.limit,
+            offset: queryValues.offset
             };
-
-        const queryValues = queryString.parse(this.state.rawQueryString);
 
         let url = 'api/blog?';
         if (queryValues.limit != '')
@@ -44,12 +45,16 @@ export class Blog extends Component {
         );
     }
 
-    static buildPagingDiv(page)
+    static buildPagingDiv(page, limit)
     {
         if (!page)
             return(<div />);
 
-        let limit = 10;
+        if (!limit || limit === 0)
+            limit = Blog.defaultLimit;
+
+        limit = parseInt(limit);
+
         let blogBase = '/blog?limit=' + limit + '&';
         let olderPage = '';
         let newerPage = '';
@@ -64,19 +69,24 @@ export class Blog extends Component {
         else
             newerPage = '';        
 
+        if (olderPage === '' && newerPage === '')
+            return(
+                <div class="blogPageControl" />
+            );
+
         let olderAnchor = olderPage === ''
-            ? <div />
-            : <a href={olderPage}>Older Posts</a>;
+            ? <div style={{color: '#c5c5c5'}}>oldest</div>
+            : <a href={olderPage}>older &gt;&gt;</a>;
 
         let newerAnchor = newerPage == ''
-            ? <div />
-            : <a href={newerPage}>Newer Posts</a>
+            ? <div style={{color: '#c5c5c5'}}>most recent</div>
+            : <a href={newerPage}>&lt;&lt; recent</a>        
 
         return(
             <div class="blogPageControl">
-                {olderAnchor}
                 {newerAnchor}
-                <hr />
+                &nbsp; | &nbsp;
+                {olderAnchor}
             </div>
         );
     }
@@ -88,7 +98,7 @@ export class Blog extends Component {
 
         let pageDiv = this.state.loading && !this.state.data
             ? <div />
-            : Blog.buildPagingDiv(this.state.page);
+            : Blog.buildPagingDiv(this.state.page, this.state.limit);
 
         return(
             <div class="page">
@@ -100,6 +110,7 @@ export class Blog extends Component {
                     </div>
                     {summaries}
                     {pageDiv}
+                    <hr />
                 </div>
             </div>
         );
