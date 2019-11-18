@@ -64,6 +64,7 @@
         font-weight: 700;
         font-size: 3.5em;
         color: #616161;
+        word-break: break-word;
     }
 
     .blogHeader h3 {
@@ -81,4 +82,5 @@
 
 .blogArticleContent {
     padding: 1em;
+    color: #484848;
 }

@@ -1,6 +1,6 @@
 ﻿import React, { Component } from 'react';
 import { MarkdownView } from '../Shared/MarkdownView';
-import { BlogSummary } from './BlogSummary';
+import { PrettyDate } from '../Shared/PrettyDate';
 
 export class BlogArticle extends Component {
     static displayName = BlogArticle.name;
@@ -35,7 +35,7 @@ export class BlogArticle extends Component {
                     <h1>{article.meta.title}</h1>
                     <div>
                         <h3>{article.meta.author}</h3>
-                        <h4>{article.meta.publishDate}</h4>
+                        <h4><PrettyDate dateTime={article.meta.publishDate} /></h4>
                     </div>
                 </div>
                 <hr / >
@@ -55,6 +55,8 @@ export class BlogArticle extends Component {
         return(
             <div class="page">
                 {entry}
+                <div>
+                </div>
             </div>
         );
     }
