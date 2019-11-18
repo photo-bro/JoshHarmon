@@ -61,6 +61,8 @@ namespace JoshHarmon.ContentService.Repository
                     throw new Exception($"Error reading and deserializing blog article '{jsonFile}'", e);
                 }
             }
+
+            _cachedMeta.OrderBy(m => m.Value.PublishDate);
         }
 
         private async Task<Article> ReadArticleContent(string fileName, ArticleMeta meta)

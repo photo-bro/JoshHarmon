@@ -4,7 +4,7 @@ namespace JoshHarmon.ContentService.Models.Blog
     public class ArticleMeta
     {
         public ArticleMeta(string id, string title, string? author, DateTime publishDate,
-            string? bannerMediaPath, string[]? tags)
+            string? bannerMediaPath, string[]? tags, string? summary)
         {
             Id = id;
             Title = title;
@@ -12,6 +12,7 @@ namespace JoshHarmon.ContentService.Models.Blog
             PublishDate = publishDate;
             BannerMediaPath = bannerMediaPath;
             Tags = tags ?? new string[0];
+            Summary = summary;
         }
 
         public string Id { get; }
@@ -25,5 +26,7 @@ namespace JoshHarmon.ContentService.Models.Blog
         public string? BannerMediaPath { get; }
 
         public string[] Tags { get; }
+
+        public string? Summary { get; }
     }
 }

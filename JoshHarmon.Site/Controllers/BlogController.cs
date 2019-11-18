@@ -29,6 +29,7 @@ namespace JoshHarmon.Site.Controllers
             var totalCount = metas.Count;
 
             var filteredMetas = metas
+                .OrderByDescending(m => m.PublishDate)
                 .Skip(skip)
                 .Take(take)
                 .ToList();

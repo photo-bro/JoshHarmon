@@ -4,7 +4,7 @@ import { BlogSummary } from './BlogSummary';
 
 export class Blog extends Component {
     static displayName = Blog.name;
-    static defaultLimit = 10;
+    static defaultLimit = 3;
 
     constructor(props) {
         super(props);
