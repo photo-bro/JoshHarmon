@@ -31,6 +31,7 @@ export class BlogArticle extends Component {
     {
         return(
             <div class="blogArticle">
+                <img src={article.meta.bannerMediaPath} />
                 <div class="blogHeader">
                     <h1>{article.meta.title}</h1>
                     <div>
