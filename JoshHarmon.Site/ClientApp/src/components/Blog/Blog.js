@@ -21,9 +21,9 @@ export class Blog extends Component {
             };
 
         let url = 'api/blog?';
-        if (queryValues.limit != '')
+        if (queryValues.limit !== undefined)
             url += 'limit=' + queryValues.limit;
-        if (queryValues.offset != '')
+        if (queryValues.offset !== undefined)
             url += '&offset=' + queryValues.offset;
 
         fetch(url, { method: 'get' })
