@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using JoshHarmon.ContentService.Models.Blog;
 using JoshHarmon.ContentService.Repository.Interface;
@@ -17,6 +18,7 @@ namespace JoshHarmon.ContentService.Repository
         private readonly IBlogConfig _config;
         private readonly IDictionary<string, ArticleMeta> _cachedMeta;
         private readonly IDictionary<string, Article> _cachedContent;
+        private bool _loadingArticleMeta = true;
 
         private static string GenerateFileKey(string jsonFile)
         {
@@ -37,7 +39,11 @@ namespace JoshHarmon.ContentService.Repository
             _cachedMeta = new Dictionary<string, ArticleMeta>();
             _cachedContent = new Dictionary<string, Article>();
 
-            LoadArticleMetaData().RunSynchronously();
+            _ = LoadArticleMetaData();
+
+            // spin wait, since await cannot be used in constructor
+            while (_loadingArticleMeta)
+                Thread.Sleep(10);
         }
 
         private async Task LoadArticleMetaData()
@@ -73,6 +79,7 @@ namespace JoshHarmon.ContentService.Repository
             }
 
             _cachedMeta.OrderBy(m => m.Value.PublishDate);
+            _loadingArticleMeta = false;
         }
 
         private async Task<Article> ReadArticleContent(string fileName, ArticleMeta meta)
