@@ -69,6 +69,7 @@ namespace JoshHarmon.ContentService.Repository
                 {
                     var rawFileContents = await File.ReadAllTextAsync(jsonFile);
                     var meta = JsonConvert.DeserializeObject<ArticleMeta>(rawFileContents);
+
                     meta.FileKey = fileKey;
                     _cachedMeta.Add(fileKey, meta);
                 }
@@ -89,8 +90,7 @@ namespace JoshHarmon.ContentService.Repository
 
             var rawContent = await File.ReadAllTextAsync(contentPath);
 
-            // TODO: Auto generate summary?
-            var article = new Article(meta, string.Empty, rawContent);
+            var article = new Article(meta, rawContent);
 
             _cachedContent.Add(meta.Id, article);
 
