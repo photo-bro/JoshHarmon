@@ -16,7 +16,7 @@ namespace JoshHarmon.Site.Controllers
             _contentRepository = contentRepository;
         }
 
-        [ResponseCache(Duration = 3600)]
+        [ResponseCache(Duration = 60 * 60 * 24)]
         [HttpGet("api/splash")]
         public async Task<IActionResult> GetPanels()
         {
@@ -25,7 +25,7 @@ namespace JoshHarmon.Site.Controllers
             return Ok(new { Panels = models });
         }
 
-        [ResponseCache(Duration = 3600)]
+        [ResponseCache(Duration = 60 * 60 * 24)]
         [HttpGet("api/connections")]
         public async Task<IActionResult> GetConnections()
         {
@@ -34,7 +34,7 @@ namespace JoshHarmon.Site.Controllers
             return Ok(new { Connections = models });
         }
 
-        [ResponseCache(Duration = 3600)]
+        [ResponseCache(Duration = 60 * 60 * 24)]
         [HttpGet("api/projects")]
         public async Task<IActionResult> GetProjects()
         {

@@ -24,7 +24,7 @@ namespace JoshHarmon.Site.Controllers
             _logger = logger;
         }
 
-        [ResponseCache(Duration = 3600)]
+        [ResponseCache(Duration = 60 * 60)]
         [HttpGet("/api/github/{repositoryName}/stats")]
         public async Task<IActionResult> GetRepositoryStats(string repositoryName)
         {
@@ -43,7 +43,7 @@ namespace JoshHarmon.Site.Controllers
             return Ok(new { Stats = stats });
         }
 
-        [ResponseCache(Duration = 3600)]
+        [ResponseCache(Duration = 60 * 60)]
         [HttpGet("/api/github/{repositoryName}/commits")]
         public async Task<IActionResult> GetRepositoryCommits(string repositoryName)
         {
@@ -62,7 +62,7 @@ namespace JoshHarmon.Site.Controllers
             return Ok(new { Commits = commits.Take(20) });
         }
 
-        [ResponseCache(Duration = 3600)]
+        [ResponseCache(Duration = 60 * 60)]
         [HttpGet("/api/github/{repositoryName}/contributors")]
         public async Task<IActionResult> GetRepositoryContributors(string repositoryName)
         {
