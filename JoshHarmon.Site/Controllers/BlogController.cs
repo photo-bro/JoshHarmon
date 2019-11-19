@@ -75,7 +75,7 @@ namespace JoshHarmon.Site.Controllers
 
 
         [LocalHost]
-        [HttpPut]
+        [HttpPut("api/blog")]
         public IActionResult CheckForNewArticles()
         {
             _ = _blogRepository.CheckForNewArticlesAsync();
