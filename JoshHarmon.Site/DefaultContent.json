@@ -7,7 +7,7 @@
         },
         {
             "Title": "Blog",
-            "MediaUrl": "/assets/TwisterExpressionParser.jpg",
+            "MediaUrl": "/assets/TwisterExpressionParserPixel.jpg",
             "LinkUrl": "/blog"
         },
         {
@@ -36,7 +36,7 @@
             "Name": "LinkedIn",
             "LinkUrl": "https://www.linkedin.com/in/joshuapharmon/",
             "IconUrl": "/icon/LI-In-Bug Black.png"
-        },
+        }
     ],
     "Projects": [
         {
@@ -179,6 +179,6 @@
                     "ToolType": 2
                 }
             ]
-        },
+        }
     ]
 }
