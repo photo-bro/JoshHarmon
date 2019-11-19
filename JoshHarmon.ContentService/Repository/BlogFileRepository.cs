@@ -37,7 +37,7 @@ namespace JoshHarmon.ContentService.Repository
             _cachedMeta = new Dictionary<string, ArticleMeta>();
             _cachedContent = new Dictionary<string, Article>();
 
-            _ = LoadArticleMetaData();
+            LoadArticleMetaData().RunSynchronously();
         }
 
         private async Task LoadArticleMetaData()
@@ -51,12 +51,12 @@ namespace JoshHarmon.ContentService.Repository
             {
                 var fileKey = GenerateFileKey(jsonFile);
 
-                // skip articles that don't have correlated content file
-                if (!allFiles.Contains($"{_config.BlogContentPath}/{fileKey}{ContentFileExtension}"))
-                    continue;
-
                 // skip duplicates
                 if (_cachedMeta.ContainsKey(fileKey))
+                    continue;
+
+                // skip articles that don't have correlated content file
+                if (!allFiles.Contains($"{_config.BlogContentPath}/{fileKey}{ContentFileExtension}"))
                     continue;
 
                 try
@@ -153,5 +153,8 @@ namespace JoshHarmon.ContentService.Repository
 
             return await Task.FromResult(metas.Select(m => m.Value));
         }
+
+        public async Task CheckForNewArticlesAsync() => await LoadArticleMetaData();
+
     }
 }

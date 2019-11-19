@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using JoshHarmon.ContentService.Repository.Interface;
 using JoshHarmon.Shared.Web;
+using JoshHarmon.Site.Filters;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JoshHarmon.Site.Controllers
@@ -16,6 +17,7 @@ namespace JoshHarmon.Site.Controllers
             _blogRepository = blogRepository;
         }
 
+        [ResponseCache(Duration = 60 * 15)]
         [HttpGet("/api/blog")]
         public async Task<IActionResult> GetArticlesMeta([FromQuery] DateTime? from,
             [FromQuery] DateTime? to, [FromQuery] int? limit, [FromQuery] int? offset)
@@ -46,6 +48,7 @@ namespace JoshHarmon.Site.Controllers
                 });
         }
 
+        [ResponseCache(Duration = 60 * 60 * 24)]
         [HttpGet("/api/blog/id/{id}")]
         public async Task<IActionResult> GetArticleById(string id)
         {
@@ -57,6 +60,7 @@ namespace JoshHarmon.Site.Controllers
             return Ok(new { Data = new { Article = article } });
         }
 
+        [ResponseCache(Duration = 60 * 60 * 24)]
         [HttpGet("/api/blog/{year}/{month}/{day}/{fileKey}")]
         public async Task<IActionResult> GetArticleByFileName(int year, int month, int day, string fileKey)
         {
@@ -69,6 +73,14 @@ namespace JoshHarmon.Site.Controllers
             return Ok(new { Data = new { Article = article } });
         }
 
+
+        [LocalHost]
+        [HttpPut]
+        public IActionResult CheckForNewArticles()
+        {
+            _ = _blogRepository.CheckForNewArticlesAsync();
+            return Accepted();
+        }
 
         // TODO: Add CRUD endpoints for adding + parsing blog points via webservice
     }
