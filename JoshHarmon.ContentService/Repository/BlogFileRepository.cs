@@ -18,6 +18,15 @@ namespace JoshHarmon.ContentService.Repository
         private readonly IDictionary<string, ArticleMeta> _cachedMeta;
         private readonly IDictionary<string, Article> _cachedContent;
 
+        private static string GenerateFileKey(string jsonFile)
+        {
+            // TODO: Remove/escape non-html characters
+            //       FileKey should be simple and be able to be used in a url cleanly
+            var fileName = Path.GetFileNameWithoutExtension(jsonFile);
+            fileName = fileName.Replace(' ', '-');
+            return fileName;
+        }
+
         public BlogFileRepository(IBlogConfig config)
         {
             _config = config;
@@ -40,21 +49,22 @@ namespace JoshHarmon.ContentService.Repository
 
             foreach (var jsonFile in allFiles.Where(f => f.EndsWith(".json", StringComparison.Ordinal)))
             {
-                var plainFileName = Path.GetFileNameWithoutExtension(jsonFile);
+                var fileKey = GenerateFileKey(jsonFile);
 
                 // skip articles that don't have correlated content file
-                if (!allFiles.Contains($"{_config.BlogContentPath}/{plainFileName}{ContentFileExtension}"))
+                if (!allFiles.Contains($"{_config.BlogContentPath}/{fileKey}{ContentFileExtension}"))
                     continue;
 
                 // skip duplicates
-                if (_cachedMeta.ContainsKey(plainFileName))
+                if (_cachedMeta.ContainsKey(fileKey))
                     continue;
 
                 try
                 {
                     var rawFileContents = await File.ReadAllTextAsync(jsonFile);
                     var meta = JsonConvert.DeserializeObject<ArticleMeta>(rawFileContents);
-                    _cachedMeta.Add(plainFileName, meta);
+                    meta.FileKey = fileKey;
+                    _cachedMeta.Add(fileKey, meta);
                 }
                 catch (Exception e)
                 {
@@ -80,7 +90,7 @@ namespace JoshHarmon.ContentService.Repository
             return article;
         }
 
-        public async Task<Article?> ReadArticleAsync(string articleId)
+        public async Task<Article?> ReadArticleByIdAsync(string articleId)
         {
             if (_cachedContent.ContainsKey(articleId))
                 return _cachedContent[articleId];
@@ -95,6 +105,27 @@ namespace JoshHarmon.ContentService.Repository
             return article;
         }
 
+        public async Task<Article?> ReadArticleByFileKeyAsync(DateTime date, string fileKey)
+        {
+            var metas = _cachedMeta
+                .Where(m =>
+                    date.Year == m.Value.PublishDate.Year &&
+                    date.Month == m.Value.PublishDate.Month &&
+                    date.Day == m.Value.PublishDate.Day)
+                .Where(m => m.Key == fileKey)
+                .ToList();
+
+            if (metas == null || metas.Count == 0)
+                return null;
+
+            if (metas.Count > 1)
+                throw new Exception($"Duplicate articles with filename '{fileKey}', unable to read article.");
+
+            var meta = metas.First().Value;
+
+            return await ReadArticleByIdAsync(meta.Id);
+        }
+
         public async Task<IEnumerable<Article>> ReadArticlesByDateAsync(DateTime from, DateTime to)
         {
             var metas = await ReadArticleMetasAsync(from, to);
@@ -104,7 +135,7 @@ namespace JoshHarmon.ContentService.Repository
                 return new Article[0];
             }
 
-            var articleTasks = metas.Select(m => ReadArticleAsync(m.Id));
+            var articleTasks = metas.Select(m => ReadArticleByIdAsync(m.Id));
 
             var articles = await Task.WhenAll(articleTasks);
 

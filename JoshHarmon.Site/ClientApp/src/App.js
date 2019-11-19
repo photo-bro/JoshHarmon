@@ -35,6 +35,7 @@ export default class App extends Component {
                     <Route exact path='/projects' component={Projects} />
                     <Route exact path='/blog' component={Blog} />
                     <Route exact path='/blog/:id' component={BlogArticle} /> 
+                    <Route exact path='/blog/:year/:month/:day/:fileKey' component={BlogArticle} /> 
                     <Route render={() => <NotFound route={exactRoute} />} />
                 </Switch>
             </Layout>

@@ -46,10 +46,22 @@ namespace JoshHarmon.Site.Controllers
                 });
         }
 
-        [HttpGet("/api/blog/{id}")]
-        public async Task<IActionResult> GetArticle(string id)
+        [HttpGet("/api/blog/id/{id}")]
+        public async Task<IActionResult> GetArticleById(string id)
         {
-            var article = await _blogRepository.ReadArticleAsync(id);
+            var article = await _blogRepository.ReadArticleByIdAsync(id);
+
+            if (article == null)
+                return NotFound();
+
+            return Ok(new { Data = new { Article = article } });
+        }
+
+        [HttpGet("/api/blog/{year}/{month}/{day}/{fileKey}")]
+        public async Task<IActionResult> GetArticleByFileName(int year, int month, int day, string fileKey)
+        {
+            var articleDate = new DateTime(year, month, day);
+            var article = await _blogRepository.ReadArticleByFileKeyAsync(articleDate, fileKey);
 
             if (article == null)
                 return NotFound();

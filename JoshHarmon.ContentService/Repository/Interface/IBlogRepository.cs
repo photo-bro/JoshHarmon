@@ -11,6 +11,8 @@ namespace JoshHarmon.ContentService.Repository.Interface
 
         Task<IEnumerable<Article>> ReadArticlesByDateAsync(DateTime from, DateTime to);
 
-        Task<Article?> ReadArticleAsync(string articleId);
+        Task<Article?> ReadArticleByIdAsync(string articleId);
+
+        Task<Article?> ReadArticleByFileKeyAsync(DateTime date, string fileKey);
     }
 }

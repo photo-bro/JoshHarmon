@@ -13,7 +13,14 @@ export class BlogSummary extends Component {
 
     static articleLink(meta)
     {
-        return "/blog/" + meta.id;
+        const pubDate = new Date(meta.publishDate);
+        const link = '/blog/' +
+            pubDate.getFullYear() + '/' +
+            (pubDate.getMonth() + 1) + '/' +
+            pubDate.getDate() + '/' +
+            meta.fileKey;
+        console.log(link);
+        return link;
     }
 
     static buildArticleHeader(meta) {

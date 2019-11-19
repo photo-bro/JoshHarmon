@@ -9,14 +9,27 @@ export class BlogArticle extends Component {
         super(props);
         this.state = {
             id: props.match.params.id,
+            year: props.match.params.year,
+            month: props.match.params.month,
+            day: props.match.params.day,
+            fileKey: props.match.params.fileKey,
             article: {},
             loading: true,
             loadingMessage: "Loading..."
         };
 
-        const url = 'api/blog/' + this.state.id;
+        let fetchUrl = '/api/blog/';
+        if (this.state.id)
+            fetchUrl += this.state.id;
+        else
+            fetchUrl += this.state.year + '/' +
+                   this.state.month + '/' +
+                   this.state.day + '/' +
+                   this.state.fileKey;
 
-        fetch(url, { method: 'get' })
+        console.log(fetchUrl);
+
+        fetch(fetchUrl, { method: 'get' })
             .then(response => response.json())
             .then(data => {               
                 this.setState({
@@ -24,7 +37,6 @@ export class BlogArticle extends Component {
                     loading: false
                 });
             });
-
     }
 
     static buildBlogArticle(article)

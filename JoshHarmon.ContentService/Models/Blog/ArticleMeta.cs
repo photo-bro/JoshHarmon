@@ -3,10 +3,11 @@ namespace JoshHarmon.ContentService.Models.Blog
 {
     public class ArticleMeta
     {
-        public ArticleMeta(string id, string title, string? author, DateTime publishDate,
+        public ArticleMeta(string id, string fileKey, string title, string? author, DateTime publishDate,
             string? bannerMediaPath, string[]? tags, string? summary)
         {
             Id = id;
+            FileKey = fileKey;
             Title = title;
             Author = author;
             PublishDate = publishDate;
@@ -16,6 +17,8 @@ namespace JoshHarmon.ContentService.Models.Blog
         }
 
         public string Id { get; }
+
+        public string? FileKey { get; set; }
 
         public string Title { get; }
 
