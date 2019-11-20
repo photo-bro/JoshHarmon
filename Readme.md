@@ -1,4 +1,4 @@
-﻿# Josh Harmon's Personal Website  
+# [Josh Harmon's Personal Website](http://joshharmon.site/)
 Josh Harmon's personal website and online tech portfolio
 
   
@@ -11,6 +11,7 @@ As a primarily backend engineer this site represents an effort to become more pr
  - Deployed and hosted on Raspberry Pi 4
  - File based content service with caching control
  - Multiple screen size support
+ - Self-hosted blog with rich markdown support 
 
 ## Goals
 
@@ -33,7 +34,7 @@ As a primarily backend engineer this site represents an effort to become more pr
  - [x] Browser and server response caching
  - [x] Server response compression
  - [x] Adjust DNS to point to RaspberryPi
- - [ ] Optimize static asset sizes
+ - [x] Optimize static asset sizes
  - [ ] Cleanup and reorganize CSS
  - [ ] Support webm/gif/video panels on splash page
  - [ ] ...
