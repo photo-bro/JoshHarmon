@@ -1,0 +1,36 @@
+1. Choose a good short {FileKey} that will reference the content of the intended article in brief and english
+ex: "WelcomeToMyBlog" or "How-I-Built-This"
+NOTE: FileKey is synonmous with ArticleKey that is used in some endpoint routes
+
+2. In the configured root blog directory create a new folder named with your file key
+
+3. In that folder create two new files: {FileKey}.json and {FileKey}.content
+
+4. In the .json file fill out the json metadata structure like below:
+{
+  "Id": "5", 
+  "Title": "Welcome to JoshHarmon.Site!",
+  "Author": "Josh Harmon",
+  "PublishDate": "2019-11-19T19:20:21.0000000Z",
+  "Tags": [
+    "welcome",
+    "blog",
+    "tech",
+    "dotnet",
+    "raspberrypi",
+    "intro"
+  ],
+  "BannerMediaPath": "local-asset.jpg",
+  "Summary": "A sentence or short paragraph outlining the content of the article"
+}
+
+NOTE: Id must be greater than the previous article.
+NOTE: BannerMediaPath references a local asset (see below)
+
+5. Put the content of the article, either plaintext or markdown, in the {FileKey}.content file
+
+6. Add any assets (only images work for now) referenced in the .content in the folder. Make sure they are referenced only by their filename and extension - full paths will not work.
+
+7. Run PUT http://joshharmon.site/api/blog to refresh blog article metadata on the site for the article to appear.
+NOTE: If the article has a PublishDate greater than UtcNow then it will not appear in the default summary view until that date, however it can still be viewed at the proper GET /blog/{year}/{month}/{day}/{articleKey} view. 
+

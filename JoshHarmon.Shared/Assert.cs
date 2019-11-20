@@ -22,13 +22,13 @@ namespace JoshHarmon.Shared
             True(predicate.Invoke(obj), parameterName);
         }
 
-        public static void True(bool value, string? parameterName = null)
+        public static void True(bool value, string? comment = null)
         {
             if (!value)
             {
-                var message = string.IsNullOrEmpty(parameterName)
+                var message = string.IsNullOrEmpty(comment)
                     ? $"'{nameof(value)}' was 'false' when 'true' was expected."
-                    : $"Parameter '{parameterName}' was 'false' when 'true' was expected.";
+                    : comment;
                 throw new AssertionFailedException(message);
             }
         }

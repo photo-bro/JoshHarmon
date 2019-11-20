@@ -6,6 +6,11 @@
             "LinkUrl": "/projects"
         },
         {
+            "Title": "Blog",
+            "MediaUrl": "/assets/TwisterExpressionParserPixel.jpg",
+            "LinkUrl": "/blog"
+        },
+        {
             "Title": "Visual Artist",
             "MediaUrl": "/assets/Lone+Aspen+at+Dawn.jpg",
             "LinkUrl": "https://joshharmon.co/"
@@ -14,7 +19,7 @@
             "Title": "About",
             "MediaUrl": "/assets/JoshOutOfFocus.jpg",
             "LinkUrl": "https://www.joshharmonimages.com/about"
-        },
+        }
     ],
     "Connections": [
         {
@@ -31,7 +36,7 @@
             "Name": "LinkedIn",
             "LinkUrl": "https://www.linkedin.com/in/joshuapharmon/",
             "IconUrl": "/icon/LI-In-Bug Black.png"
-        },
+        }
     ],
     "Projects": [
         {
@@ -174,6 +179,6 @@
                     "ToolType": 2
                 }
             ]
-        },
+        }
     ]
 }
