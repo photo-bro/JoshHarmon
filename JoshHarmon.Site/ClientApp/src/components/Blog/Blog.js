@@ -20,10 +20,12 @@ export class Blog extends Component {
             offset: queryValues.offset
             };
 
-        let url = 'api/blog?';
-        if (queryValues.limit !== undefined)
-            url += 'limit=' + queryValues.limit;
-        if (queryValues.offset !== undefined)
+        let url = 'api/blog?limit=';
+        if (!queryValues.limit)
+            url += Blog.defaultLimit;
+        else
+            url += queryValues.limit;
+        if (queryValues.offset)
             url += '&offset=' + queryValues.offset;
 
         fetch(url, { method: 'get' })
@@ -52,8 +54,8 @@ export class Blog extends Component {
 
         if (!limit || limit === 0)
             limit = Blog.defaultLimit;
-
-        limit = parseInt(limit);
+        else 
+            limit = parseInt(limit);
 
         let blogBase = '/blog?limit=' + limit + '&';
         let olderPage = '';
