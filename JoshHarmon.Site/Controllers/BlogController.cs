@@ -17,7 +17,6 @@ namespace JoshHarmon.Site.Controllers
             _blogRepository = blogRepository;
         }
 
-        [ResponseCache(Duration = 60 * 15)]
         [HttpGet("/api/blog")]
         public async Task<IActionResult> GetArticlesMeta([FromQuery] DateTime? from,
             [FromQuery] DateTime? to, [FromQuery] int? limit, [FromQuery] int? offset)
@@ -73,7 +72,7 @@ namespace JoshHarmon.Site.Controllers
             return Ok(new { Data = new { Article = article } });
         }
 
-        [ResponseCache(Duration = 60 * 60 * 24)]
+        [ResponseCache(Duration = 60 * 60 * 24 * 7)]
         [HttpGet("/api/blog/{year}/{month}/{day}/{fileKey}/{assetKey}")]
         public async Task<IActionResult> GetAsset(int year, int month, int day, string fileKey, string assetKey)
         {

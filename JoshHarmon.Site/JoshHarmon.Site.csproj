@@ -47,7 +47,6 @@
     <ItemGroup>
         <!-- Don't publish the SPA source files, but do show them in the project files list -->
         <Content Remove="$(SpaRoot)**" />
-        <None Remove="$(SpaRoot)**" />
         <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
     </ItemGroup>
     <ItemGroup>
@@ -58,18 +57,12 @@
         <Folder Include="ClientApp\public\assets\" />
         <Folder Include="ClientApp\src\components\Projects\" />
         <Folder Include="Filters\" />
-        <Folder Include="ClientApp\src\components\Blog\" />
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\JoshHarmon.ContentService\JoshHarmon.ContentService.csproj" />
         <ProjectReference Include="..\JoshHarmon.Cache\JoshHarmon.Cache.csproj" />
         <ProjectReference Include="..\JoshHarmon.Github\JoshHarmon.Github.csproj" />
         <ProjectReference Include="..\JoshHarmon.Shared\JoshHarmon.Shared.csproj" />
-    </ItemGroup>
-    <ItemGroup>
-      <None Update="ClientApp\public\assets\TwisterExpressionParser.jpg">
-        <LogicalName>JoshHarmon.Site.ClientApp.public.assets.TwisterExpressionParser.jpg</LogicalName>
-      </None>
     </ItemGroup>
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
         <!-- Ensure Node.js is installed -->
