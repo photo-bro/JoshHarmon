@@ -1,5 +1,4 @@
 ﻿import React, { Component } from 'react';
-import { Collapse, Container } from 'reactstrap';
 
 export class VisualPanel extends Component {
     static displayName = VisualPanel.name;

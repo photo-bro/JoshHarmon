@@ -5,6 +5,7 @@ using JoshHarmon.Cache;
 using JoshHarmon.Cache.Cached.Interface;
 using JoshHarmon.Cache.CacheProvider.Interface;
 using JoshHarmon.Cache.Interface;
+using JoshHarmon.ContentService;
 using JoshHarmon.ContentService.Repository;
 using JoshHarmon.ContentService.Repository.Interface;
 using JoshHarmon.Github;
@@ -132,6 +133,10 @@ namespace JoshHarmon.Site
 
             services.AddSingleton<ICached, CachedContentRepository>();
             services.AddSingleton<ICached, CachedGithubService>();
+
+            // Blog
+            services.AddSingleton<IBlogConfig>(Configuration.GetSection("BlogConfig").Get<BlogConfig>());
+            services.AddSingleton<IBlogRepository, BlogFileRepository>();
         }
     }
 }
