@@ -15,6 +15,8 @@ namespace JoshHarmon.ContentService.Repository.Interface
 
         Task<Article?> ReadArticleByFileKeyAsync(DateTime date, string fileKey);
 
+        Task<byte[]?> ReadArticleAssetByKeyAsync(DateTime date, string fileKey, string assetKey);
+
         Task CheckForNewArticlesAsync();
     }
 }

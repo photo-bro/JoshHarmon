@@ -23,7 +23,7 @@ namespace JoshHarmon.Site.Controllers
             [FromQuery] DateTime? to, [FromQuery] int? limit, [FromQuery] int? offset)
         {
             var startDate = from ?? DateTime.MinValue;
-            var endDate = to ?? DateTime.Now;
+            var endDate = to ?? DateTime.UtcNow;
             var take = limit ?? 10;
             var skip = offset ?? 0;
 
@@ -71,6 +71,22 @@ namespace JoshHarmon.Site.Controllers
                 return NotFound();
 
             return Ok(new { Data = new { Article = article } });
+        }
+
+        [ResponseCache(Duration = 60 * 60 * 24)]
+        [HttpGet("/api/blog/{year}/{month}/{day}/{fileKey}/{assetKey}")]
+        public async Task<IActionResult> GetAsset(int year, int month, int day, string fileKey, string assetKey)
+        {
+            var articleDate = new DateTime(year, month, day);
+            var asset = await _blogRepository.ReadArticleAssetByKeyAsync(articleDate, fileKey, assetKey);
+
+            if (asset == null)
+                return NotFound();
+
+            var ext = System.IO.Path.GetExtension(assetKey)?.Substring(1) ?? string.Empty;
+            var contentType = $"image/{ext}";
+
+            return File(asset, contentType);
         }
 
 

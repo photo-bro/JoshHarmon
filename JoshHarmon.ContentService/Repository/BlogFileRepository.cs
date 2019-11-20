@@ -16,8 +16,9 @@ namespace JoshHarmon.ContentService.Repository
         const string ContentFileExtension = ".content";
 
         private readonly IBlogConfig _config;
-        private readonly IDictionary<string, ArticleMeta> _cachedMeta;
-        private readonly IDictionary<string, Article> _cachedContent;
+        private readonly IDictionary<string, ArticleMeta> _cachedMeta;       // Key: FileKey
+        private readonly IDictionary<string, Article> _cachedContent;        // Key: ArticleId
+        private readonly IDictionary<string, ArticleAssets> _cachedAssets;   // Key: ArticleId
         private bool _loadingArticleMeta = true;
 
         private static string GenerateFileKey(string jsonFile)
@@ -38,6 +39,7 @@ namespace JoshHarmon.ContentService.Repository
 
             _cachedMeta = new Dictionary<string, ArticleMeta>();
             _cachedContent = new Dictionary<string, Article>();
+            _cachedAssets = new Dictionary<string, ArticleAssets>();
 
             _ = LoadArticleMetaData();
 
@@ -46,36 +48,46 @@ namespace JoshHarmon.ContentService.Repository
                 Thread.Sleep(10);
         }
 
+        /// <remarks>
+        /// Article structure:
+        /// root directory
+        ///  - ArticleKey/ArticleKey.json    => meta
+        ///  - ArticleKey/ArticleKey.content => content
+        ///  - ArticleKey/AssetKeys          => assets
+        /// </remarks>
         private async Task LoadArticleMetaData()
         {
-            var allFiles = Directory.GetFiles(_config.BlogContentPath);
+            var allBlogDirectories = Directory.GetDirectories(_config.BlogContentPath);
 
-            if (allFiles.Length == 0)
+            if (allBlogDirectories.Length == 0)
                 return;
 
-            foreach (var jsonFile in allFiles.Where(f => f.EndsWith(".json", StringComparison.Ordinal)))
+            foreach (var articleDir in allBlogDirectories)
             {
-                var fileKey = GenerateFileKey(jsonFile);
-
-                // skip duplicates
-                if (_cachedMeta.ContainsKey(fileKey))
-                    continue;
-
-                // skip articles that don't have correlated content file
-                if (!allFiles.Contains($"{_config.BlogContentPath}/{fileKey}{ContentFileExtension}"))
-                    continue;
-
-                try
+                var blogFiles = Directory.GetFiles(articleDir);
+                var fileKey = GenerateFileKey(articleDir);
+                foreach (var jsonFile in blogFiles.Where(f => f.EndsWith(".json", StringComparison.Ordinal)))
                 {
-                    var rawFileContents = await File.ReadAllTextAsync(jsonFile);
-                    var meta = JsonConvert.DeserializeObject<ArticleMeta>(rawFileContents);
+                    // skip duplicates
+                    if (_cachedMeta.ContainsKey(fileKey))
+                        continue;
 
-                    meta.FileKey = fileKey;
-                    _cachedMeta.Add(fileKey, meta);
-                }
-                catch (Exception e)
-                {
-                    throw new Exception($"Error reading and deserializing blog article '{jsonFile}'", e);
+                    // skip articles that don't have correlated content file
+                    if (!blogFiles.Contains($"{_config.BlogContentPath}/{fileKey}/{fileKey}{ContentFileExtension}"))
+                        continue;
+
+                    try
+                    {
+                        var rawFileContents = await File.ReadAllTextAsync(jsonFile);
+                        var meta = JsonConvert.DeserializeObject<ArticleMeta>(rawFileContents);
+
+                        meta.FileKey = fileKey;
+                        _cachedMeta.Add(fileKey, meta);
+                    }
+                    catch (Exception e)
+                    {
+                        throw new Exception($"Error reading and deserializing blog article '{jsonFile}'", e);
+                    }
                 }
             }
 
@@ -85,7 +97,7 @@ namespace JoshHarmon.ContentService.Repository
 
         private async Task<Article> ReadArticleContent(string fileName, ArticleMeta meta)
         {
-            var contentPath = $"{_config.BlogContentPath}/{fileName}{ContentFileExtension}";
+            var contentPath = $"{_config.BlogContentPath}/{fileName}/{fileName}{ContentFileExtension}";
             Assert.True(File.Exists(contentPath), $"File '{contentPath}' does not exist");
 
             var rawContent = await File.ReadAllTextAsync(contentPath);
@@ -112,15 +124,15 @@ namespace JoshHarmon.ContentService.Repository
             return article;
         }
 
-        public async Task<Article?> ReadArticleByFileKeyAsync(DateTime date, string fileKey)
+        private ArticleMeta? GetMetaFromDateAndFileKey(DateTime date, string fileKey)
         {
             var metas = _cachedMeta
-                .Where(m =>
-                    date.Year == m.Value.PublishDate.Year &&
-                    date.Month == m.Value.PublishDate.Month &&
-                    date.Day == m.Value.PublishDate.Day)
-                .Where(m => m.Key == fileKey)
-                .ToList();
+               .Where(m =>
+                   date.Year == m.Value.PublishDate.Year &&
+                   date.Month == m.Value.PublishDate.Month &&
+                   date.Day == m.Value.PublishDate.Day)
+               .Where(m => m.Key == fileKey)
+               .ToList();
 
             if (metas == null || metas.Count == 0)
                 return null;
@@ -130,7 +142,74 @@ namespace JoshHarmon.ContentService.Repository
 
             var meta = metas.First().Value;
 
+            return meta;
+        }
+
+        public async Task<Article?> ReadArticleByFileKeyAsync(DateTime date, string fileKey)
+        {
+            var meta = GetMetaFromDateAndFileKey(date, fileKey);
+
+            if (meta == null)
+                return null;
+
             return await ReadArticleByIdAsync(meta.Id);
+        }
+
+        private async Task<byte[]?> ReadArticleAsset(ArticleMeta meta, string assetKey)
+        {
+            ArticleAssets? cachedAssets = null;
+            if (_cachedAssets.ContainsKey(meta.Id))
+            {
+                cachedAssets = _cachedAssets[meta.Id];
+                var (_, foundAssetBytes) = cachedAssets.Assets.FirstOrDefault(a => a.AssetKey == assetKey);
+                if (foundAssetBytes != default)
+                    return foundAssetBytes;
+            }
+
+            var articlePath = $"{_config.BlogContentPath}/{meta.FileKey}/";
+
+            var assetFileNames = Directory.GetFiles(articlePath)
+                .Select(Path.GetFileName)
+                .Where(f => string.Equals(f, assetKey, StringComparison.InvariantCultureIgnoreCase))
+                .ToList();
+
+            if (assetFileNames.Count == 0)
+                return null;
+
+            if (assetFileNames.Count > 1)
+                throw new Exception($"Duplicate assets with filename '{assetKey}'");
+
+            if (cachedAssets == null)
+            {
+                cachedAssets = new ArticleAssets(meta.Id, meta.FileKey, new List<(string, byte[])>());
+                _cachedAssets.Add(meta.Id, cachedAssets);
+            }
+
+            var assetPath = $"{articlePath}{assetFileNames[0]}";
+            Assert.True(File.Exists(assetPath), $"Asset with path and filename '{assetFileNames[0]}' could not be found");
+
+            try
+            {
+                var file = await File.ReadAllBytesAsync(assetPath);
+                cachedAssets.Assets.Add((assetFileNames[0], file));
+                return file;
+            }
+            catch (Exception e)
+            {
+                throw new Exception($"Error reading asset with filename '{assetFileNames[0]}'", e);
+            }
+        }
+
+        public async Task<byte[]?> ReadArticleAssetByKeyAsync(DateTime date, string fileKey, string assetKey)
+        {
+            var meta = GetMetaFromDateAndFileKey(date, fileKey);
+
+            if (meta == null)
+                return null;
+
+            var asset = await ReadArticleAsset(meta, assetKey);
+
+            return asset;
         }
 
         public async Task<IEnumerable<Article>> ReadArticlesByDateAsync(DateTime from, DateTime to)

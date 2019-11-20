@@ -18,7 +18,7 @@ namespace JoshHarmon.ContentService.Models.Blog
 
         public string Id { get; }
 
-        public string? FileKey { get; set; }
+        public string FileKey { get; set; }
 
         public string Title { get; }
 
