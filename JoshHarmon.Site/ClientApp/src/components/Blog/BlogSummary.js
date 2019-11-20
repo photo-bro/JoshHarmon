@@ -19,7 +19,6 @@ export class BlogSummary extends Component {
             (pubDate.getMonth() + 1) + '/' +
             pubDate.getDate() + '/' +
             meta.fileKey;
-        console.log(link);
         return link;
     }
 
@@ -36,6 +35,8 @@ export class BlogSummary extends Component {
             );
         }
 
+        const bannerUri = 'api' + BlogSummary.articleLink(meta) + '/' + meta.bannerMediaPath;
+
         return(
             <div>
                 <a href={BlogSummary.articleLink(meta)}>
@@ -44,7 +45,7 @@ export class BlogSummary extends Component {
                 {BlogSummary.buildSubtitleDiv(meta)}
                 <br />
                 <a href={BlogSummary.articleLink(meta)}>
-                    <img src={meta.bannerMediaPath} />
+                    <img src={bannerUri} />
                 </a>
             </div>
         );
@@ -58,7 +59,6 @@ export class BlogSummary extends Component {
             </div>
         );
     }
-
 
 
     render() {

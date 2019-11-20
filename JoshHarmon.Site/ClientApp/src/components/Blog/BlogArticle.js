@@ -18,16 +18,7 @@ export class BlogArticle extends Component {
             loadingMessage: "Loading..."
         };
 
-        let fetchUrl = '/api/blog/';
-        if (this.state.id)
-            fetchUrl += this.state.id;
-        else
-            fetchUrl += this.state.year + '/' +
-                   this.state.month + '/' +
-                   this.state.day + '/' +
-                   this.state.fileKey;
-
-        console.log(fetchUrl);
+        let fetchUrl = this.GetBaseUri();
 
         fetch(fetchUrl, { method: 'get' })
             .then(response => response.json())
@@ -39,11 +30,28 @@ export class BlogArticle extends Component {
             });
     }
 
-    static buildBlogArticle(article)
+    GetBaseUri() {
+        let fetchUrl = '/api/blog/';
+
+        if (this.state.id){
+            fetchUrl += this.state.id;
+            return fetchUrl;
+        }
+        
+        fetchUrl += this.state.year + '/' +
+                this.state.month + '/' +
+                this.state.day + '/' +
+                this.state.fileKey;
+
+        return fetchUrl;
+    }
+
+    static buildBlogArticle(article, baseUri)
     {
+        const bannerUri = baseUri + '/' + article.meta.bannerMediaPath;
         return(
             <div class="blogArticle">
-                <img src={article.meta.bannerMediaPath} />
+                <img src={bannerUri} />
                 <div class="blogHeader">
                     <h1>{article.meta.title}</h1>
                     <div>
@@ -53,7 +61,10 @@ export class BlogArticle extends Component {
                 </div>
                 <hr / >
                 <div class="blogArticleContent" >
-                    <MarkdownView rawText={article.content} />
+                    <MarkdownView
+                        rawText={article.content}
+                        baseImageUri={baseUri}
+                    />
                 </div>
                 <hr />
               </div>
@@ -63,7 +74,7 @@ export class BlogArticle extends Component {
     render() {
         let entry = this.state.loading
             ? <h3>{this.state.loadingMessage}</h3>
-            : BlogArticle.buildBlogArticle(this.state.article);
+            : BlogArticle.buildBlogArticle(this.state.article, this.GetBaseUri());
 
         return(
             <div class="page">
