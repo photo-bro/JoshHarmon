@@ -29,7 +29,7 @@ namespace JoshHarmon.Site.Controllers
         {
             try
             {
-                _cacheProvider.ClearAsync().Start();
+                _ = _cacheProvider.ClearAsync();
                 _logger.LogInformation("Content cache purged at {LocalTime}", DateTime.Now);
             }
             catch (Exception ex)
