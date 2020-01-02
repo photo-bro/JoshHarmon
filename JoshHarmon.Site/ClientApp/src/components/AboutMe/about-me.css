@@ -1,4 +1,4 @@
-﻿.aboutMe img {
+﻿.aboutMeBanner {
     width: 100%;
     height: 45vh;
     object-fit: cover;
@@ -47,5 +47,28 @@
     border-bottom: 1px solid #aaa;
     margin: 0 0 10px;
     padding: 0;
+    text-align: center;
+}
+
+
+.card-img-top {
+    margin: 1em auto 1em auto;
+    max-width: 75%;
+    height: 25%;
+    display: block;
+    object-fit: scale-down;
+}
+
+.card-deck .card-header {
+    font-weight: 800;
+    text-align: center;
+    font-size: 1.2em;
+}
+
+.card-deck .h5 {
+    text-align: center;
+}
+
+.card-deck .card-footer {
     text-align: center;
 }

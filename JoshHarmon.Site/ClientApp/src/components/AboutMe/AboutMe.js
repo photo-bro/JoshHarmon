@@ -21,7 +21,7 @@ export class AboutMe extends Component {
         return (
             <div class="page">
                 <div class="aboutMe">
-                    <img src="/assets/JoshOutOfFocus.jpg" />
+                    <img class="aboutMeBanner" src="/assets/JoshOutOfFocus.jpg" />
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sodales at elit a ullamcorper. Suspendisse mattis sapien nec eros ornare euismod at quis massa. Aenean sit amet vulputate dolor. Praesent placerat hendrerit fringilla. Pellentesque aliquet lobortis porta. Fusce euismod rutrum orci tempor blandit. Vivamus gravida lobortis justo, non suscipit nulla gravida sit amet. Nunc sodales risus non consequat congue. Nulla nulla ipsum, mattis eu mi vitae, semper vestibulum velit. Aenean condimentum purus sed neque cursus semper. Maecenas blandit in tortor efficitur mattis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris ullamcorper id urna sed tempus.
                     </p>
@@ -40,49 +40,50 @@ export class AboutMe extends Component {
                                     <Accordion.Toggle as={Card.Header} eventKey="0">Experience</Accordion.Toggle>
                                     <Accordion.Collapse eventKey="0">
                                         <Card.Body>
-                                            <div>
-                                                <div>
-                                                    <CardDeck>
-                                                        <Card>
-                                                            <Card.Header>Emburse</Card.Header>
-                                                            {/*<Card.Img variant="top" src="/" />*/}
-                                                            <Card.Title>Software Engineer</Card.Title>
-                                                            <Card.Body>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sodales at elit a ullamcorper.</Card.Body>
-                                                            <ListGroup>
-                                                                <ListGroupItem>Python + Django</ListGroupItem>
-                                                                <ListGroupItem>Postgres SQL</ListGroupItem>
-                                                                <ListGroupItem>AWS</ListGroupItem>
-                                                            </ListGroup>
-                                                            <Card.Footer>December 2019 - Present</Card.Footer>
-                                                        </Card>
-                                                        <Card>
-                                                            {/*<Card.Img variant="top" src="/" />*/}
-                                                            <Card.Title>Xero</Card.Title>
-                                                            <Card.Subtitle>Software Engineer</Card.Subtitle>
-                                                            <Card.Body>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sodales at elit a ullamcorper.</Card.Body>
-                                                            <ListGroup>
-                                                                <ListGroupItem>React JS</ListGroupItem>
-                                                                <ListGroupItem>C# + ASP.NET + .Net Core</ListGroupItem>
-                                                                <ListGroupItem>PostGres SQL + MySql + MS SQL</ListGroupItem>
-                                                                <ListGroupItem>AWS</ListGroupItem>
-                                                            </ListGroup>
-                                                            <Card.Footer>October 2017 - October 2019</Card.Footer>
-                                                        </Card>
-                                                        <Card>
-                                                            {/*<Card.Img variant="top" src="/" />*/}
-                                                            <Card.Title>Ensenta</Card.Title>
-                                                            <Card.Subtitle>Software Engineer</Card.Subtitle>
-                                                            <Card.Body>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sodales at elit a ullamcorper.</Card.Body>
-                                                            <ListGroup>
-                                                                <ListGroupItem>C# + ASP.NET + .Net Framework</ListGroupItem>
-                                                                <ListGroupItem>MS SQL</ListGroupItem>
-                                                            </ListGroup>
-                                                            <Card.Footer>July 2015 - October 2017</Card.Footer>
-                                                        </Card>
-                                                    </CardDeck>
-                                                </div> {/* left */}
-                                                <div></div> {/* right */}
-                                            </div>
+                                            <CardDeck>
+                                                <Card>
+                                                    <Card.Header>Emburse</Card.Header>
+                                                    <Card.Img variant="top" src="/icon/emburse.png" as="img" />
+                                                    <Card.Title>Software Engineer</Card.Title>
+                                                    <Card.Body>
+                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sodales at elit a ullamcorper.</p>
+                                                        <ListGroup>
+                                                            <ListGroupItem>Python + Django</ListGroupItem>
+                                                            <ListGroupItem>Postgres SQL</ListGroupItem>
+                                                            <ListGroupItem>AWS</ListGroupItem>
+                                                        </ListGroup>
+                                                    </Card.Body>
+                                                    <Card.Footer>December 2019 - Present</Card.Footer>
+                                                </Card>
+                                                <Card>
+                                                    <Card.Header>Xero</Card.Header>
+                                                    <Card.Img variant="top" src="/icon/xero.png" />
+                                                    <Card.Title>Software Engineer</Card.Title>
+                                                    <Card.Body>
+                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sodales at elit a ullamcorper.</p>
+                                                        <ListGroup>
+                                                            <ListGroupItem>Javascript + React</ListGroupItem>
+                                                            <ListGroupItem>C# + ASP.NET + .Net Core</ListGroupItem>
+                                                            <ListGroupItem>Postgres SQL + MySql + MS SQL</ListGroupItem>
+                                                            <ListGroupItem>AWS</ListGroupItem>
+                                                        </ListGroup>
+                                                    </Card.Body>
+                                                    <Card.Footer>October 2017 - October 2019</Card.Footer>
+                                                </Card>
+                                                <Card>
+                                                    <Card.Header>Ensenta</Card.Header>
+                                                    <Card.Img variant="top" src="/icon/ensenta.png" />
+                                                    <Card.Title>Software Engineer</Card.Title>
+                                                    <Card.Body>
+                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sodales at elit a ullamcorper.</p>
+                                                        <ListGroup>
+                                                            <ListGroupItem>C# + ASP.NET + .Net Framework</ListGroupItem>
+                                                            <ListGroupItem>MS SQL</ListGroupItem>
+                                                        </ListGroup>
+                                                    </Card.Body>
+                                                    <Card.Footer>July 2015 - October 2017</Card.Footer>
+                                                </Card>
+                                            </CardDeck>
                                         </Card.Body>
                                     </Accordion.Collapse>
                                 </Card>
@@ -110,7 +111,7 @@ export class AboutMe extends Component {
                         </TabPanel>
                     </Tabs>
                 </div>
-            </div>
+            </div >
         );
     }
 }
