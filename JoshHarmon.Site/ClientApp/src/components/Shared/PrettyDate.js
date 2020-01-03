@@ -6,12 +6,17 @@ export class PrettyDate extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            rawDate: props.dateTime
+            rawDate: props.dateTime,
+            includeDay: props.includeDay === "True",
         };
     }
 
-    static buildFormattedDateTimeString(rawDate) {
-        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    static buildFormattedDateTimeString(rawDate, includeDay) {
+        let options = { year: 'numeric', month: 'long' };
+        if (includeDay) {
+            options.day = 'numeric';
+            options.weekday = 'long';
+        }
         const pubDate = new Date(rawDate);
         const prettyDate = pubDate.toLocaleDateString('en-US', options);
 
@@ -19,8 +24,8 @@ export class PrettyDate extends Component {
     }
 
     render() {
-        let formattedDate = PrettyDate.buildFormattedDateTimeString(this.state.rawDate);
-        return(
+        let formattedDate = PrettyDate.buildFormattedDateTimeString(this.state.rawDate, this.state.includeDay);
+        return (
             <div class="formattedDateTime">
                 {formattedDate}
             </div>

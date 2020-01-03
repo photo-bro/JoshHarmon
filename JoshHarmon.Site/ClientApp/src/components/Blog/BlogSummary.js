@@ -11,8 +11,7 @@ export class BlogSummary extends Component {
         };
     }
 
-    static articleLink(meta)
-    {
+    static articleLink(meta) {
         const pubDate = new Date(meta.publishDate);
         const link = '/blog/' +
             pubDate.getFullYear() + '/' +
@@ -23,8 +22,7 @@ export class BlogSummary extends Component {
     }
 
     static buildArticleHeader(meta) {
-        if (!meta.bannerMediaPath || meta.bannerMediaPath === '')
-        {
+        if (!meta.bannerMediaPath || meta.bannerMediaPath === '') {
             return (
                 <div>
                     <a href={BlogSummary.articleLink(meta)}>
@@ -37,7 +35,7 @@ export class BlogSummary extends Component {
 
         const bannerUri = 'api' + BlogSummary.articleLink(meta) + '/' + meta.bannerMediaPath;
 
-        return(
+        return (
             <div>
                 <a href={BlogSummary.articleLink(meta)}>
                     <h1>{meta.title}</h1>
@@ -52,10 +50,10 @@ export class BlogSummary extends Component {
     }
 
     static buildSubtitleDiv(meta) {
-        return(
+        return (
             <div class="blogSubtitle">
-                    <h3><b>{meta.author}</b></h3>
-                    <i><h3><PrettyDate dateTime={meta.publishDate} /></h3></i>
+                <h3><b>{meta.author}</b></h3>
+                <i><h3><PrettyDate dateTime={meta.publishDate} includeDay="True" /></h3></i>
             </div>
         );
     }
@@ -64,14 +62,14 @@ export class BlogSummary extends Component {
     render() {
         let articleHeader = BlogSummary.buildArticleHeader(this.state.meta);
 
-        return(
-           <div class="blogSummary">
+        return (
+            <div class="blogSummary">
                 {articleHeader}
                 <br />
                 <p>{this.state.meta.summary}</p>
                 <a href={BlogSummary.articleLink(this.state.meta)}>read more...</a>
                 <hr />
-           </div>
+            </div>
         );
     }
 }

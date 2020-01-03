@@ -5,6 +5,8 @@ import CardDeck from 'react-bootstrap/CardDeck';
 import ListGroup from 'react-bootstrap/ListGroup';
 import ListGroupItem from 'react-bootstrap/ListGroupItem';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import { PrettyDate } from '../Shared/PrettyDate';
+import { DateDelta } from '../Shared/DateDelta';
 
 import './about-me.css';
 
@@ -53,7 +55,12 @@ export class AboutMe extends Component {
                                                             <ListGroupItem>AWS</ListGroupItem>
                                                         </ListGroup>
                                                     </Card.Body>
-                                                    <Card.Footer>December 2019 - Present</Card.Footer>
+                                                    <Card.Footer>
+                                                        <b>{PrettyDate.buildFormattedDateTimeString("2019-12-06", false)}</b>
+                                                        &nbsp; to &nbsp;
+                                                        <b>{PrettyDate.buildFormattedDateTimeString(new Date().toISOString(), false)}</b>
+                                                        <DateDelta leftDate="2019-12-06" rightDate={new Date().toISOString()} />
+                                                    </Card.Footer>
                                                 </Card>
                                                 <Card>
                                                     <Card.Header>Xero</Card.Header>
@@ -68,7 +75,12 @@ export class AboutMe extends Component {
                                                             <ListGroupItem>AWS</ListGroupItem>
                                                         </ListGroup>
                                                     </Card.Body>
-                                                    <Card.Footer>October 2017 - October 2019</Card.Footer>
+                                                    <Card.Footer>
+                                                        <b>{PrettyDate.buildFormattedDateTimeString("2017-10-02", false)}</b>
+                                                        &nbsp; to &nbsp;
+                                                        <b>{PrettyDate.buildFormattedDateTimeString("2019-10-18", false)}</b>
+                                                        <DateDelta leftDate="2017-10-02" rightDate="2019-10-18" />
+                                                    </Card.Footer>
                                                 </Card>
                                                 <Card>
                                                     <Card.Header>Ensenta</Card.Header>
@@ -81,7 +93,12 @@ export class AboutMe extends Component {
                                                             <ListGroupItem>MS SQL</ListGroupItem>
                                                         </ListGroup>
                                                     </Card.Body>
-                                                    <Card.Footer>July 2015 - October 2017</Card.Footer>
+                                                    <Card.Footer>
+                                                        <b>{PrettyDate.buildFormattedDateTimeString("2015-07-02", false)}</b>
+                                                        &nbsp; to &nbsp;
+                                                        <b>{PrettyDate.buildFormattedDateTimeString("2017-10-02", false)}</b>
+                                                        <DateDelta leftDate="2015-07-01" rightDate="2017-10-01" />
+                                                    </Card.Footer>
                                                 </Card>
                                             </CardDeck>
                                         </Card.Body>
