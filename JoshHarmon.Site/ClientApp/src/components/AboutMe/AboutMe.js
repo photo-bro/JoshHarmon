@@ -7,6 +7,7 @@ import ListGroupItem from 'react-bootstrap/ListGroupItem';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { PrettyDate } from '../Shared/PrettyDate';
 import { DateDelta } from '../Shared/DateDelta';
+import { SkillsGraph } from './SkillsGraph';
 
 import './about-me.css';
 
@@ -17,7 +18,6 @@ export class AboutMe extends Component {
     constructor(props) {
         super(props);
     }
-
 
     render() {
         return (
@@ -108,7 +108,10 @@ export class AboutMe extends Component {
                                     <Accordion.Toggle as={Card.Header} eventKey="1">Skills</Accordion.Toggle>
                                     <Accordion.Collapse eventKey="1">
                                         <Card.Body>
-
+                                            <h2>Languages</h2>
+                                            <SkillsGraph />
+                                            <h2>Technologies</h2>
+                                            <SkillsGraph />
                                         </Card.Body>
                                     </Accordion.Collapse>
                                 </Card>

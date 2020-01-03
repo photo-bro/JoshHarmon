@@ -72,3 +72,9 @@
 .card-deck .card-footer {
     text-align: center;
 }
+
+.graph {
+    align-content: center;
+    height: auto;
+    width: 90%;
+}
