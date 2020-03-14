@@ -17,10 +17,10 @@ export class Commit extends Component {
 
     render() {
         return (
-            <div class='commit'>
+            <div className='commit'>
                 <a href={this.state.url}>
                     <p>{this.state.message}</p>
-                    <div class='commitDetails'>
+                    <div className='commitDetails'>
                         <div style={{ minWidth: "fit-content" }}>
                             <b>{this.state.name}</b>
                         </div>

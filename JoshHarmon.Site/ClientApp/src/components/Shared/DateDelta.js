@@ -40,7 +40,7 @@ export class DateDelta extends Component {
         const delta = DateDelta.getDateDelta(this.state.leftDate, this.state.rightDate);
 
         return (
-            <div class="dateDelta">
+            <div className="dateDelta">
                 {delta}
             </div>
         );

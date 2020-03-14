@@ -19,12 +19,12 @@ export class ProjectModalDetail extends Component {
 
     render() {
         return (
-            <div class="modalContent">
+            <div className="modalContent">
                 <div className="modalContentItem">
                     <RecentRepoActivity repoName={this.state.repositoryName} />
                 </div>
                 <div className="modalContentItem">
-                    <div class="modalDescription">
+                    <div className="modalDescription">
                         <div className="modalDescriptionItem">
                             <a href={this.state.repositoryUrl} >
                                 <h1>{this.state.name}</h1>

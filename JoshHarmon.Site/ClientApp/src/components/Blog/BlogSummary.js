@@ -51,7 +51,7 @@ export class BlogSummary extends Component {
 
     static buildSubtitleDiv(meta) {
         return (
-            <div class="blogSubtitle">
+            <div className="blogSubtitle">
                 <h3><b>{meta.author}</b></h3>
                 <i><h3><PrettyDate dateTime={meta.publishDate} includeDay="True" /></h3></i>
             </div>
@@ -63,7 +63,7 @@ export class BlogSummary extends Component {
         let articleHeader = BlogSummary.buildArticleHeader(this.state.meta);
 
         return (
-            <div class="blogSummary">
+            <div className="blogSummary">
                 {articleHeader}
                 <br />
                 <p>{this.state.meta.summary}</p>

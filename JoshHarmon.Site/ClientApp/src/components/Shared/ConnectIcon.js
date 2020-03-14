@@ -14,10 +14,10 @@ export class ConnectIcon extends Component {
 
     render() {
         return (
-            <div class="connectIcon">
+            <div className="connectIcon">
                 <a href={this.state.linkUrl} target="_blank">
                     <img src={this.state.iconUrl} />
-                 <div class="connectName">
+                 <div className="connectName">
                     {this.state.name}
                     </div>
                 </a>               

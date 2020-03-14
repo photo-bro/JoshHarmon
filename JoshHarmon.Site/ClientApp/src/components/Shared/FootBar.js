@@ -24,8 +24,8 @@ export class FootBar extends Component {
 
     static buildConnectIcons(connectModels) {
         return (
-            <div class="connections">
-                {connectModels.map(model => <ConnectIcon model={model} />)}
+            <div className="connections">
+                {connectModels.map((model, index) => <ConnectIcon model={model} key={index} />)}
             </div>
         );
     }
@@ -38,10 +38,10 @@ export class FootBar extends Component {
         return (
             <footer>
                 {icons}
-                <div class="builtWith">
+                <div className="builtWith">
                     Constructed with .NET Core + React &nbsp;&nbsp; <b>|</b>&nbsp;&nbsp; Deployed on Raspberry PI &nbsp;&nbsp;<b>|</b>&nbsp;&nbsp; Run with recycled electrons
                     </div>
-                <div class="copyright">
+                <div className="copyright">
                     &copy;2019 Josh Harmon - All rights reserved
                 </div>
             </footer>

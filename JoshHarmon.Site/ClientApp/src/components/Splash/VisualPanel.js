@@ -10,9 +10,9 @@ export class VisualPanel extends Component {
 
     render() {
         return (
-            <div class="panelContainer" >
+            <div className="panelContainer" >
                 <img src={this.state.model.mediaUrl} />
-                <div class="panelContainer-title" >
+                <div className="panelContainer-title" >
                     <a href={this.state.model.linkUrl} target={this.state.model.linkUrl[0] != '/' ? '_blank' : ''}>
                         <p>{this.state.model.title}</p>
                     </a>

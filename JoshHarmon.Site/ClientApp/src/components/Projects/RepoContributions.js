@@ -64,7 +64,7 @@ export class RepoContributions extends Component {
             : this.state.contributors.map(c => <Contributor model={c} />);
 
         return (
-            <div class="contributors">
+            <div className="contributors">
                 <h3>Contributors</h3>
                 {contributors}
             </div>

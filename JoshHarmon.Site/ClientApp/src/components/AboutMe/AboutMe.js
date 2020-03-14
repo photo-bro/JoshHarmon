@@ -21,9 +21,9 @@ export class AboutMe extends Component {
 
     render() {
         return (
-            <div class="page">
-                <div class="aboutMe">
-                    <img class="aboutMeBanner" src="/assets/JoshOutOfFocus.jpg" />
+            <div className="page">
+                <div className="aboutMe">
+                    <img className="aboutMeBanner" src="/assets/JoshOutOfFocus.jpg" />
                     <p>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sodales at elit a ullamcorper. Suspendisse mattis sapien nec eros ornare euismod at quis massa. Aenean sit amet vulputate dolor. Praesent placerat hendrerit fringilla. Pellentesque aliquet lobortis porta. Fusce euismod rutrum orci tempor blandit. Vivamus gravida lobortis justo, non suscipit nulla gravida sit amet. Nunc sodales risus non consequat congue. Nulla nulla ipsum, mattis eu mi vitae, semper vestibulum velit. Aenean condimentum purus sed neque cursus semper. Maecenas blandit in tortor efficitur mattis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Mauris ullamcorper id urna sed tempus.
                     </p>
@@ -48,8 +48,9 @@ export class AboutMe extends Component {
                                                     <Card.Img variant="top" src="/icon/emburse.png" as="img" />
                                                     <Card.Title>Software Engineer</Card.Title>
                                                     <Card.Body>
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sodales at elit a ullamcorper.</p>
+                                                        <p>Lead and implement technical bank feed and financial data integrations with Financial Partners</p>
                                                         <ListGroup>
+                                                            <ListGroupItem>VueJS</ListGroupItem>
                                                             <ListGroupItem>Python + Django</ListGroupItem>
                                                             <ListGroupItem>Postgres SQL</ListGroupItem>
                                                             <ListGroupItem>AWS</ListGroupItem>
@@ -67,9 +68,9 @@ export class AboutMe extends Component {
                                                     <Card.Img variant="top" src="/icon/xero.png" />
                                                     <Card.Title>Software Engineer</Card.Title>
                                                     <Card.Body>
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sodales at elit a ullamcorper.</p>
+                                                        <p>Build and support distributed banking and accounting data integration and aggregation pipeline</p>
                                                         <ListGroup>
-                                                            <ListGroupItem>Javascript + React</ListGroupItem>
+                                                            <ListGroupItem>ReactJS</ListGroupItem>
                                                             <ListGroupItem>C# + ASP.NET + .Net Core</ListGroupItem>
                                                             <ListGroupItem>Postgres SQL + MySql + MS SQL</ListGroupItem>
                                                             <ListGroupItem>AWS</ListGroupItem>
@@ -87,8 +88,9 @@ export class AboutMe extends Component {
                                                     <Card.Img variant="top" src="/icon/ensenta.png" />
                                                     <Card.Title>Software Engineer</Card.Title>
                                                     <Card.Body>
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sodales at elit a ullamcorper.</p>
+                                                        <p>Maintain and enhance payment processor infrastructure and back office tooling</p>
                                                         <ListGroup>
+                                                            <ListGroupItem>jQuery</ListGroupItem>
                                                             <ListGroupItem>C# + ASP.NET + .Net Framework</ListGroupItem>
                                                             <ListGroupItem>MS SQL</ListGroupItem>
                                                         </ListGroup>

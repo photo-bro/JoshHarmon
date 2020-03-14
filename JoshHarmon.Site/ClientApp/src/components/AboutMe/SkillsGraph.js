@@ -48,7 +48,7 @@ export class SkillsGraph extends Component {
 
     render() {
         return (
-            <div class="graph">
+            <div className="graph">
                 <HorizontalBar data={this.data} options={this.options} redraw={true} />
             </div>
         );

@@ -39,7 +39,7 @@ export class Splash extends Component {
             : Splash.buildVisualPanels(this.state.panels);
 
         return (
-            <div class="page">
+            <div className="page">
                 {panelContent}
             </div>
         );

@@ -41,7 +41,7 @@ export class Blog extends Component {
 
     static buildBlogSummaries(blogMetas){
         return(
-            <div class="blogSummaries">
+            <div className="blogSummaries">
                 {blogMetas.map(m => <BlogSummary meta={m} />)}
             </div>
         );
@@ -73,7 +73,7 @@ export class Blog extends Component {
 
         if (olderPage === '' && newerPage === '')
             return(
-                <div class="blogPageControl" />
+                <div className="blogPageControl" />
             );
 
         let olderAnchor = olderPage === ''
@@ -85,7 +85,7 @@ export class Blog extends Component {
             : <a href={newerPage}>&lt;&lt; recent</a>        
 
         return(
-            <div class="blogPageControl">
+            <div className="blogPageControl">
                 {newerAnchor}
                 &nbsp; | &nbsp;
                 {olderAnchor}
@@ -103,9 +103,9 @@ export class Blog extends Component {
             : Blog.buildPagingDiv(this.state.page, this.state.limit);
 
         return(
-            <div class="page">
-                <div class="blogPage">
-                    <div class="blogTitle">
+            <div className="page">
+                <div className="blogPage">
+                    <div className="blogTitle">
                         recent posts:
                     <br />
                     <hr />
