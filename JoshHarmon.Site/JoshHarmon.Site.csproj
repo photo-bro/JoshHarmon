@@ -33,16 +33,19 @@
         <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.0.0" />
     </ItemGroup>
     <ItemGroup>
-        <None Include="DefaultContent.json" CopyToOutputDirectory="Always" />
-    </ItemGroup>
-    <ItemGroup>
         <!-- Don't show logfiles in directory-->
         <Content Remove="logfiles/*" />
     </ItemGroup>
     <ItemGroup>
+        <Content Remove="appsettings.json" />
+        <None Remove="appsettings.json" />
+        <None Include="appsettings.json" />
+        <Content Remove="package-lock.json" />
+        <None Remove="package-lock.json" />
+        <None Include="package-lock.json" />
         <Content Remove="DefaultContent.json" />
         <None Remove="DefaultContent.json" />
-        <None Include="DefaultContent.json" />
+        <None Include="DefaultContent.json" CopyToOutputDirectory="Always" />
     </ItemGroup>
     <ItemGroup>
         <!-- Don't publish the SPA source files, but do show them in the project files list -->
