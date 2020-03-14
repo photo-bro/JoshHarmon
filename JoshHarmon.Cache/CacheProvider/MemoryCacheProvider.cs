@@ -11,7 +11,7 @@ namespace JoshHarmon.Cache
     public class MemoryCacheProvider : ICacheProvider
     {
         private readonly ICacheConfig _config;
-        private readonly IDictionary<string, (object Item, DateTime ExpiresAt)> _cache;
+        private readonly IDictionary<string, (object? Item, DateTime ExpiresAt)> _cache;
         private readonly object _lock = new object();
 
         private DateTime Now() => _config.UseUtc ? DateTime.UtcNow : DateTime.Now;
@@ -19,10 +19,10 @@ namespace JoshHarmon.Cache
         private DateTime KeyExpireTime => Now() + _config.DefaultExpirationDuration;
 
         public MemoryCacheProvider(ICacheConfig config)
-            : this(config, new Dictionary<string, (object Item, DateTime ExpiresAt)>())
+            : this(config, new Dictionary<string, (object? Item, DateTime ExpiresAt)>())
         { }
 
-        public MemoryCacheProvider(ICacheConfig config, IDictionary<string, (object Item, DateTime ExpiresAt)> cacheStore)
+        public MemoryCacheProvider(ICacheConfig config, IDictionary<string, (object? Item, DateTime ExpiresAt)> cacheStore)
         {
             Assert.NotNull(config, nameof(config));
             Assert.NotNull(cacheStore, nameof(cacheStore));
@@ -35,7 +35,7 @@ namespace JoshHarmon.Cache
 
         private bool Add<T>(string key, T item)
         {
-            if (item == default)
+            if (EqualityComparer<T>.Default.Equals(item))
             {
                 throw new ArgumentNullException($"'{nameof(item)}' cannot be null or default");
             }
@@ -88,7 +88,7 @@ namespace JoshHarmon.Cache
 
         public T Get<T>(string key)
         {
-            object item;
+            object? item;
             lock (_lock)
             {
                 if (_cache.ContainsKey(key))
@@ -104,9 +104,9 @@ namespace JoshHarmon.Cache
                             $"not exist in cache.");
             }
 
-            if (item.GetType() != typeof(T))
+            if (item?.GetType() != typeof(T))
                 throw new ArgumentException($"Argument '{nameof(T)}' with value '{typeof(T)}' does " +
-                    $"not match expected type of '{item.GetType()}' for item.");
+                    $"not match expected type of '{item?.GetType()}' for item.");
 
             return (T)item;
         }
