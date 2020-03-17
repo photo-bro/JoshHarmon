@@ -11,15 +11,32 @@ export class SkillsGraph extends Component {
     constructor(props) {
         super(props);
 
+        // Append empty item to format graph correctly
+        //props.data.push({
+        //    label: null,
+        //    color: '#000000',
+        //    data: 0
+        //});
+
+        const labels = props.data.map(d => d.label);
+        const values = props.data.map(d => d.value);
+        values.push(0);  // Add 0 to set x-scale properly
+        const colors = props.data.map(d => d.color);
+
+        console.log(props.data); // !!!
+        console.log(labels); // !!!
+        console.log(values); // !!!
+        console.log(colors); // !!!
+
         this.data = {
-            labels: ["C#", "Sql", "Python", "JavaScript"],
+            labels: labels, //["C#", "Sql", "Python", "JavaScript"],
             datasets: [
                 {
                     label: "Years",
-                    backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
+                    backgroundColor: colors,// ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
                     borderColor: "#eeeeee",
                     borderWidth: 1,
-                    data: [6, 6, 3, 3, 0]
+                    data: values //[6, 6, 3, 3, 0]
                 }
             ]
 

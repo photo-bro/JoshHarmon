@@ -19,6 +19,61 @@ export class AboutMe extends Component {
         super(props);
     }
 
+    static getLanguageSkillsDataset() {
+        return [
+            {
+                label: 'C#',
+                color: '#3e95cd',
+                value: 6
+            },
+            {
+                label: 'SQL',
+                color: '#8e5ea2',
+                value: 6
+            },
+            {
+                label: 'Python',
+                color: '#3cba9f',
+                value: 3
+            },
+            {
+                label: 'JavaScript',
+                color: '#e8c3b9',
+                value: 3
+            },
+        ];
+    }
+
+    static getTechSkillsDataset() {
+        return [
+            {
+                label: '.Net Core / ASP.NET',
+                color: '#3e95cd',
+                value: 6
+            },
+            //{
+            //    label: 'SQL',
+            //    color: '#8e5ea2',
+            //    value: 6
+            //},
+            {
+                label: 'Django',
+                color: '#3cba9f',
+                value: 2
+            },
+            {
+                label: 'React',
+                color: '#e8c3b9',
+                value: 2
+            },
+            {
+                label: 'jQuery',
+                color: '#8e5ea2',
+                value: 2
+            },
+        ];
+    }
+
     render() {
         return (
             <div className="page">
@@ -111,9 +166,9 @@ export class AboutMe extends Component {
                                     <Accordion.Collapse eventKey="1">
                                         <Card.Body>
                                             <h2>Languages</h2>
-                                            <SkillsGraph />
+                                            <SkillsGraph data={AboutMe.getLanguageSkillsDataset()} />
                                             <h2>Technologies</h2>
-                                            <SkillsGraph />
+                                            <SkillsGraph data={AboutMe.getTechSkillsDataset()} />
                                         </Card.Body>
                                     </Accordion.Collapse>
                                 </Card>
