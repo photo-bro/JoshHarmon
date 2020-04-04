@@ -42,7 +42,7 @@ export class FootBar extends Component {
                     Constructed with .NET Core + React &nbsp;&nbsp; <b>|</b>&nbsp;&nbsp; Deployed on Raspberry PI &nbsp;&nbsp;<b>|</b>&nbsp;&nbsp; Run with recycled electrons
                     </div>
                 <div className="copyright">
-                    &copy;2019 Josh Harmon - All rights reserved
+                    &copy;2020 Josh Harmon - All rights reserved
                 </div>
             </footer>
         );
