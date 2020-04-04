@@ -8,11 +8,11 @@ export class TopBar extends Component {
     constructor(props) {
         super(props);
     }
-       
+
     render() {
         return (
             <header>
-                <div class="header-title" >
+                <div className="header-title">
                     <a href={window.location.origin}>
                         Josh<b>Harmon</b>
                     </a>

@@ -19,7 +19,7 @@ export class Contributor extends Component {
             : this.state.name;
 
         return (
-            <div class="contributor" >
+            <div className="contributor" >
                 {name}
                 &nbsp;:&nbsp;{this.state.contributions}&nbsp;contributions
             </div>

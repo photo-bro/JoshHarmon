@@ -50,9 +50,9 @@ export class BlogArticle extends Component {
     {
         const bannerUri = baseUri + '/' + article.meta.bannerMediaPath;
         return(
-            <div class="blogArticle">
+            <div className="blogArticle">
                 <img src={bannerUri} />
-                <div class="blogHeader">
+                <div className="blogHeader">
                     <h1>{article.meta.title}</h1>
                     <div>
                         <h3>{article.meta.author}</h3>
@@ -60,7 +60,7 @@ export class BlogArticle extends Component {
                     </div>
                 </div>
                 <hr / >
-                <div class="blogArticleContent" >
+                <div className="blogArticleContent" >
                     <MarkdownView
                         rawText={article.content}
                         baseImageUri={baseUri}
@@ -77,7 +77,7 @@ export class BlogArticle extends Component {
             : BlogArticle.buildBlogArticle(this.state.article, this.GetBaseUri());
 
         return(
-            <div class="page">
+            <div className="page">
                 {entry}
                 <div>
                 </div>

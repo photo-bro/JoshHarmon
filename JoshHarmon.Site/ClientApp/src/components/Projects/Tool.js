@@ -19,7 +19,7 @@ export default class Tool extends Component {
                 : "toolOther";
 
         return (
-            <div class={"tool " + styleClass}>
+            <div className={"tool " + styleClass}>
                 {this.state.name}
             </div>
         );

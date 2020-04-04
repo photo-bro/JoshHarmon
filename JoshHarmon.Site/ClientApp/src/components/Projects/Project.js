@@ -39,8 +39,8 @@ export class Project extends Component {
 
         return (
             <div>
-                <div class="project" onClick={this.toggleModal}>
-                    <div class="projectName">
+                <div className="project" onClick={this.toggleModal}>
+                    <div className="projectName">
                         {this.state.name}
                     </div>
                     <p>

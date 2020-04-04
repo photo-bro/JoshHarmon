@@ -1,0 +1,94 @@
+﻿.aboutMeBanner {
+    width: 100%;
+    height: 45vh;
+    object-fit: cover;
+}
+
+.aboutMe > p {
+    margin: 2em 5em 2em 5em;
+    font-weight: 400;
+}
+
+.aboutMe h1 {
+    margin: 1em;
+    font-weight: 200;
+}
+
+.tabs {
+    align-content: center;
+    justify-content: center;
+    margin: 2em;
+}
+
+.tab {
+    display: inline-block;
+    border: 1px solid transparent;
+    border-bottom: none;
+    bottom: -2px;
+    position: relative;
+    list-style: none;
+    padding: 6px 12px;
+    cursor: pointer;
+    font-size: 2em;
+}
+
+.tabSelected {
+    background: #fff;
+    border-color: #aaa;
+    color: black;
+    border-radius: 5px 5px 0 0;
+    font-weight: 800;
+}
+
+.tanPanel {
+    display: none;
+}
+
+.panelSelected {
+    display: block;
+}
+
+.tabList {
+    border-bottom: 1px solid #aaa;
+    margin: 0 0 10px;
+    padding: 0;
+    text-align: center;
+}
+
+.card {
+    margin: 10px;
+}
+
+.card-img-top {
+    margin: 1em auto 1em auto;
+    max-width: 75%;
+    height: 25%;
+    display: block;
+    object-fit: scale-down;
+}
+
+.card-deck .card-header {
+    font-weight: 800;
+    text-align: center;
+    font-size: 1.2em;
+}
+
+.card-deck .h5 {
+    text-align: center;
+}
+
+.card-deck .card-footer {
+    text-align: center;
+}
+
+.graph {
+    align-content: center;
+    height: 300px;
+    width: 90%;
+}
+
+.aboutMeContent {
+    display: flex;
+    flex-direction: column;
+    margin: 0 1em 0 1em;
+}

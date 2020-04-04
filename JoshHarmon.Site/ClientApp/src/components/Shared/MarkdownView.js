@@ -25,7 +25,7 @@ export class MarkdownView extends Component {
         };
 
         return(
-            <div class="markdown">
+            <div className="markdown">
                 <ReactMarkdown
                     source={this.state.rawText}
                     transformImageUri={uriTransformFunc}
