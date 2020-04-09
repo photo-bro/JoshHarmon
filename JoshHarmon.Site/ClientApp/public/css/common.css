@@ -4,15 +4,15 @@ header {
     margin: 0 auto;
     width: 100%;
     padding-top: 1vw;
-    background: #EEE;
+    background: #eee;
 }
 
 .header-title {
-    padding-bottom: .5vw;
+    padding-bottom: 0.5vw;
     font-size: 3em;
     font-weight: 300;
-    letter-spacing: .8vw;
-    text-indent: .8vw;
+    letter-spacing: 0.8vw;
+    text-indent: 0.8vw;
     display: flex;
     justify-content: center;
     text-shadow: 0 0 2vw rgba(255, 255, 255, 0.5), 0 0 3vw rgb(255, 255, 255);
@@ -23,19 +23,19 @@ header {
     border-bottom: solid #b1b1b1 1px;
 }
 
-    .header-title :hover {
-        text-shadow: 0 0 2vw rgba(158, 158, 158, 0.8), 0 0 3vw rgb(123, 123, 123);
-    }
+.header-title :hover {
+    text-shadow: 0 0 2vw rgba(158, 158, 158, 0.8), 0 0 3vw rgb(123, 123, 123);
+}
 
-    .header-title a {
-        color: inherit;
-        text-decoration: inherit;
-    }
+.header-title a {
+    color: inherit;
+    text-decoration: inherit;
+}
 
-        .header-title a:hover {
-            color: inherit;
-            text-decoration: inherit;
-        }
+.header-title a:hover {
+    color: inherit;
+    text-decoration: inherit;
+}
 
 body {
     font-family: Helvetica Neue, Helvetica, sans-serif !important;
@@ -43,19 +43,19 @@ body {
 }
 
 .glow-title-light {
-    text-shadow: 0 0 2vw rgba(1,1,1,.5), 0 0 3vw rgba(0,0,0,1)
+    text-shadow: 0 0 2vw rgba(1, 1, 1, 0.5), 0 0 3vw rgba(0, 0, 0, 1);
 }
 
 .glow-title-dark {
-    text-shadow: 0 0 2vw rgba(1,1,1,.5), 0 0 3vw rgba(1,1,1,1)
+    text-shadow: 0 0 2vw rgba(1, 1, 1, 0.5), 0 0 3vw rgba(1, 1, 1, 1);
 }
 
 .glow-shadow-light {
-    box-shadow: 0 0 4vw 1.2vw #FFF, inset 0 0 0.8vw 0 #FFF;
+    box-shadow: 0 0 4vw 1.2vw #fff, inset 0 0 0.8vw 0 #fff;
 }
 
 .glow-shadow-dark {
-    box-shadow: 0 0 4vw 1.2vw #FFF, inset 0 0 0.8vw 0 #000;
+    box-shadow: 0 0 4vw 1.2vw #fff, inset 0 0 0.8vw 0 #000;
 }
 
 .page {
@@ -67,7 +67,7 @@ body {
     flex-direction: column;
     position: relative;
     min-height: 100vh;
-    background: #FFFFFF;
+    background: #ffffff;
     margin: 0 auto 0 auto;
     border-left: solid #b1b1b1 2px;
     border-right: solid #b1b1b1 2px;
@@ -84,19 +84,18 @@ body {
 
 .markdown blockquote {
     margin-left: 1.5em;
-    padding: .5em;
+    padding: 0.5em;
     background-color: #eee;
     font-style: italic;
 }
 
-    .markdown blockquote p {
-        padding: 0px;
-        margin: 0px;
-    }
-
+.markdown blockquote p {
+    padding: 0px;
+    margin: 0px;
+}
 
 .markdown pre {
-    padding: .5em;
+    padding: 0.5em;
     width: 100%;
     background-color: #eee;
     border: 1px solid #000;
@@ -109,7 +108,7 @@ body {
 }
 
 .markdown table {
-    margin: .5em;
+    margin: 0.5em;
     border: 1.5px solid #333;
 }
 
@@ -127,19 +126,18 @@ body {
 
 .markdown th {
     border: 1px solid #333;
-    padding: 0em .2em 0em .2em;
+    padding: 0em 0.2em 0em 0.2em;
 }
 
 .markdown td {
     border: 1px solid #999;
-    padding: 0em .2em 0em .2em;
+    padding: 0em 0.2em 0em 0.2em;
 }
 
 .dateDelta {
     font-weight: 200;
-    font-size: .9em;
+    font-size: 0.9em;
 }
-
 
 /* Large mobile devices (iPads) and older laptops */
 @media screen and (max-width: 1200px) {
