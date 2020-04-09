@@ -13,28 +13,28 @@
     align-items: center;
     justify-content: center;
     border: #b1b1b1 solid 1px;
-    border-radius: .5em;
+    border-radius: 0.5em;
     padding: 1em;
-    box-shadow: 0 0 0.5em 0.15em #ccc;
+    box-shadow: 0 0 0.5em 0.15em #eee;
     max-width: 350px;
 }
 
-    .project:hover {
-        box-shadow: 0 0 0.5em 0.2em #bbb;
-    }
+.project:hover {
+    box-shadow: 0 0 0.5em 0.2em #ddd;
+}
 
-    .project img {
-        max-height: 128px;
-        max-width: 128px;
-        min-height: 5vw;
-        min-width: 5vw;
-    }
+.project img {
+    max-height: 128px;
+    max-width: 128px;
+    min-height: 5vw;
+    min-width: 5vw;
+}
 
-    .project p {
-        margin: 0 0 .5em 0;
-        font-size: .8em;
-        font-weight: 300;
-    }
+.project p {
+    margin: 0 0 0.5em 0;
+    font-size: 0.8em;
+    font-weight: 300;
+}
 
 .projectName {
     /*position: absolute;*/
@@ -47,31 +47,31 @@
 .modalContent {
     display: flex;
     justify-content: space-between;
-    padding: .5em;
+    padding: 0.5em;
     height: 75vh;
     min-height: 25vh;
-    border-radius: .3em;
+    border-radius: 0.3em;
     border: solid #c7c7c7 1px;
-    box-shadow: 0 0 4vw 1.2vw #FFF, inset 0 0 0.8vw 0 #FFF;
+    box-shadow: 0 0 0.7em 0.2em #8a8a8a, inset 0 0 1em 1em #fff;
     background: rgba(255, 255, 255, 0.8);
 }
 
 .modalImg {
-    box-shadow: 0 0 .5em 0.1em #bfbfbf;
+    box-shadow: 0 0 0.5em 0.1em #bfbfbf;
     width: 100%;
     height: 100%;
-    border-radius: .5em;
+    border-radius: 0.5em;
     object-fit: cover;
 }
 
 .modalContentItem {
     flex: 1 1 0;
-    margin: .5em;
+    margin: 0.5em;
     width: 0;
     /* height: 100%; */
     overflow: hidden;
-    box-shadow: 0 0 1vw 0.1vw #ccc;
-    border-radius: .3em;
+    /* box-shadow: 0 0 1vw 0.1vw #ccc; */
+    border-radius: 0.3em;
     border: solid #c7c7c7 1px;
 }
 
@@ -80,23 +80,23 @@
     flex-direction: column;
     height: 100%;
     overflow-y: auto;
-    padding: .5em;
+    padding: 0.5em;
     overflow-wrap: break-word;
-    background: #FFF;
+    background: #fff;
     /*box-shadow: 0 0 1vw 0.1vw #bfbfbf;*/
     justify-content: space-between;
 }
 
-    .modalDescription a h1 {
-        letter-spacing: .05em;
-        font-weight: 200;
-    }
+.modalDescription a h1 {
+    letter-spacing: 0.05em;
+    font-weight: 200;
+}
 
-    .modalDescription p {
-        margin: 1rem 0 1rem 0;
-        overflow: auto;
-        font-weight: 300;
-    }
+.modalDescription p {
+    margin: 1rem 0 1rem 0;
+    overflow: auto;
+    font-weight: 300;
+}
 
 .modalMain {
     width: 90vw;
@@ -111,7 +111,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 .modalDescriptionItem a {
@@ -119,11 +119,11 @@
     font-style: inherit;
 }
 
-    .modalDescriptionItem a:hover {
-        color: inherit;
-        font-style: inherit;
-        text-decoration: inherit;
-    }
+.modalDescriptionItem a:hover {
+    color: inherit;
+    font-style: inherit;
+    text-decoration: inherit;
+}
 
 .tools {
     display: flex;
@@ -132,12 +132,12 @@
 }
 
 .tool {
-    margin: .15em .5em .15em 0;
-    padding: 0 .25em 0 .25em;
+    margin: 0.15em 0.5em 0.15em 0;
+    padding: 0 0.25em 0 0.25em;
     border-radius: 5px;
-    color: #FFF;
+    color: #fff;
     text-shadow: 0 0 0.5em #adadad;
-    font-size: .75em;
+    font-size: 0.75em;
 }
 
 .toolLanguage {
@@ -175,11 +175,11 @@
 
     .modalContent {
         max-height: 75vh;
-        padding: .1em !important;
+        padding: 0.1em !important;
     }
 
     .modalContentItem {
-        margin: .1em !important;
+        margin: 0.1em !important;
     }
 
     .modalDescription a h1 {
@@ -187,11 +187,11 @@
     }
 
     .modalContent p {
-        font-size: .75em;
+        font-size: 0.75em;
     }
 
     .tool {
-        font-size: .6em;
+        font-size: 0.6em;
         border-radius: 2px;
     }
 }

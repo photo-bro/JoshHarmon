@@ -25,7 +25,7 @@ export class Projects extends Component {
 
     static buildProjectIcons(projectModels) {
         return (
-            <div class="projects">
+            <div className="projects">
                 {projectModels.map(model => <Project model={model} />)}
             </div>
         );      
@@ -38,7 +38,7 @@ export class Projects extends Component {
             : Projects.buildProjectIcons(this.state.projects);
 
         return (
-            <div class="page">
+            <div className="page">
                 {projectIcons}
             </div>
         );

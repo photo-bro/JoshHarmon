@@ -8,7 +8,7 @@ export class Layout extends Component {
 
   render () {
       return (
-          <div class="layout">
+          <div className="layout">
               <TopBar />
               {this.props.children}
               <FootBar />
