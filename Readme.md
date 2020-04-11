@@ -21,7 +21,7 @@ As a primarily backend engineer this site represents an effort to become more pr
  - [x] DotNet + NodeJs RaspberryPi support
  - [x] Cached content service (static file based)
  - [x] Tech blog platform
- - [ ] Custom About / Resume page
+ - [x] Custom About / Resume page
  - [ ] Dynamic external content service
  - [ ] Deploy via Docker 
  - [ ] ...
