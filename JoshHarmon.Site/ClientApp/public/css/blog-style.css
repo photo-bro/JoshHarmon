@@ -1,120 +1,43 @@
-﻿
-
-.blogTitle {
-    margin: 1em;
-    font-size: 3em;
-    font-weight: 800;
-    color: #616161;
+﻿.blog-summaries .blog-summary {
+    margin-bottom: 2em;
 }
 
-.blogSummaries {
-    margin: 1em 0em 1em 0em;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
+.blog-summary {
+    margin: 0 2em 0 2em;
+    padding: 1em;
+    border: solid 1px #aaa;
+    border-radius: 0.25em;
 }
 
-.blogSummary {
-    margin: 2em 0em 2em 0em;
-    width: inherit;
-    padding: 0em 5em 0em 5em;
+.blog-summary img {
+    height: 25vh;
+    border: solid 1px #fff;
+    border-radius: 0.25em;
 }
 
-    .blogSummary a {
-        color: inherit;
-        text-decoration: inherit;
-    }
+.blog-summary img:hover {
+    box-shadow: 0 0.1em 0.5em 0em #8e8e8e;
+}
 
-    .blogSummary h1 {
-        color: #616161;
-    }
-
-    .blogSummary a h1 {
-        text-decoration: inherit;
-    }
-
-    .blogSummary img {
-        width: 100%;
-        height: 25vh;
-        object-fit: cover;
-    }
-
-        .blogSummary img:hover {
-            box-shadow: 0 0.1em 0.5em 0em #8e8e8e;
-        }
-
-.blogPage {
+.blog-page {
     flex: 1 0 auto;
 }
 
-.blogPageControl {
+.blog-page-control {
     flex-shrink: 0;
-    display: flex;
-    justify-content: center;
     text-decoration: none;
     color: #484848;
     font-size: 1.2em;
 }
 
-    .blogPageControl a {
-        color: inherit;
-        text-decoration: inherit;
-    }
-
-.blogSubtitle {
-    display: flex;
+.blog-subtitle {
     align-items: baseline;
-    margin: 0em 1em 0em 1em;
 }
 
-    .blogSubtitle h3 {
-        font-weight: 300;
-        font-size: 1em;
-        margin: 0em 0em 0em 1em
-    }
-
-.blogArticle {
+.blog-article {
     margin: 3em;
 }
 
-    .blogArticle > img {
-        width: 100%;
-        height: 25vh;
-        object-fit: cover;
-    }
-
-
-
-.blogHeader {
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    text-align: center;
-    width: 100%;
-}
-
-    .blogHeader h1 {
-        font-weight: 700;
-        font-size: 3.5em;
-        color: #484848;
-        word-break: break-word;
-    }
-
-    .blogHeader h3 {
-        font-weight: 300;
-        font-size: 1.7em;
-        color: #616161;
-    }
-
-    .blogHeader h4 {
-        font-weight: 300;
-        font-size: 1em;
-        font-style: italic;
-        color: #616161;
-    }
-
-.blogArticleContent {
-    padding: 1em;
-    color: #484848;
+.blog-article > img {
+    height: 25vh;
 }

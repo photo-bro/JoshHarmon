@@ -10,13 +10,13 @@ export class VisualPanel extends Component {
 
     render() {
         return (
-            <div className="panelContainer" >
-                <img src={this.state.model.mediaUrl} />
-                <div className="panelContainer-title" >
-                    <a href={this.state.model.linkUrl} target={this.state.model.linkUrl[0] != '/' ? '_blank' : ''}>
-                        <p>{this.state.model.title}</p>
+            <div className="panel-container flex full-center shadow-box-soft" >
+                <img src={this.state.model.mediaUrl} alt="visual panel" className="flex full-width full-height cover" />
+                <span className="abs m0 glow-box-bright">
+                    <a href={this.state.model.linkUrl} target={this.state.model.linkUrl[0] !== '/' ? '_blank' : ''}>
+                        <div className="font-xl thin shadow-text-soft">{this.state.model.title}</div>
                     </a>
-                </div>
+                </span>
             </div>
         );
     }

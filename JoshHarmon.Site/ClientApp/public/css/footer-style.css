@@ -1,97 +1,37 @@
-﻿
-footer {
-    background: linear-gradient(0deg, rgb(179, 179, 179) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255,255,255,0) 100%);
+﻿footer {
+    background: linear-gradient(0deg, rgb(179, 179, 179) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0) 100%);
     flex-shrink: 0;
 }
 
 .connections {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 0;
-    align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
 }
 
-.connectIcon {
-    margin: .5vh 5vw .5vh 5vw;
+.connect-icon img {
+    height: 96px;
+    width: 96px;
 }
 
-    .connectIcon img {
-        height: 15vw;
-        width: 15vw;
-        max-height: 96px;
-        max-width: 97px;
-        min-height: 5vw;
-        min-width: 5vw;
-    }
-
-    .connectIcon a {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: inherit;
-        text-decoration: inherit;
-    }
-
-        .connectIcon a:hover {
-            color: inherit;
-            text-decoration: inherit;
-        }
-
-        .connectIcon a .connectName {
-            position: absolute;
-            margin: 0;
-            color: #000;
-            text-transform: uppercase;
-            font-size: 2em;
-            text-shadow: 0 0 .3em #000;
-            visibility: hidden;
-        }
-
-        .connectIcon a:hover .connectName {
-            color: #FFF;
-            visibility: visible;
-        }
-
-.builtWith {
-    display: flex;
-    flex-wrap: wrap;
-    align-content: center;
-    justify-content: center;
-    font-size: .75em;
-    font-weight: 100;
-    letter-spacing: .3vw;
-    margin: 4vw 0 1vw 0;
+.connect-icon a .connect-name {
+    color: #000;
+    text-transform: uppercase;
+    visibility: hidden;
 }
 
-.copyright {
-    display: flex;
-    align-content: center;
-    justify-content: center;
-    margin: .75em;
-    font-size: .75em;
-    color: #FFF;
+.connect-icon a:hover h1 {
+    color: #fff;
+    visibility: visible;
 }
 
+.built-with {
+    letter-spacing: 0.3em;
+    text-transform: capitalize;
+}
 
 /* Large mobile devices (iPads) and older laptops */
 @media screen and (max-width: 1000px) {
-    .builtWith {
-        font-size: .5em;
-    }
-
-    .copyright {
-        font-size: .5em;
-    }
 }
 
 /* Mobile devices */
 @media screen and (max-width: 320px) {
-    .builtWith {
-        font-size: .2em;
-    }
-
-    .copyright {
-        font-size: .3em;
-    }
 }

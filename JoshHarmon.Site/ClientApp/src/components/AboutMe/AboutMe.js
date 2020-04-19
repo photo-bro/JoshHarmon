@@ -12,10 +12,6 @@ import './about-me.css';
 export class AboutMe extends Component {
     static displayName = AboutMe.name;
 
-    constructor(props) {
-        super(props);
-    }
-
     static getLanguageSkillsDataset() {
         return [
             {
@@ -75,7 +71,7 @@ export class AboutMe extends Component {
         return (
             <div className='page'>
                 <div className='aboutMe'>
-                    <img className='aboutMeBanner' src='/assets/JoshOutOfFocus.jpg' />
+                    <img className='aboutMeBanner' src='/assets/JoshOutOfFocus.jpg' alt="Josh Harmon" />
                     <h1>
                         <center>Software Engineer + Visual Artist</center>
                     </h1>
@@ -94,7 +90,7 @@ export class AboutMe extends Component {
                         Perhaps to balance the digital nature of my daily life I choose to use film and analog processes
                         for my hobbies whenever I can. More information and examples of my visual work can be found on
                         my media website,{' '}
-                        <a href='https://joshharmonimages.com' target='_blank'>
+                        <a href='https://joshharmonimages.com' target='_blank' rel="noopener noreferrer">
                             joshharmonimages.com
                         </a>
                         .

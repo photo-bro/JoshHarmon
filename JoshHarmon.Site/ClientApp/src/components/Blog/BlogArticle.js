@@ -22,7 +22,7 @@ export class BlogArticle extends Component {
 
         fetch(fetchUrl, { method: 'get' })
             .then(response => response.json())
-            .then(data => {               
+            .then(data => {
                 this.setState({
                     article: data.data.article,
                     loading: false
@@ -33,41 +33,40 @@ export class BlogArticle extends Component {
     GetBaseUri() {
         let fetchUrl = '/api/blog/';
 
-        if (this.state.id){
+        if (this.state.id) {
             fetchUrl += this.state.id;
             return fetchUrl;
         }
-        
+
         fetchUrl += this.state.year + '/' +
-                this.state.month + '/' +
-                this.state.day + '/' +
-                this.state.fileKey;
+            this.state.month + '/' +
+            this.state.day + '/' +
+            this.state.fileKey;
 
         return fetchUrl;
     }
 
-    static buildBlogArticle(article, baseUri)
-    {
+    static buildBlogArticle(article, baseUri) {
         const bannerUri = baseUri + '/' + article.meta.bannerMediaPath;
-        return(
-            <div className="blogArticle">
-                <img src={bannerUri} />
-                <div className="blogHeader">
-                    <h1>{article.meta.title}</h1>
+        return (
+            <div className="blog-article">
+                <img src={bannerUri} alt="Blog banner" className="full-width cover" />
+                <div className="flex flex-column full-center full-width break-word">
+                    <h1 className="font-xl thick grey">{article.meta.title}</h1>
                     <div>
-                        <h3>{article.meta.author}</h3>
-                        <h4><PrettyDate dateTime={article.meta.publishDate} /></h4>
+                        <h2 className="semi-thin grey lh15">{article.meta.author}</h2>
+                        <h4 className="semi-thin lh15"><i><PrettyDate dateTime={article.meta.publishDate} /></i></h4>
                     </div>
                 </div>
-                <hr / >
-                <div className="blogArticleContent" >
+                <hr />
+                <div className="p10" >
                     <MarkdownView
                         rawText={article.content}
                         baseImageUri={baseUri}
                     />
                 </div>
                 <hr />
-              </div>
+            </div>
         );
     }
 
@@ -76,7 +75,7 @@ export class BlogArticle extends Component {
             ? <h3>{this.state.loadingMessage}</h3>
             : BlogArticle.buildBlogArticle(this.state.article, this.GetBaseUri());
 
-        return(
+        return (
             <div className="page">
                 {entry}
                 <div>

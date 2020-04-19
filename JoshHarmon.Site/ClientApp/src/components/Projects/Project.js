@@ -39,20 +39,20 @@ export class Project extends Component {
 
         return (
             <div>
-                <div className="project" onClick={this.toggleModal}>
-                    <div className="projectName">
+                <div className="project flex flex-column full-center shadow-box-soft" onClick={this.toggleModal}>
+                    <h1 className="text-center thin ml10 mr10">
                         {this.state.name}
-                    </div>
+                    </h1>
                     <p>
                         {shortDescr}
                     </p>
-                    <div className="tools">
+                    <div className="flex flex-row flex-wrap">
                         {tools}
                     </div>
                 </div>
                 <Modal
-                    className="modalMain"
-                    overlayClassName="modalOverlay"
+                    className="modal-main"
+                    overlayClassName="modal-overlay flex full-center"
                     isOpen={this.state.modalOpen}
                     shouldCloseOnOverlayClick={true}
                     shouldCloseOnEsc={true}

@@ -39,7 +39,7 @@
     <ItemGroup>
         <Content Remove="appsettings.json" />
         <None Remove="appsettings.json" />
-        <None Include="appsettings.json" />
+        <None Include="appsettings.json" CopyToOutputDirectory="Always" />
         <Content Remove="package-lock.json" />
         <None Remove="package-lock.json" />
         <None Include="package-lock.json" />

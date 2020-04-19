@@ -13,13 +13,13 @@ export default class Tool extends Component {
 
     render() {
         let styleClass = this.state.toolType === 0
-            ? "toolLanguage"
+            ? "tool-language"
             : this.state.toolType === 1
-                ? "toolFramework"
-                : "toolOther";
+                ? "tool-framework"
+                : "tool-other";
 
         return (
-            <div className={"tool " + styleClass}>
+            <div className={"tool p5 m2 " + styleClass}>
                 {this.state.name}
             </div>
         );

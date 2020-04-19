@@ -24,7 +24,7 @@ export class FootBar extends Component {
 
     static buildConnectIcons(connectModels) {
         return (
-            <div className="connections">
+            <div className="connections flex flex-row flex-wrap space-between full-width full-center m0 ">
                 {connectModels.map((model, index) => <ConnectIcon model={model} key={index} />)}
             </div>
         );
@@ -37,12 +37,17 @@ export class FootBar extends Component {
 
         return (
             <footer>
-                {icons}
-                <div className="builtWith">
-                    Constructed with .NET Core + React &nbsp;&nbsp; <b>|</b>&nbsp;&nbsp; Deployed on Raspberry PI &nbsp;&nbsp;<b>|</b>&nbsp;&nbsp; Run with recycled electrons
+                <div className="flex flex-column m10">
+                    {icons}
+                    <br />
+                    <div className="built-with flex flex-dividers flex-wrap full-center thin m10">
+                        <span>Constructed with .NET Core + React </span>
+                        <span> Deployed on Raspberry PI </span>
+                        <span> Run with recycled electrons</span>
                     </div>
-                <div className="copyright">
-                    &copy;2020 Josh Harmon - All rights reserved
+                    <div className="white flex full-center m10">
+                        &copy;2020 Josh Harmon - All rights reserved
+                </div>
                 </div>
             </footer>
         );

@@ -17,16 +17,13 @@ export class Commit extends Component {
 
     render() {
         return (
-            <div className='commit'>
+            <div className='commit m2 p5'>
                 <a href={this.state.url}>
-                    <p>{this.state.message}</p>
-                    <div className='commitDetails'>
-                        <div style={{ minWidth: "fit-content" }}>
-                            <b>{this.state.name}</b>
-                        </div>
-                        <div>
-                            <i>{this.state.email}</i>
-                        </div>
+                    <p className="m0">{this.state.message}</p>
+                    <div className='semi-thin break-word'>
+                        <span style={{ minWidth: "fit-content" }}>
+                            <b>{this.state.name}</b> <i>({this.state.email})</i>
+                        </span>
                     </div>
                 </a>
             </div>
