@@ -35,6 +35,6 @@ As a primarily backend engineer this site represents an effort to become more pr
  - [x] Server response compression
  - [x] Adjust DNS to point to RaspberryPi
  - [x] Optimize static asset sizes
- - [ ] Cleanup and reorganize CSS
+ - [x] Cleanup and reorganize CSS
  - [ ] Support webm/gif/video panels on splash page
  - [ ] ...
