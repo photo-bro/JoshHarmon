@@ -22,8 +22,8 @@ namespace JoshHarmon.Site.Filters
             {
                 context.Result = new ContentResult
                 {
-                    Content = "Not authorized to access resource",
-                    StatusCode = 401
+                    Content = "Access forbidden",
+                    StatusCode = 403
                 };
             }
         }
