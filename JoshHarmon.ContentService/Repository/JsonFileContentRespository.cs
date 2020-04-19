@@ -38,12 +38,12 @@ namespace JoshHarmon.ContentService.Repository
         }
 
         public virtual async Task<IEnumerable<PanelModel>> ReadAllPanelModels()
-            => await Task.FromResult(Content?.Panels);
+            => await Task.FromResult(Content.Panels);
 
         public virtual async Task<IEnumerable<ConnectModel>> ReadAllConnectModels()
-            => await Task.FromResult(Content?.Connections);
+            => await Task.FromResult(Content.Connections);
 
         public virtual async Task<IEnumerable<ProjectModel>> ReadAllProjectModels()
-            => await Task.FromResult(Content?.Projects);
+            => await Task.FromResult(Content.Projects);
     }
 }
