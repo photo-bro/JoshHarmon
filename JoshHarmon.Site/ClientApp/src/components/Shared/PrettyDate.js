@@ -26,7 +26,7 @@ export class PrettyDate extends Component {
     render() {
         let formattedDate = PrettyDate.buildFormattedDateTimeString(this.state.rawDate, this.state.includeDay);
         return (
-            <div className="formattedDateTime">
+            <div className="formmated-datetime">
                 {formattedDate}
             </div>
         );

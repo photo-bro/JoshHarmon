@@ -1,7 +1,5 @@
 ﻿import React, { Component } from 'react';
-import { Collapse, Container } from 'reactstrap';
 import { VisualPanel } from './VisualPanel';
-import { FootBar } from '../Shared/FootBar';
 
 
 export class Splash extends Component {
@@ -17,7 +15,7 @@ export class Splash extends Component {
 
         fetch('api/splash', { method: 'get' })
             .then(response => response.json())
-            .then(data => {               
+            .then(data => {
                 this.setState({
                     panels: data.panels,
                     loading: false

@@ -1,100 +1,35 @@
-﻿.repoActivity {
-    display: flex;
-    flex-direction: column;
-    padding: 0.5em;
+﻿.repo-activity {
     overflow-wrap: break-word;
     background: #fff;
-    /*box-shadow: 0 0 1vw 0.1vw #ccc;*/
-    height: 100%;
     overflow: hidden;
 }
 
-    .repoActivity h2 {
-        font-size: 1.5em;
-    }
-
 .commits {
-    display: flex;
-    flex-direction: column;
-    padding: 0 0.2em 0 0.2em;
     line-height: normal;
     overflow-y: auto;
 }
 
 .commit {
-    margin: 0.2em 0 0.2em 0;
-    padding: 0 0.2em 0 0.2em;
+    /* margin: 0.2em 0 0.2em 0; */
+    /* padding: 0 0.2em 0 0.2em; */
     border: solid #ccc 1px;
     border-radius: 0.15em;
-    /* box-shadow: 0 0 0.15em 0.05em #ccc; */
     text-overflow: ellipsis;
 }
-
-    .commit:hover {
-        box-shadow: 0 0 0.15em 0.05em #ccc;
-    }
-
-    .commit a {
-        color: inherit;
-        text-decoration: inherit;
-        /* font-size: .6em;
-        overflow-wrap: normal;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden; */
-    }
-
-        .commit a:hover {
-            color: inherit;
-            text-decoration: inherit;
-        }
-
-    .commit p {
-        font-size: 0.75em;
-        /* font-weight: 300; */
-        margin: 0 0 0.1em 0;
-    }
-
-.commitDetails {
-    display: flex;
-    font-size: 0.75em;
-    font-weight: 300;
-    word-break: break-word;
+.commit p {
+    color: var(--medium-grey);
+    overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    overflow: hidden;
 }
-
-    .commitDetails b {
-        font-weight: 500;
-    }
-
-    .commitDetails div {
-        margin: 0 0.5em 0 0;
-        word-break: break-word;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
-        color: #777;
-    }
+.commit:hover {
+    box-shadow: 0 0 0.15em 0.05em #ccc;
+}
 
 .contributors {
     display: flex;
     flex-direction: column;
 }
-
-    .contributors h3 {
-        font-size: 1.5em;
-    }
-
-.contributor {
-    font-size: 0.9em;
-}
-
-    .contributor a {
-        font-weight: 800;
-        color: none;
-    }
 
 /* Large mobile devices (iPads) and older laptops */
 @media screen and (max-width: 1200px) {
@@ -102,7 +37,7 @@
 
 /* Mobile devices */
 @media screen and (max-width: 320px) {
-    .repoActivity h2 {
+    .repo-activity h2 {
         font-size: 1em !important;
     }
 
@@ -112,10 +47,10 @@
         white-space: nowrap;
     }
 
-        .commitDetails i {
-            visibility: hidden;
-            overflow-wrap: normal;
-        }
+    .commitDetails i {
+        visibility: hidden;
+        overflow-wrap: normal;
+    }
 
     .commit a {
         font-size: 0.4em !important;

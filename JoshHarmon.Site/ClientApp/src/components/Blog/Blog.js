@@ -8,7 +8,7 @@ export class Blog extends Component {
 
     constructor(props) {
         super(props);
-        
+
         const queryValues = queryString.parse(props.location.search);
 
         this.state = {
@@ -18,7 +18,7 @@ export class Blog extends Component {
             loadingMessage: "Loading...",
             limit: queryValues.limit,
             offset: queryValues.offset
-            };
+        };
 
         let url = 'api/blog?limit=';
         if (!queryValues.limit)
@@ -30,7 +30,7 @@ export class Blog extends Component {
 
         fetch(url, { method: 'get' })
             .then(response => response.json())
-            .then(data => {               
+            .then(data => {
                 this.setState({
                     blogMetas: data.data,
                     page: data.page,
@@ -39,23 +39,22 @@ export class Blog extends Component {
             });
     }
 
-    static buildBlogSummaries(blogMetas){
-        return(
-            <div className="blogSummaries">
+    static buildBlogSummaries(blogMetas) {
+        return (
+            <div className="blog-summaries flex flex-column full-width ">
                 {blogMetas.map(m => <BlogSummary meta={m} />)}
             </div>
         );
     }
 
-    static buildPagingDiv(page, limit)
-    {
+    static buildPagingDiv(page, limit) {
         if (!page)
-            return(<div />);
+            return (<div />);
 
         if (!limit || limit === 0)
             limit = Blog.defaultLimit;
-        else 
-            limit = parseInt(limit);
+        else
+            limit = parseInt(limit, 10);
 
         let blogBase = '/blog?limit=' + limit + '&';
         let olderPage = '';
@@ -69,23 +68,23 @@ export class Blog extends Component {
         if (page.offset >= limit)
             newerPage += blogBase + 'offset=' + (page.offset - limit);
         else
-            newerPage = '';        
+            newerPage = '';
 
         if (olderPage === '' && newerPage === '')
-            return(
-                <div className="blogPageControl" />
+            return (
+                <div className="blog-page-control flex full-center" />
             );
 
         let olderAnchor = olderPage === ''
-            ? <div style={{color: '#c5c5c5'}}>oldest</div>
+            ? <div style={{ color: '#c5c5c5' }}>oldest</div>
             : <a href={olderPage}>older &gt;&gt;</a>;
 
         let newerAnchor = newerPage == ''
-            ? <div style={{color: '#c5c5c5'}}>most recent</div>
-            : <a href={newerPage}>&lt;&lt; recent</a>        
+            ? <div style={{ color: '#c5c5c5' }}>most recent</div>
+            : <a href={newerPage}>&lt;&lt; recent</a>
 
-        return(
-            <div className="blogPageControl">
+        return (
+            <div className="blog-page-control flex full-center">
                 {newerAnchor}
                 &nbsp; | &nbsp;
                 {olderAnchor}
@@ -102,17 +101,15 @@ export class Blog extends Component {
             ? <div />
             : Blog.buildPagingDiv(this.state.page, this.state.limit);
 
-        return(
+        return (
             <div className="page">
-                <div className="blogPage">
-                    <div className="blogTitle">
-                        recent posts:
+                <div className="blog-page">
                     <br />
-                    <hr />
-                    </div>
+                    <br />
                     {summaries}
                     {pageDiv}
-                    <hr />
+                    <br />
+                    <br />
                 </div>
             </div>
         );

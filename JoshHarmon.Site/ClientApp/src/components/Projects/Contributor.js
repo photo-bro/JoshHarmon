@@ -15,7 +15,7 @@ export class Contributor extends Component {
 
     render() {
         let name = this.state.url
-            ? <a href={this.state.url}>{this.state.name}</a>
+            ? <a className="thick" href={this.state.url}>{this.state.name}</a>
             : this.state.name;
 
         return (

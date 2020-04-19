@@ -33,7 +33,7 @@ export class RepoContributions extends Component {
                 });
         */
 
-         fetch('api/github/' + this.state.repoName + '/contributors', { method: 'get' })
+        fetch('api/github/' + this.state.repoName + '/contributors', { method: 'get' })
             .then(response => response.json())
             .then(data => {
                 this.setState({

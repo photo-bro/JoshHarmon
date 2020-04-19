@@ -10,11 +10,11 @@ export class Projects extends Component {
             projects: [],
             loading: true,
             loadingMessage: "Loading..."
-            };
+        };
 
         fetch('api/projects', { method: 'get' })
             .then(response => response.json())
-            .then(data => {               
+            .then(data => {
                 this.setState({
                     projects: data.projects,
                     loading: false
@@ -25,10 +25,10 @@ export class Projects extends Component {
 
     static buildProjectIcons(projectModels) {
         return (
-            <div className="projects">
+            <div className="flex flex-wrap full-center m0">
                 {projectModels.map(model => <Project model={model} />)}
             </div>
-        );      
+        );
     }
 
 

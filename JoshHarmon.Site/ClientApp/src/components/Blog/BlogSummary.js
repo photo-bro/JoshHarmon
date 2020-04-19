@@ -26,7 +26,7 @@ export class BlogSummary extends Component {
             return (
                 <div>
                     <a href={BlogSummary.articleLink(meta)}>
-                        <h1>{meta.title}</h1>
+                        <h1 className="thick">{meta.title}</h1>
                     </a>
                     {BlogSummary.buildSubtitleDiv(meta)}
                 </div>
@@ -38,12 +38,12 @@ export class BlogSummary extends Component {
         return (
             <div>
                 <a href={BlogSummary.articleLink(meta)}>
-                    <h1>{meta.title}</h1>
+                    <h1 className="thick grey">{meta.title}</h1>
                 </a>
                 {BlogSummary.buildSubtitleDiv(meta)}
                 <br />
                 <a href={BlogSummary.articleLink(meta)}>
-                    <img src={bannerUri} />
+                    <img src={bannerUri} alt="Blog article banner" className="full-width cover" />
                 </a>
             </div>
         );
@@ -51,9 +51,9 @@ export class BlogSummary extends Component {
 
     static buildSubtitleDiv(meta) {
         return (
-            <div className="blogSubtitle">
-                <h3><b>{meta.author}</b></h3>
-                <i><h3><PrettyDate dateTime={meta.publishDate} includeDay="True" /></h3></i>
+            <div className="blog-subtitle flex ml10 mr10">
+                <h3 class="semi-thin mr10"><b>{meta.author}</b></h3>
+                <h3 class="thin"><i><PrettyDate dateTime={meta.publishDate} includeDay="True" /></i></h3>
             </div>
         );
     }
@@ -63,12 +63,12 @@ export class BlogSummary extends Component {
         let articleHeader = BlogSummary.buildArticleHeader(this.state.meta);
 
         return (
-            <div className="blogSummary">
+            <div className="blog-summary shadow-box-soft">
                 {articleHeader}
                 <br />
                 <p>{this.state.meta.summary}</p>
-                <a href={BlogSummary.articleLink(this.state.meta)}>read more...</a>
-                <hr />
+                <br />
+                <a className="ml10 grey semi-thick" href={BlogSummary.articleLink(this.state.meta)}>read more...</a>
             </div>
         );
     }

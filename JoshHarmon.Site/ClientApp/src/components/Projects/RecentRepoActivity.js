@@ -1,5 +1,4 @@
 ﻿import React, { Component } from 'react';
-import { Contributor } from './Contributor';
 import { Commit } from './Commit';
 
 export class RecentRepoActivity extends Component {
@@ -35,7 +34,7 @@ export class RecentRepoActivity extends Component {
     static buildCommitsDiv(commitModels) {
         if (!commitModels) return (<div />);
         return (
-            <div className="commits">
+            <div className="commits flex flex-column p10 m5">
                 {commitModels.map(c => <Commit model={c} />)}
             </div>
         );
@@ -47,8 +46,8 @@ export class RecentRepoActivity extends Component {
             : RecentRepoActivity.buildCommitsDiv(this.state.commits);
 
         return (
-            <div className="repoActivity" >
-                <h2>Recent Activity</h2>
+            <div className="repo-activity flex flex-column full-height p5" >
+                <h3 className="grey">Recent Activity</h3>
                 {commits}
             </div>
         );
