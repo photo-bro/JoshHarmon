@@ -79,7 +79,7 @@ export class Blog extends Component {
             ? <div style={{ color: '#c5c5c5' }}>oldest</div>
             : <a href={olderPage}>older &gt;&gt;</a>;
 
-        let newerAnchor = newerPage == ''
+        let newerAnchor = newerPage === ''
             ? <div style={{ color: '#c5c5c5' }}>most recent</div>
             : <a href={newerPage}>&lt;&lt; recent</a>
 
