@@ -22,6 +22,7 @@ As a primarily backend engineer this site represents an effort to become more pr
  - [x] Cached content service (static file based)
  - [x] Tech blog platform
  - [x] Custom About / Resume page
+ - [x] Support Https (LetsEncrypt!)
  - [ ] Dynamic external content service
  - [ ] Deploy via Docker 
  - [ ] ...

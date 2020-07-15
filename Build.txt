@@ -1,5 +1,8 @@
-﻿# Build Release to PI .Net Core 3.0 (From develop machine)
-dotnet publish -c Release -r linux-arm -o ./Releases/pi/joshharmon-site-VERSION
+﻿# Go to Site dir
+cd /Users/jharm/Projects/JoshHarmon/JoshHarmon.Site/
+
+# Build Release to PI .Net Core 3.0 (From develop machine)
+dotnet publish -c Release -r linux-arm -o ./Releases/pi/joshharmon-site-VERSION --self-contained true -p:PublishSingleFile=true -p:PublishTrimmed=true  
 
 # Stop systemd service
 sudo systemctl stop joshharmon-site
