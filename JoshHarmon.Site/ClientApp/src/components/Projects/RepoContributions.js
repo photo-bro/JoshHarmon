@@ -61,7 +61,7 @@ export class RepoContributions extends Component {
 
         let contributors = this.state.loadingContributors
             ? <h3>{this.state.loadingMessage}</h3>
-            : this.state.contributors.map(c => <Contributor model={c} />);
+            : this.state.contributors.map((c, i) => <Contributor key={i} model={c} />);
 
         return (
             <div className="contributors">

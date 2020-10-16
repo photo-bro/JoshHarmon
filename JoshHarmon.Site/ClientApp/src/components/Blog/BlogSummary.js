@@ -52,8 +52,8 @@ export class BlogSummary extends Component {
     static buildSubtitleDiv(meta) {
         return (
             <div className="blog-subtitle flex ml10 mr10">
-                <h3 class="semi-thin mr10"><b>{meta.author}</b></h3>
-                <h3 class="thin"><i><PrettyDate dateTime={meta.publishDate} includeDay="True" /></i></h3>
+                <h3 className="semi-thin mr10"><b>{meta.author}</b></h3>
+                <h3 className="thin"><i><PrettyDate dateTime={meta.publishDate} includeDay="True" /></i></h3>
             </div>
         );
     }

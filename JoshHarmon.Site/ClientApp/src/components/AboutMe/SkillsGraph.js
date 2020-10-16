@@ -23,10 +23,10 @@ export class SkillsGraph extends Component {
         values.push(0);  // Add 0 to set x-scale properly
         const colors = props.data.map(d => d.color);
 
-        console.log(props.data); // !!!
-        console.log(labels); // !!!
-        console.log(values); // !!!
-        console.log(colors); // !!!
+        // console.log(props.data); // !!!
+        // console.log(labels); // !!!
+        // console.log(values); // !!!
+        // console.log(colors); // !!!
 
         this.data = {
             labels: labels, //["C#", "Sql", "Python", "JavaScript"],
