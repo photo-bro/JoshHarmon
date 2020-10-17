@@ -200,10 +200,16 @@ hr {
 }
 
 .flex.flex-dividers > ::after {
-    content: ' ⎮ ';
+    content: '  +  ';
 }
 .flex.flex-dividers > :last-child::after {
     content: '';
+}
+
+@media screen and (max-width: 500px) {
+    .flex.flex-dividers > ::after {
+        content: '';
+    }
 }
 
 .space-between {

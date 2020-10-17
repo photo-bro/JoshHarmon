@@ -100,8 +100,6 @@
     .modal-content {
         max-height: 75vh;
         padding: 0.1em !important;
-        flex-wrap: wrap;
-        flex-direction: column-reverse;
     }
 
     .modal-content-item {
