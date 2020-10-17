@@ -52,7 +52,7 @@ export class BlogArticle extends Component {
             <div className="blog-article">
                 <img src={bannerUri} alt="Blog banner" className="full-width cover" />
                 <div className="flex flex-column full-center full-width break-word">
-                    <h1 className="font-xl thick grey">{article.meta.title}</h1>
+                    <h1 className="font-xl thick grey text-center">{article.meta.title}</h1>
                     <div>
                         <h2 className="semi-thin grey lh15">{article.meta.author}</h2>
                         <h4 className="semi-thin lh15"><i><PrettyDate dateTime={article.meta.publishDate} /></i></h4>

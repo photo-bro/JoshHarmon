@@ -26,7 +26,7 @@ export class Projects extends Component {
     static buildProjectIcons(projectModels) {
         return (
             <div className="flex flex-wrap full-center m0">
-                {projectModels.map(model => <Project model={model} />)}
+                {projectModels.map((model, i) => <Project key={i} model={model} />)}
             </div>
         );
     }

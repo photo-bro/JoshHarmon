@@ -20,7 +20,7 @@
 
 .modal-content-item {
     flex: 1 1 0;
-    width: 0;
+    width: auto;
     overflow: hidden;
     border-radius: 0.3em;
     border: solid #c7c7c7 1px;
@@ -81,6 +81,12 @@
     }
 }
 
+/* Mobile devices */
+@media screen and (max-width: 720px) {
+    .modal-content {
+        flex-direction: column-reverse;
+    }
+}
 /* Mobile devices */
 @media screen and (max-width: 320px) {
     .project-name {

@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
 using JoshHarmon.Github.Interface;
 using JoshHarmon.Github.Models;
 using JoshHarmon.Shared;
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -79,6 +81,25 @@ namespace JoshHarmon.Site.Controllers
             }
 
             return Ok(new { Contributors = contributors });
+        }
+
+        [ResponseCache(Duration = 60 * 60)]
+        [HttpGet("/api/github/{repositoryName}/readme")]
+        public async Task<IActionResult> GetRepositoryReadme(string repositoryName)
+        {
+            string readme;
+            try
+            {
+                readme = await _githubService.GetRepositoryReadme(repositoryName);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, "Error retrieving contributor information for GitHub repository '{Repository}'",
+                    repositoryName);
+                return new StatusCodeResult(500);
+            }
+
+            return Ok(new { Readme = readme });
         }
     }
 }
