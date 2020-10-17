@@ -20,7 +20,7 @@
 
 .modal-content-item {
     flex: 1 1 0;
-    width: 0;
+    width: auto;
     overflow: hidden;
     border-radius: 0.3em;
     border: solid #c7c7c7 1px;
@@ -82,6 +82,12 @@
 }
 
 /* Mobile devices */
+@media screen and (max-width: 720px) {
+    .modal-content {
+        flex-direction: column-reverse;
+    }
+}
+/* Mobile devices */
 @media screen and (max-width: 320px) {
     .project-name {
         font-size: 1em;
@@ -94,6 +100,8 @@
     .modal-content {
         max-height: 75vh;
         padding: 0.1em !important;
+        flex-wrap: wrap;
+        flex-direction: column-reverse;
     }
 
     .modal-content-item {

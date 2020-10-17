@@ -23,6 +23,9 @@ export class ProjectModalDetail extends Component {
                     readme: data.readme
                 })
             })
+            .catch(ex => {
+
+            });
     }
 
     render() {
@@ -36,12 +39,14 @@ export class ProjectModalDetail extends Component {
                     <p>{this.state.content}</p>
                 </a>
             </div>;
+
+        // const leftPanelStyle={flex-basis: 33}
         return (
             <div className="modal-content flex space-between shadow-box-soft p10">
-                <div className="modal-content-item m10">
+                <div className="modal-content-item m10" style={{ flexBasis: "33%" }}>
                     <RecentRepoActivity repoName={this.state.repositoryName} />
                 </div>
-                <div className="modal-content-item m10">
+                <div className="modal-content-item m10" style={{ flexBasis: "66%" }}>
                     <div className="modal-description flex flex-column full-height space-between">
                         <div className="p10">
                             <div className="flex flex-row flex-flow">
@@ -54,7 +59,7 @@ export class ProjectModalDetail extends Component {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div >
         );
     }
 }
