@@ -4,11 +4,11 @@ namespace JoshHarmon.Github.Models
     public class RepoStats
     {
         public RepoStats(DateTime createdAt,
-         DateTime lastActivity,
-          int totalCommits,
-            RepoContributorStats[] contributors,
-             RepoLanguage[] languages,
-              string readme)
+                         DateTime lastActivity,
+                         int totalCommits,
+                         RepoContributorStats[] contributors,
+                         RepoLanguage[] languages,
+                         string readme)
         {
             CreatedAt = createdAt;
             LastActivity = lastActivity;

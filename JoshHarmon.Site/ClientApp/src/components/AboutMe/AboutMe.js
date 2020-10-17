@@ -90,8 +90,8 @@ export class AboutMe extends Component {
                         Working in the payment and financial data space I’ve acquired experience working with large
                         scale systems and demanding external parties in addition to cultivating a sense for how
                         corporate scale projects evolve. In my career I’ve had the opportunity to work directly with
-                        financial service providers as Mastercard, Visa, and JP Morgan Chase as well as data aggregation
-                        platforms including Plaid and Yodlee. When describing my role to others I jokingly call myself a
+                        financial service providers including Mastercard, Visa, and JP Morgan Chase as well as data aggregation
+                        platforms such as Plaid and Yodlee. When describing my role to others I jokingly call myself a
                         cloud plumber - making sure data can flow cleanly between clouds.
                         <br />
                         <br />
@@ -100,8 +100,8 @@ export class AboutMe extends Component {
                         with Python and Django. Naturally I am familiar with the common CI/CD tools available such as
                         TeamCity, Octopus, and Jenkins. I have also worked quite a bit with AWS infrastructure and
                         serverless components but also have experience working with self and rackspace based hosting
-                        solutions. While I would not describe myself as an expert in devops I ensure I keep
-                        knowledgeable self sufficient.
+                        solutions. While I would not describe myself as an expert in devops I ensure I keep myself
+                        knowledgeable and self sufficient.
                         <br />
                         <br />
                         Outside of my professional life I am a film based photographer, amateur videographer, and
