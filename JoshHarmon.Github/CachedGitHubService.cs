@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
+
 using JoshHarmon.Cache;
 using JoshHarmon.Cache.Cached.Interface;
 using JoshHarmon.Cache.CacheProvider.Interface;
 using JoshHarmon.Github.Interface;
 using JoshHarmon.Github.Models;
 using JoshHarmon.Shared;
+
 using Octokit;
 using Octokit.Reactive;
 using Commit = JoshHarmon.Github.Models.Commit;
@@ -20,7 +22,7 @@ namespace JoshHarmon.Github
         private const string KeyPrefix = "github";
         private readonly ICacheProvider _cacheProvider;
         private readonly IGithubConfig _config;
-        private IObservableGitHubClient _client;
+        private readonly IObservableGitHubClient _client;
 
         public CachedGithubService(ICacheProvider cacheProvider, IGithubConfig config)
         {
@@ -61,30 +63,30 @@ namespace JoshHarmon.Github
             }
         }
 
-        public async Task<IEnumerable<Commit>> GetRepositoryCommitsAsync(string repositoryName)
-             => await _cacheProvider.TryGetEnumerableFromCacheAsync(
-                 key: GetFormattedCacheKey(repositoryName, "repo-commits"),
-                 retrievalFunc: () => GetRepositoryCommitsAsyncImpl(repositoryName));
+        public async Task<IEnumerable<Commit>> GetRepositoryCommitsAsync(string repositoryName) => await _cacheProvider.TryGetEnumerableFromCacheAsync(
+            key: GetFormattedCacheKey(repositoryName, "repo-commits"),
+            retrievalFunc: () => GetRepositoryCommitsAsyncImpl(repositoryName));
 
-        private async Task<IEnumerable<Commit>> GetRepositoryCommitsAsyncImpl(string repositoryName)
-            => await _client
-                            .Repository
-                            .Commit
-                            .GetAll(_config.UserName, repositoryName)
-                            .Select(ghc => new Commit(
-                                committerName: ghc.Commit.Committer.Name,
-                                committerEmail: ghc.Commit.Committer.Email,
-                                dateTime: ghc.Commit.Committer.Date.DateTime,
-                                message: ghc.Commit.Message,
-                                sha: ghc.Sha,
-                                url: ghc.HtmlUrl
-                            ))
-                            .ToList();
+        private async Task<IEnumerable<Commit>> GetRepositoryCommitsAsyncImpl(string repositoryName) =>
+            await _client
+                .Repository
+                .Commit
+                .GetAll(_config.UserName, repositoryName)
+                .Select(ghc => new Commit(
+                committerName: ghc.Commit.Committer.Name,
+                committerEmail: ghc.Commit.Committer.Email,
+                dateTime: ghc.Commit.Committer.Date.DateTime,
+                message: ghc.Commit.Message,
+                sha: ghc.Sha,
+                url: ghc.HtmlUrl
+            ))
+                .ToList();
 
-        public async Task<RepoStats> GetRepositoryStatsAsync(string repositoryName)
-            => await _cacheProvider.TryGetFromCacheAsync(
+        public async Task<RepoStats> GetRepositoryStatsAsync(string repositoryName) =>
+            await _cacheProvider.TryGetFromCacheAsync(
                 key: GetFormattedCacheKey(repositoryName, "repo-stats"),
-                retrievalFunc: () => GetRepositoryStatsAsyncImpl(repositoryName));
+                retrievalFunc: () => GetRepositoryStatsAsyncImpl(repositoryName)
+            );
 
         private async Task<RepoStats> GetRepositoryStatsAsyncImpl(string repositoryName)
         {
@@ -93,13 +95,12 @@ namespace JoshHarmon.Github
             var contributors = await _client.Repository.Statistics.GetContributors(_config.UserName, repositoryName)
                 .SelectMany(c => c)
                 .Select(c => new RepoContributorStats(
-                    name: c.Author.Login,
-                    totalCommits: c.Weeks.Sum(w => w.C),
-                    weeklyAverageAdditions: (int)c.Weeks.Average(w => w.A),
-                    weeklyAverageDeletions: (int)c.Weeks.Average(w => w.D),
-                    weeklyAverageCommits: (int)c.Weeks.Average(w => w.C),
-                    url: null)
-                ).ToArray();
+                   name: c.Author.Login,
+                   totalCommits: c.Weeks.Sum(w => w.C),
+                   weeklyAverageAdditions: (int)c.Weeks.Average(w => w.A),
+                   weeklyAverageDeletions: (int)c.Weeks.Average(w => w.D),
+                   weeklyAverageCommits: (int)c.Weeks.Average(w => w.C),
+                   url: null)).ToArray();
 
             //var langs = await _client.Repository.GetAllLanguages(_config.UserName, repositoryName).ToList();
 
@@ -110,43 +111,58 @@ namespace JoshHarmon.Github
             //        BytesWritten = (int?)l?.NumberOfBytes ?? 0
             //    })?.ToArray() ?? new RepoLanguage[0];
 
+            var readme = await GetRepositoryReadme(repositoryName);
+
             return new RepoStats(
                 createdAt: repo.CreatedAt.DateTime,
                 lastActivity: repo.UpdatedAt.DateTime,
                 totalCommits: contributors.Sum(c => c.TotalCommits),
                 contributors: contributors,
-                languages: new RepoLanguage[0]);
+                languages: new RepoLanguage[0],
+                readme: readme
+            );
         }
 
-        public async Task<IEnumerable<RepoContributor>> GetRepositoryContributorsAsync(string repositoryName)
-            => await _cacheProvider.TryGetEnumerableFromCacheAsync(
+        public async Task<IEnumerable<RepoContributor>> GetRepositoryContributorsAsync(string repositoryName) =>
+            await _cacheProvider.TryGetEnumerableFromCacheAsync(
                 key: GetFormattedCacheKey(repositoryName, "repo-contrib"),
-                retrievalFunc: () => GetRepositoryContributorsAsyncImpl(repositoryName));
+                retrievalFunc: () => GetRepositoryContributorsAsyncImpl(repositoryName)
+            );
 
         private async Task<IEnumerable<RepoContributor>> GetRepositoryContributorsAsyncImpl(string repositoryName)
         {
             var contributors = await _client
-                                         .Repository
-                                         .GetAllContributors(
-                                            owner: _config.UserName,
-                                            name: repositoryName,
-                                            includeAnonymous: true)
-                                         .Select(c =>
-                                             new RepoContributor(
-                                                 name: c.Type == "Anonymous" ? "Anonymous" : c.Login,
-                                                 contributions: c.Contributions,
-                                                 url: c.HtmlUrl ?? string.Empty)
-                                             )
-                                         .ToList();
+                .Repository
+                .GetAllContributors(
+                    owner: _config.UserName,
+                    name: repositoryName,
+                    includeAnonymous: true)
+                .Select(c =>
+                   new RepoContributor(
+                       name: c.Type == "Anonymous" ? "Anonymous" : c.Login,
+                       contributions: c.Contributions,
+                       url: c.HtmlUrl ?? string.Empty)
+                )
+                .ToList();
 
             return contributors
-                 .GroupBy(c => c.Name)
-                 .Select(g => g.Aggregate((agg, e) =>
-                     new RepoContributor(
-                         name: agg.Name,
-                         contributions: agg.Contributions + e.Contributions,
-                         url: agg.Url)
-                     ));
+                .GroupBy(c => c.Name)
+                .Select(g => g.Aggregate((agg, e) =>
+                  new RepoContributor(
+                      name: agg.Name,
+                      contributions: agg.Contributions + e.Contributions,
+                      url: agg.Url)
+               ));
+        }
+
+        public async Task<string> GetRepositoryReadme(string repositoryName)
+        {
+            var readme = await _client.Repository.Content.GetReadme(
+                owner: _config.UserName,
+                name: repositoryName
+            );
+
+            return readme.Content;
         }
 
         public Task FlushAsync() => _cacheProvider.ClearAsync();
@@ -155,8 +171,7 @@ namespace JoshHarmon.Github
 
         public Task PurgeKeyAsync(string key) => _cacheProvider.RemoveAsync(key);
 
-        public Task<IEnumerable<(string Key, DateTime Expiration)>> GetAllKeysAsync()
-            => _cacheProvider.GetAllKeysAsync();
+        public Task<IEnumerable<(string Key, DateTime Expiration)>> GetAllKeysAsync() => _cacheProvider.GetAllKeysAsync();
 
         private string GetFormattedCacheKey(string name, string action) => $"{KeyPrefix}_{action}_{name}";
     }

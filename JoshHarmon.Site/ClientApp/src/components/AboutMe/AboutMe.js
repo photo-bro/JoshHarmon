@@ -71,26 +71,44 @@ export class AboutMe extends Component {
         return (
             <div className='page'>
                 <div className='aboutMe'>
-                    <img className='aboutMeBanner' src='/assets/JoshOutOfFocus.jpg' alt="Josh Harmon" />
+                    <img className='aboutMeBanner' src='/assets/JoshOutOfFocus.jpg' alt='Josh Harmon' />
                     <h1>
                         <center>Software Engineer + Visual Artist</center>
                     </h1>
                     <p>
-                        By profession I am a software engineer working in the payments and banking data space.
-                        Throughout my career I've had the opportunity to work on and build a large variety of apps and
-                        services ranging from realtime ACH payment processors to interactive webapps. Conversely I've
-                        also had the pleasure of learning from many intelligent and insightful coworkers. Much of my
-                        career has been in the .NET ecosystem, both deep in legacy .NET Framework but also with modern
-                        cross platform .NET Core. However recently I've dived deep into Python and Django development.
-                        Regardless of what tools or frameworks I may be working with my guiding principles remain
-                        consistent - readability is cleaner than conciseness and simple is better than complex.
+                        I am a software engineer with experience in the financial data space - both in payments and data
+                        aggregation. If I had to use a single title I would describe myself as a financial integrations
+                        engineer.
                         <br />
                         <br />
-                        By hobby I am a film based photographer, amatuer videographer, and overal visual enthusiast.
-                        Perhaps to balance the digital nature of my daily life I choose to use film and analog processes
-                        for my hobbies whenever I can. More information and examples of my visual work can be found on
-                        my media website,{' '}
-                        <a href='https://joshharmonimages.com' target='_blank' rel="noopener noreferrer">
+                        Over the years I've architected, built, and supported a large variety of apps and services
+                        ranging from realtime payment processors to user facing interactive webapps. While I am most
+                        comfortable working behind the scenes constructing services and components I also enjoy
+                        occasionally designing and updating user facing web apps and experiences.
+                        <br />
+                        <br />
+                        Working in the payment and financial data space I’ve acquired experience working with large
+                        scale systems and demanding external parties in addition to cultivating a sense for how
+                        corporate scale projects evolve. In my career I’ve had the opportunity to work directly with
+                        financial service providers including Mastercard, Visa, and JP Morgan Chase as well as data aggregation
+                        platforms such as Plaid and Yodlee. When describing my role to others I jokingly call myself a
+                        cloud plumber - making sure data can flow cleanly between clouds.
+                        <br />
+                        <br />
+                        On a more technical note much of my career has been in the .NET ecosystem - both deep in legacy
+                        .NET Framework but also with modern cross platform .NET Core. More recently I've been working
+                        with Python and Django. Naturally I am familiar with the common CI/CD tools available such as
+                        TeamCity, Octopus, and Jenkins. I have also worked quite a bit with AWS infrastructure and
+                        serverless components but also have experience working with self and rackspace based hosting
+                        solutions. While I would not describe myself as an expert in devops I ensure I keep myself
+                        knowledgeable and self sufficient.
+                        <br />
+                        <br />
+                        Outside of my professional life I am a film based photographer, amateur videographer, and
+                        overall visual enthusiast. Most likely as a balance to the digital nature of my daily life I
+                        choose to use film and analog processes for my photography. More information and examples of my
+                        visual work can be found on my media website,{' '}
+                        <a href='https://joshharmonimages.com' target='_blank' rel='noopener noreferrer'>
                             joshharmonimages.com
                         </a>
                         .
@@ -107,14 +125,13 @@ export class AboutMe extends Component {
                                         <Card.Img variant='top' src='/icon/emburse.png' as='img' />
                                         <Card.Title>Software Engineer</Card.Title>
                                         <Card.Body>
-                                            <p>
-                                                Lead and implement technical bank feed and financial data integrations
-                                                with Financial Partners
-                                            </p>
+                                            <p>Lead technical integrations with financial partners and services</p>
+                                            <br />
+                                            <br />
                                             <ListGroup>
                                                 <ListGroupItem>VueJS</ListGroupItem>
-                                                <ListGroupItem>Python + Django</ListGroupItem>
-                                                <ListGroupItem>Postgres SQL</ListGroupItem>
+                                                <ListGroupItem>Python 3 + Django</ListGroupItem>
+                                                <ListGroupItem>Postgres SQL + Redis</ListGroupItem>
                                                 <ListGroupItem>AWS</ListGroupItem>
                                             </ListGroup>
                                         </Card.Body>
@@ -139,6 +156,8 @@ export class AboutMe extends Component {
                                                 Build and support distributed banking and accounting data integration
                                                 and aggregation pipeline
                                             </p>
+                                            <br />
+                                            <br />
                                             <ListGroup>
                                                 <ListGroupItem>ReactJS</ListGroupItem>
                                                 <ListGroupItem>C# + ASP.NET + .Net Core</ListGroupItem>
@@ -159,9 +178,11 @@ export class AboutMe extends Component {
                                         <Card.Title>Software Engineer</Card.Title>
                                         <Card.Body>
                                             <p>
-                                                Maintain and enhance payment processor infrastructure and back office
+                                                Maintain and extend payment processor infrastructure and back office
                                                 tooling
                                             </p>
+                                            <br />
+                                            <br />
                                             <ListGroup>
                                                 <ListGroupItem>jQuery</ListGroupItem>
                                                 <ListGroupItem>C# + ASP.NET + .Net Framework</ListGroupItem>

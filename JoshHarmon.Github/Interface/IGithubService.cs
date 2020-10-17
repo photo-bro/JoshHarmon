@@ -12,5 +12,7 @@ namespace JoshHarmon.Github.Interface
         Task<IEnumerable<RepoContributor>> GetRepositoryContributorsAsync(string repositoryName);
 
         Task<RepoStats> GetRepositoryStatsAsync(string repositoryName);
+
+        Task<string> GetRepositoryReadme(string repositoryName);
     }
 }

@@ -40,12 +40,11 @@ export class FootBar extends Component {
                 <div className="flex flex-column m10">
                     {icons}
                     <br />
-                    <div className="built-with flex flex-dividers flex-wrap full-center thin m10">
-                        <span>Constructed with .NET Core + React </span>
-                        <span> Deployed on Raspberry PI </span>
-                        <span> Run with recycled electrons</span>
+                    <div className="built-with font-xs flex flex-dividers  flex-wrap full-center thin m10">
+                        <span>Constructed with .NET Core & React </span>
+                        <span>&nbsp;Powered by Raspberry PI </span>
                     </div>
-                    <div className="white flex full-center m10">
+                    <div className="white font-xs flex full-center m10">
                         &copy;2020 Josh Harmon - All rights reserved
                 </div>
                 </div>

@@ -17,10 +17,11 @@
     text-overflow: ellipsis;
 }
 .commit p {
-    color: var(--medium-grey);
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* number of lines to show */
+    -webkit-box-orient: vertical;
 }
 .commit:hover {
     box-shadow: 0 0 0.15em 0.05em #ccc;
@@ -54,10 +55,6 @@
 
     .commit a {
         font-size: 0.4em !important;
-    }
-
-    .commit p {
-        font-size: 0.6em !important;
     }
 
     .contributors h3 {
