@@ -11,13 +11,14 @@
 .panel-container > span {
     color: #fff;
     word-wrap: break-word;
+    text-align: center;
     text-transform: uppercase;
     letter-spacing: 1em;
     border-radius: 0.15em;
 }
 
 .panel-container div {
-    margin: .5em 1em .5em 1em;
+    margin: 0.5em 1em 0.5em 1em;
 }
 
 .panel-container div:hover {
@@ -26,16 +27,18 @@
 
 @media screen and (max-width: 1000px) {
     .panel-container div {
+        font-size: 2.2em;
+        letter-spacing: 0.5em;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .panel-container div {
         font-size: 1.5em;
         letter-spacing: 0.5em;
         text-indent: 0.5em;
     }
-}
-
-@media screen and (max-width: 320px) {
-    .panel-container div {
-        font-size: 1em;
-        letter-spacing: 0.5em;
-        text-indent: 0.5em;
+    .panel-container > span {
+        margin-right: 2em;
     }
 }

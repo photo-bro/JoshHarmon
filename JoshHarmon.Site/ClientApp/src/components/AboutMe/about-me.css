@@ -8,10 +8,18 @@
     margin: 2em 5em 2em 5em;
     font-weight: 400;
 }
-
 .aboutMe h1 {
     margin: 1em;
     font-weight: 200;
+}
+@media (max-width: 720px) {
+    .aboutMe > p {
+        margin: 0.2em 1em 0.2em 1em !important;
+    }
+
+    .aboutMe h1 {
+        margin: 0.5em;
+    }
 }
 
 .tabs {

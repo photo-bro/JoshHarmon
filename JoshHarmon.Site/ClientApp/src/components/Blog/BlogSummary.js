@@ -38,22 +38,21 @@ export class BlogSummary extends Component {
         return (
             <div>
                 <a href={BlogSummary.articleLink(meta)}>
+                    <img src={bannerUri} alt="Blog article banner" className="full-width cover" />
+                </a>
+                <a href={BlogSummary.articleLink(meta)}>
                     <h1 className="thick grey">{meta.title}</h1>
                 </a>
                 {BlogSummary.buildSubtitleDiv(meta)}
-                <br />
-                <a href={BlogSummary.articleLink(meta)}>
-                    <img src={bannerUri} alt="Blog article banner" className="full-width cover" />
-                </a>
             </div>
         );
     }
 
     static buildSubtitleDiv(meta) {
         return (
-            <div className="blog-subtitle flex ml10 mr10">
-                <h3 class="semi-thin mr10"><b>{meta.author}</b></h3>
-                <h3 class="thin"><i><PrettyDate dateTime={meta.publishDate} includeDay="True" /></i></h3>
+            <div className="blog-subtitle flex flex-column ml10 mr10">
+                <h3 className="semi-thin mr10"><b>{meta.author}</b></h3>
+                <h4 className="thin"><i><PrettyDate dateTime={meta.publishDate} includeDay="True" /></i></h4>
             </div>
         );
     }
@@ -65,7 +64,6 @@ export class BlogSummary extends Component {
         return (
             <div className="blog-summary shadow-box-soft">
                 {articleHeader}
-                <br />
                 <p>{this.state.meta.summary}</p>
                 <br />
                 <a className="ml10 grey semi-thick" href={BlogSummary.articleLink(this.state.meta)}>read more...</a>

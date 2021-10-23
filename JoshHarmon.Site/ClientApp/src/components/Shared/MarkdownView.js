@@ -14,17 +14,18 @@ export class MarkdownView extends Component {
         MarkdownView.baseImageUri = this.props.baseImageUri;
     }
 
-    static BuildImageUri(assetKey)
-    {
-        return MarkdownView.baseImageUri + '/' + assetKey;
+    static BuildImageUri(assetKey) {
+        if (MarkdownView.baseImageUri)
+            return MarkdownView.baseImageUri + '/' + assetKey;
+        return assetKey;
     }
 
     render() {
-        let uriTransformFunc = function (uri){
+        let uriTransformFunc = function (uri) {
             return MarkdownView.BuildImageUri(uri)
         };
 
-        return(
+        return (
             <div className="markdown">
                 <ReactMarkdown
                     source={this.state.rawText}

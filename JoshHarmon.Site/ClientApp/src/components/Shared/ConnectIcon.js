@@ -18,7 +18,7 @@ export class ConnectIcon extends Component {
                 <a href={this.state.linkUrl} target="_blank" rel="noopener noreferrer" className="flex full-center">
                     <img src={this.state.iconUrl} alt="connect icon" />
                     <div className="connect-name abs m0 shadow-text-soft">
-                        <h1 class="m0 semi-thick">{this.state.name}</h1>
+                        <h1 className="m0 semi-thick">{this.state.name}</h1>
                     </div>
                 </a>
             </div>

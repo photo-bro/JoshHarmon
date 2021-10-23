@@ -42,7 +42,7 @@ export class Blog extends Component {
     static buildBlogSummaries(blogMetas) {
         return (
             <div className="blog-summaries flex flex-column full-width ">
-                {blogMetas.map(m => <BlogSummary meta={m} />)}
+                {blogMetas.map((m, i) => <BlogSummary key={i} meta={m} />)}
             </div>
         );
     }

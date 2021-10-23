@@ -34,7 +34,7 @@ export class Project extends Component {
     }
 
     render() {
-        let tools = this.state.tools.map(t => <Tool model={t} />);
+        let tools = this.state.tools.map((t, i) => <Tool key={i} model={t} />);
         let shortDescr = this.state.content.slice(0, 64) + ' ...';
 
         return (

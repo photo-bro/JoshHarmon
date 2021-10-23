@@ -27,7 +27,7 @@
     flex-shrink: 0;
     text-decoration: none;
     color: #484848;
-    font-size: 1.2em;
+    font-size: 1em;
 }
 
 .blog-subtitle {
@@ -40,4 +40,19 @@
 
 .blog-article > img {
     height: 25vh;
+}
+
+@media (max-width: 500px) {
+    .blog-summary h1 {
+        font-size: 1.5em;
+    }
+
+    .blog-subtitle {
+        margin: 0.5em;
+        font-size: 0.8em;
+    }
+
+    .blog-article {
+        margin: 1em;
+    }
 }

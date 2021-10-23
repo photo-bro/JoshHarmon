@@ -1,4 +1,4 @@
-# [Josh Harmon's Personal Website](http://joshharmon.site/)
+# [Josh Harmon's Personal Website](https://joshharmon.site/)
 Josh Harmon's personal website and online tech portfolio
 
   

@@ -35,7 +35,7 @@ export class RecentRepoActivity extends Component {
         if (!commitModels) return (<div />);
         return (
             <div className="commits flex flex-column p10 m5">
-                {commitModels.map(c => <Commit model={c} />)}
+                {commitModels.map((c, i) => <Commit key={i} model={c} />)}
             </div>
         );
     }

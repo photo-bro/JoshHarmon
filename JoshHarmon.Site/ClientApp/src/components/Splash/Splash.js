@@ -26,7 +26,7 @@ export class Splash extends Component {
     static buildVisualPanels(panelModels) {
         return (
             <div>
-                {panelModels.map(model => <VisualPanel model={model} />)}
+                {panelModels.map((model, i) => <VisualPanel key={i} model={model} />)}
             </div>
         );
     }
