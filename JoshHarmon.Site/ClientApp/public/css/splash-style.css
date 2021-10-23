@@ -15,7 +15,6 @@
     text-transform: uppercase;
     letter-spacing: 1em;
     border-radius: 0.15em;
-    margin-right: 5em;
 }
 
 .panel-container div {
@@ -38,5 +37,8 @@
         font-size: 1.5em;
         letter-spacing: 0.5em;
         text-indent: 0.5em;
+    }
+    .panel-container > span {
+        margin-right: 2em;
     }
 }
