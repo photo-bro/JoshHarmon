@@ -7,7 +7,7 @@ As a primarily backend engineer this site represents an effort to become more pr
 
 ## Features
  - Javascript + React 
- - AspNetCore 3 Web API
+ - .Net 5 Web API
  - Deployed and hosted on Raspberry Pi 4
  - File based content service with caching control
  - Multiple screen size support
