@@ -45,7 +45,7 @@ export class FootBar extends Component {
                         <span>&nbsp;Powered by Raspberry PI </span>
                     </div>
                     <div className="white font-xs flex full-center m10">
-                        &copy;2020 Josh Harmon - All rights reserved
+                        &copy;2021 Josh Harmon - All rights reserved
                 </div>
                 </div>
             </footer>
