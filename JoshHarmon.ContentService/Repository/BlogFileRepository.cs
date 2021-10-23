@@ -4,9 +4,11 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+
 using JoshHarmon.ContentService.Models.Blog;
 using JoshHarmon.ContentService.Repository.Interface;
 using JoshHarmon.Shared;
+
 using Newtonsoft.Json;
 
 namespace JoshHarmon.ContentService.Repository
@@ -16,9 +18,9 @@ namespace JoshHarmon.ContentService.Repository
         const string ContentFileExtension = ".content";
 
         private readonly IBlogConfig _config;
-        private readonly IDictionary<string, ArticleMeta> _cachedMeta;       // Key: FileKey
-        private readonly IDictionary<string, Article> _cachedContent;        // Key: ArticleId
-        private readonly IDictionary<string, ArticleAssets> _cachedAssets;   // Key: ArticleId
+        private readonly IDictionary<string, ArticleMeta> _cachedMeta; // Key: FileKey
+        private readonly IDictionary<string, Article> _cachedContent; // Key: ArticleId
+        private readonly IDictionary<string, ArticleAssets> _cachedAssets; // Key: ArticleId
         private bool _loadingArticleMeta = true;
 
         private static string GenerateFileKey(string jsonFile)
@@ -127,12 +129,12 @@ namespace JoshHarmon.ContentService.Repository
         private ArticleMeta? GetMetaFromDateAndFileKey(DateTime date, string fileKey)
         {
             var metas = _cachedMeta
-               .Where(m =>
+                .Where(m =>
                    date.Year == m.Value.PublishDate.Year &&
                    date.Month == m.Value.PublishDate.Month &&
                    date.Day == m.Value.PublishDate.Day)
-               .Where(m => m.Key == fileKey)
-               .ToList();
+                .Where(m => m.Key == fileKey)
+                .ToList();
 
             if (metas == null || metas.Count == 0)
                 return null;
@@ -224,8 +226,12 @@ namespace JoshHarmon.ContentService.Repository
             var articleTasks = metas.Select(m => ReadArticleByIdAsync(m.Id));
 
             var articles = await Task.WhenAll(articleTasks);
+            if (articles == null)
+            {
+                return new Article[0];
+            }
 
-            return articles;
+            return articles.Where(a => a != null).Cast<Article>(); ;
         }
 
         public async Task<IEnumerable<ArticleMeta>> ReadArticleMetasAsync(DateTime from, DateTime to)
