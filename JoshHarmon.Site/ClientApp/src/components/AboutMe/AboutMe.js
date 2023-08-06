@@ -22,17 +22,17 @@ export class AboutMe extends Component {
             {
                 label: 'SQL',
                 color: '#8e5ea2',
-                value: 6,
+                value: 8,
             },
             {
                 label: 'Python',
                 color: '#3cba9f',
-                value: 3,
+                value: 7,
             },
             {
                 label: 'JavaScript',
                 color: '#e8c3b9',
-                value: 3,
+                value: 4,
             },
         ];
     }
@@ -40,19 +40,19 @@ export class AboutMe extends Component {
     static getTechSkillsDataset() {
         return [
             {
-                label: '.Net Core / ASP.NET',
+                label: '.Net / ASP.NET',
                 color: '#3e95cd',
                 value: 6,
             },
             {
                 label: 'Django',
                 color: '#3cba9f',
-                value: 2,
+                value: 4,
             },
             {
                 label: 'React',
                 color: '#e8c3b9',
-                value: 2,
+                value: 3,
             },
             {
                 label: 'jQuery',
@@ -62,7 +62,7 @@ export class AboutMe extends Component {
             {
                 label: 'VueJs',
                 color: '#3e95cd',
-                value: 1,
+                value: 2,
             },
         ];
     }
@@ -90,24 +90,23 @@ export class AboutMe extends Component {
                         Working in the payment and financial data space I’ve acquired experience working with large
                         scale systems and demanding external parties in addition to cultivating a sense for how
                         corporate scale projects evolve. In my career I’ve had the opportunity to work directly with
-                        financial service providers including Mastercard, Visa, and JP Morgan Chase as well as data aggregation
-                        platforms such as Plaid and Yodlee. When describing my role to others I jokingly call myself a
-                        cloud plumber - making sure data can flow cleanly between clouds.
+                        financial service providers including Stripe, American Express, and Mastercard as well as data
+                        aggregation platforms such as Plaid and Finicity.
                         <br />
                         <br />
-                        On a more technical note much of my career has been in the .NET ecosystem - both deep in legacy
-                        .NET Framework but also with modern cross platform .NET Core. More recently I've been working
-                        with Python and Django. Naturally I am familiar with the common CI/CD tools available such as
-                        TeamCity, Octopus, and Jenkins. I have also worked quite a bit with AWS infrastructure and
-                        serverless components but also have experience working with self and rackspace based hosting
-                        solutions. While I would not describe myself as an expert in devops I ensure I keep myself
-                        knowledgeable and self sufficient.
+                        Along the way I've worked with many different software stacks but am primarily familiar with the .NET
+                        and the Python Django ecosystems. I prefer working with PostgresSQL when needing a RDBMS, Redis for
+                        available key value storage, and DynamoDB or MongoDB for object storage. For deploying processes I am
+                        familiar with the common containerized and orchestrated deployment processes with Docker and Kubernetes.
+                        Regarding observability and APM I prefer the use of Open Telemetry with aggregators such as Datadog or
+                        Coralogix but am familiar with any Grafana based dashboards. When it comes to hosting much of my career
+                        has been with using AWS however I have experience with alternative and more bespoke solutions, such as
+                        this website which is deployed on a Raspberry Pi. All that said I take pride in being knowledgeable of
+                        every aspect of an app or services lifecycle.
                         <br />
                         <br />
-                        Outside of my professional life I am a film based photographer, amateur videographer, and
-                        overall visual enthusiast. Most likely as a balance to the digital nature of my daily life I
-                        choose to use film and analog processes for my photography. More information and examples of my
-                        visual work can be found on my media website,{' '}
+                        Outside of my professional life I am a primarily film based photographer and avid lifelong swimmer.
+                        More information and examples of my visual work can be found on my media website,{' '}
                         <a href='https://joshharmonimages.com' target='_blank' rel='noopener noreferrer'>
                             joshharmonimages.com
                         </a>
@@ -123,13 +122,13 @@ export class AboutMe extends Component {
                                     <Card>
                                         <Card.Header>Emburse</Card.Header>
                                         <Card.Img variant='top' src='/icon/emburse.png' as='img' />
-                                        <Card.Title>Software Engineer</Card.Title>
+                                        <Card.Title>Senior Software Engineer</Card.Title>
                                         <Card.Body>
                                             <p>Lead technical integrations with financial partners and services</p>
                                             <br />
                                             <br />
                                             <ListGroup>
-                                                <ListGroupItem>VueJS</ListGroupItem>
+                                                <ListGroupItem>ReactJs</ListGroupItem>
                                                 <ListGroupItem>Python 3 + Django</ListGroupItem>
                                                 <ListGroupItem>Postgres SQL + Redis</ListGroupItem>
                                                 <ListGroupItem>AWS</ListGroupItem>
