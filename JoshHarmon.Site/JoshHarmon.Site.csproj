@@ -98,6 +98,6 @@
     </Target>
     <PropertyGroup>
         <SpaProxyServerUrl>https://localhost:44416</SpaProxyServerUrl>
-        <SpaProxyLaunchCommand>npm start</SpaProxyLaunchCommand>
+        <SpaProxyLaunchCommand>npm start --port 44416</SpaProxyLaunchCommand>
     </PropertyGroup>
 </Project>

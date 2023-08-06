@@ -117,6 +117,7 @@ app.UseResponseCompression();
 app.UseResponseCaching();
 app.UseRouting();
 app.MapControllers();
+
 // app.UseHttpsRedirection(); // Disabled - Using NGINX reverse proxy which will handle https
 app.UseStaticFiles(new StaticFileOptions
 {
