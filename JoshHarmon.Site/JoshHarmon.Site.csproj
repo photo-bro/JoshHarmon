@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk.Web">
     <PropertyGroup>
-        <TargetFramework>net5.0</TargetFramework>
+        <TargetFramework>net7.0</TargetFramework>
         <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
         <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
         <IsPackable>false</IsPackable>
@@ -24,13 +24,13 @@
         <PublishTrimmed>true</PublishTrimmed>
     </PropertyGroup>
     <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.SpaProxy" Version="7.0.9" />
         <PackageReference Include="Serilog" Version="2.8.0" />
         <PackageReference Include="Serilog.Extensions.Logging" Version="3.0.1" />
         <PackageReference Include="Serilog.Sinks.Console" Version="3.1.1" />
         <PackageReference Include="Serilog.AspNetCore" Version="3.0.0" />
         <PackageReference Include="Serilog.Sinks.RollingFile" Version="3.3.0" />
-        <PackageReference Include="Microsoft.AspNetCore.SpaServices" Version="3.0.0" />
-        <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="3.0.0" />
+        <PackageReference Include="Microsoft.AspNetCore.SpaServices" Version="3.1.32" />
     </ItemGroup>
     <ItemGroup>
         <!-- Don't show logfiles in directory-->
@@ -69,13 +69,16 @@
         <ProjectReference Include="..\JoshHarmon.Github\JoshHarmon.Github.csproj" />
         <ProjectReference Include="..\JoshHarmon.Shared\JoshHarmon.Shared.csproj" />
     </ItemGroup>
-    <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
+    <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build"
+        Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
         <!-- Ensure Node.js is installed -->
         <Exec Command="node --version" ContinueOnError="true">
             <Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
         </Exec>
-        <Error Condition="'$(ErrorCode)' != '0'" Text="Node.js is required to build and run this project. To continue, please install Node.js from https://nodejs.org/, and then restart your command prompt or IDE." />
-        <Message Importance="high" Text="Restoring dependencies using 'npm'. This may take several minutes..." />
+        <Error Condition="'$(ErrorCode)' != '0'"
+            Text="Node.js is required to build and run this project. To continue, please install Node.js from https://nodejs.org/, and then restart your command prompt or IDE." />
+        <Message Importance="high"
+            Text="Restoring dependencies using 'npm'. This may take several minutes..." />
         <Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
     </Target>
     <Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
@@ -85,10 +88,16 @@
         <!-- Include the newly-built files in the publish output -->
         <ItemGroup>
             <DistFiles Include="$(SpaRoot)build\**" />
-            <ResolvedFileToPublish Include="@(DistFiles-&gt;'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
-                <RelativePath>%(DistFiles.Identity)</RelativePath>
+            <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')"
+                Exclude="@(ResolvedFileToPublish)">
+                <RelativePath>wwwroot\%(RecursiveDir)%(FileName)%(Extension)</RelativePath>
                 <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+                <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
             </ResolvedFileToPublish>
         </ItemGroup>
     </Target>
+    <PropertyGroup>
+        <SpaProxyServerUrl>https://localhost:44416</SpaProxyServerUrl>
+        <SpaProxyLaunchCommand>npm start</SpaProxyLaunchCommand>
+    </PropertyGroup>
 </Project>
